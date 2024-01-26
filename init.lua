@@ -1,2 +1,2 @@
-require("nurrony.core")
-require("nurrony.lazy")
+require 'nurrony.core'
+require 'nurrony.lazy'
