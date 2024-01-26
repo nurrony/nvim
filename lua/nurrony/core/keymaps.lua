@@ -120,34 +120,12 @@ end
 mapkey("n", "<leader>uT", function() if vim.b.ts_highlight then vim.treesitter.stop() else vim.treesitter.start() end end, { desc = "Toggle Treesitter Highlight" })
 mapkey("n", "<leader>ub", function() Util.toggle("background", false, {"light", "dark"}) end, { desc = "Toggle Background" })
 
--- lazygit
-mapkey("n", "<leader>gg", function() Util.terminal({ "lazygit" }, { cwd = Util.root(), esc_esc = false, ctrl_hjkl = false }) end, { desc = "Lazygit (root dir)" })
-mapkey("n", "<leader>gG", function() Util.terminal({ "lazygit" }, {esc_esc = false, ctrl_hjkl = false}) end, { desc = "Lazygit (cwd)" })
-
 -- quit
 mapkey("n", "<leader>qq", "<cmd>qa<cr>", { desc = "Quit all" })
 
 -- highlights under cursor
 mapkey("n", "<leader>ui", vim.show_pos, { desc = "Inspect Pos" })
 
--- LazyVim Changelog
-mapkey("n", "<leader>L", function() Util.news.changelog() end, { desc = "LazyVim Changelog" })
-
--- floating terminal
-local lazyterm = function() Util.terminal(nil, { cwd = Util.root() }) end
-mapkey("n", "<leader>ft", lazyterm, { desc = "Terminal (root dir)" })
-mapkey("n", "<leader>fT", function() Util.terminal() end, { desc = "Terminal (cwd)" })
-mapkey("n", "<c-/>", lazyterm, { desc = "Terminal (root dir)" })
-mapkey("n", "<c-_>", lazyterm, { desc = "which_key_ignore" })
-
--- Terminal Mappings
-mapkey("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
-mapkey("t", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Go to left window" })
-mapkey("t", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Go to lower window" })
-mapkey("t", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Go to upper window" })
-mapkey("t", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Go to right window" })
-mapkey("t", "<C-/>", "<cmd>close<cr>", { desc = "Hide Terminal" })
-mapkey("t", "<c-_>", "<cmd>close<cr>", { desc = "which_key_ignore" })
 
 -- windows
 mapkey("n", "<leader>ww", "<C-W>p", { desc = "Other window", remap = true })
