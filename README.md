@@ -26,7 +26,7 @@ My customization comes with NvChad buit-ins + these following plugins and setup 
    - Lualine
    - WhichKey
    - Dressing
-   - NvimTree
+   - NeoTree
    - NvimSurround
    - Blankline
    - Telescope
