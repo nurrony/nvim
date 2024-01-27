@@ -26,7 +26,7 @@ local opts = {
     },
   },
   install = {
-    colorscheme = { "tokyonight" },
+    colorscheme = { "shades_of_purple" },
   },
 
   checker = {
