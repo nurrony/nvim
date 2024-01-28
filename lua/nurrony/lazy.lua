@@ -26,7 +26,7 @@ local opts = {
     },
   },
   install = {
-    colorscheme = { "shades_of_purple" },
+    colorscheme = { "embark" },
   },
 
   checker = {
