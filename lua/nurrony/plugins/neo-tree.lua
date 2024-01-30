@@ -46,8 +46,13 @@ return {
       bind_to_cwd = true,
       filtered_items = {
         visible = true,
-        hide_dotfiles = false,
         hide_hidden = false,
+        hide_dotfiles = false,
+        hide_gitignored = false,
+        never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+          ".git",
+          "node_modules",
+        }
       },
       follow_current_file = {
         enabled = true,
