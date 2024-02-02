@@ -1,9 +1,10 @@
 return {
-  'Rigellute/shades-of-purple.vim',
+  "catppuccin/nvim",
+  name = "catppuccin",
   lazy = false,
   priority = 1000,
   opts = {},
   config = function()
-    vim.cmd([[colorscheme shades_of_purple]])
+    vim.cmd([[colorscheme "catppuccin"]])
   end,
 }
