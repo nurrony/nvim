@@ -4,7 +4,6 @@ return {
   event = "VeryLazy",
   dependencies = {
     'stevearc/dressing.nvim',
-    "MunifTanjim/nui.nvim",  -- better vim.ui
     {
       "rcarriga/nvim-notify",
       lazy = true,
