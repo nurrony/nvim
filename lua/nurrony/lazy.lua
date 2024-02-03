@@ -17,7 +17,7 @@ require("lazy").setup({
         { import = "nurrony.plugins" },
     },
     defaults = {
-        lazy = false,
+        lazy = true,
     },
     checker = { enabled = true }, -- automatically check for plugin updates
     change_detection = {
