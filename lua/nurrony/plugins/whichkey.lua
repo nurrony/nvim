@@ -31,28 +31,31 @@ return {
   },
   config = function(_, opts)
       local wk = require("which-key")
+
       wk.setup(opts)
       local keymaps = {
-          mode = { "n", "v" },
-          ["g"] = { name = "+goto" },
-          ["gz"] = { name = "+surround" },
-          ["]"] = { name = "+next" },
-          ["["] = { name = "+prev" },
-          ["<leader><tab>"] = { name = "+tabs" },
-          ["<leader>b"] = { name = "+buffer/BufferLine" },
-          ["<leader>d"] = { name = "+debugger" },
-          ["<leader>c"] = { name = "+code" },
-          ["<leader>f"] = { name = "+file/find" },
-          ["<leader>g"] = { name = "+git" },
-          ["<leader>gh"] = { name = "+hunks" },
-          ["<leader>q"] = { name = "+quit/session" },
-          ["<leader>s"] = { name = "+search" },
-          ["<leader>u"] = { name = "+ui/toggle" },
-          ["<leader>w"] = { name = "+windows" },
-          ["<leader>x"] = { name = "+diagnostics/quickfix" },
-          ["<leader>h"] = { name = "+gitsigns/hop" },
+          mode               = { "n", "v" },
+          ["<leader>g"]      = { name = "+git" },
+          ["g"]              = { name = "+goto" },
+          ["]"]              = { name = "+next" },
+          ["["]              = { name = "+prev" },
+          ["<leader><tab>"]  = { name = "+tabs" },
+          ["<leader>c"]      = { name = "+code" },
+          ["<leader>gh"]     = { name = "+hunks" },
+          ["<leader>sn"]     = { name = "+noice" },
+          ["<leader>s"]      = { name = "+search" },
           ["<localleader>u"] = { name = "+toggle" },
+          ["<leader>w"]      = { name = "+windows" },
+          ["gz"]             = { name = "+surround" },
+          ["<leader>d"]      = { name = "+debugger" },
+          ["<leader>f"]      = { name = "+file/find" },
+          ["<leader>u"]      = { name = "+ui/toggle" },
+          ["<leader>h"]      = { name = "+gitsigns/hop" },
+          ["<leader>q"]      = { name = "+quit/session" },
+          ["<leader>b"]      = { name = "+buffer/BufferLine" },
+          ["<leader>x"]      = { name = "+diagnostics/quickfix" },
       }
+
       wk.register(keymaps)
   end,
 }
