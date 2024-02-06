@@ -16,7 +16,7 @@ require("lazy").setup({
   spec = { { import = "nurrony.plugins" } },
   defaults = { lazy = true, },
   install = { colorscheme = { "catppuccin" } },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = { enabled = true, notify = false }, -- automatically check for plugin updates
   change_detection = {
     enabled = true, -- automatically check for config file changes and reload the ui
     notify = false, -- get a notification when changes are found
