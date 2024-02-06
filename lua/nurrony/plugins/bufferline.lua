@@ -54,11 +54,16 @@ return {
       end,
       offsets = {
         {
-          filetype = "neo-tree",
-          text = "Neo-tree",
-          highlight = "Directory",
-          text_align = "left",
+            filetype = "NvimTree",
+            text = "File Explorer",
+            highlight = "Directory",
+            text_align = "left", --[[| "center" | "right",]]
         },
+      },
+      hover = {
+          enabled = true,
+          delay = 200,
+          reveal = { "close" },
       },
     },
   },
