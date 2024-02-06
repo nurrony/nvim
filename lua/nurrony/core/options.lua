@@ -83,7 +83,7 @@ opt.colorcolumn= "120" -- place a cloumn line
 opt.confirm = true
 
 -- Command line height
-opt.cmdheight = 0
+opt.cmdheight = 1
 
 --When this option is set, the screen will not be redrawn while executing
 --macros, registers and other commands that have not been typed

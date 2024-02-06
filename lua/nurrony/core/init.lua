@@ -8,6 +8,7 @@ local utils = require("nurrony.core.utils")
 utils.lazy_load({ "nurrony.core.syntax", "nurrony.core.autocmds", "nurrony.core.keymaps" })
 
 local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
+
 -- configure floating window
 vim.diagnostic.config(diagnostics_options)
 
