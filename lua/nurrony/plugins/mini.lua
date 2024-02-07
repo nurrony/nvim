@@ -26,10 +26,4 @@ return {
       { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
     },
   },
-  {
-    "echasnovski/mini.comment",
-    lazy = true,
-    config = true,
-    event = { "BufReadPost", "BufNewFile" },
-  },
 }
