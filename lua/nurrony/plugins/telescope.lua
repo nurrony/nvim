@@ -276,7 +276,7 @@ return {
               previewer = false,
               hidden = true,
             },
-            live_grep = {
+            command_history = {
               theme = "dropdown",
               previewer = true,
             },
