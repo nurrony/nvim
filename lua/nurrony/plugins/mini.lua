@@ -30,6 +30,6 @@ return {
     "echasnovski/mini.comment",
     lazy = true,
     config = true,
-    event = {"BufReadPost", "BufNewFile"},
+    event = { "BufReadPost", "BufNewFile" },
   },
 }
