@@ -63,7 +63,6 @@ return {
         "hcl",
         "css",
         "lua",
-        "vim",
         "bash",
         "diff",
         "json",
