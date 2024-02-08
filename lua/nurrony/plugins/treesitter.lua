@@ -18,6 +18,7 @@ return {
       require("nvim-treesitter.query_predicates")
     end,
     dependencies = {
+      { "windwp/nvim-ts-autotag", },
       {
         "nvim-treesitter/nvim-treesitter-textobjects",
         config = function()
@@ -124,16 +125,6 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     enabled = true,
     opts = { mode = "cursor", max_lines = 3 },
-    keys = {
-      {
-        "<leader>ut",
-        function()
-          local tsc = require("treesitter-context")
-          tsc.toggle()
-        end,
-        desc = "Toggle Treesitter Context",
-      },
-    },
   },
 
   -- Automatically add closing tags for HTML and JSX
