@@ -20,6 +20,7 @@ return {
       },
     },
   },
+
   -- Finds and lists all of the TODO, HACK, BUG, etc comment
   -- in your project and loads them into a browsable list.
   {
