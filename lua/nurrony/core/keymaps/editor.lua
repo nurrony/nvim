@@ -26,17 +26,11 @@ map({ "n", "v" }, "<leader>d", [["_d]], { remap = false }, "delete content witho
 -- Switch CWD to the directory of the open buffer
 map({ "n", "v", "o" }, "<leader>cd", "<cmd>cd %:p:h<cr>:pwd<cr>", opt, "switch to cwd")
 
--- === Moving around, tabs, windows and buffers === --
--- To use `ALT+{h,j,k,l}` to navigate windows from any mode
-map({ "t", "i" }, "<C-h>", [[<C-\><C-N><C-w>h]])
-map({ "t", "i" }, "<C-j>", [[<C-\><C-N><C-w>j]])
-map({ "t", "i" }, "<C-k>", [[<C-\><C-N><C-w>k]])
-map({ "t", "i" }, "<C-l>", [[<C-\><C-N><C-w>l]])
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window" })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window" })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window" })
-map("n", "<C-l>", "<C-w>l", { desc = "Go to right window" })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true  })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", noremap = true  })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true  })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true })
 
 local mode = { "n", "v", "o" }
 
