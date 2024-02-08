@@ -25,9 +25,7 @@ return {
       -- add operators that will trigger motion and text object completion
       -- to enable all native operators, set the preset / operators plugin above
       operators = { gc = "Comments" },
-      motions = {
-        count = true,
-      },
+      motions = { count = true },
   },
   config = function(_, opts)
     local whichkey = require("which-key")
