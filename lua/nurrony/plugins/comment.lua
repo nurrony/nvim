@@ -1,4 +1,25 @@
 return {
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    lazy = true,
+    opts = {
+      enable_autocmd = false,
+    },
+  },
+  {
+    "echasnovski/mini.comment",
+    event = { "BufNewFile", "BufReadPost" },
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
+    opts = {
+      options = {
+        custom_commentstring = function()
+          return require("ts_context_commentstring.internal").calculate_commentstring() or vim.bo.commentstring
+        end,
+      },
+    },
+  },
   -- Finds and lists all of the TODO, HACK, BUG, etc comment
   -- in your project and loads them into a browsable list.
   {
