@@ -15,48 +15,48 @@ return {
     DapBreakpointRejected = " ", --indicate breakpoints rejected by the debug
     },
     git = {
-    add = { text = "│" }, --" ","▎"
-    change = { text = "!" }, --" ",
-    delete = { text = "_" }, --" ",""
-    topdelete = { text = "‾" },
-    changedelete = { text = "~" },
-    untracked = { text = "┆" },
+      add = { text = "│" }, --" ","▎"
+      change = { text = "!" }, --" ",
+      delete = { text = "_" }, --" ",""
+      topdelete = { text = "‾" },
+      changedelete = { text = "~" },
+      untracked = { text = "┆" },
     },
     kinds = {
-    Array = " ",
-    Boolean = " ",
-    Class = " ", --"󰠱 ",
-    Color = "  ", --"󰏘 ", "󰸌 "
-    Constant = " ",
-    Constructor = "",
-    Copilot = " ",
-    Enum = " ",
-    EnumMember = "",
-    Event = " ", --"",
-    Field = "󰄶 ", --"󰘻 ","󰄷 "
-    File = "󰈙", -- 󰷈 󱪗 󱪝
-    Folder = "  ", --󰉋  
-    Function = "󰊕", --"󰡱 "
-    Interface = " ", --"",
-    Keyword = "󰌋 ", --"󱕵"
-    Method = "󰆧 ",
-    Module = " ",
-    Namespace = " ",
-    Null = " ",
-    Number = " ",
-    Object = " ",
-    Operator = " ", --"󰆕",
-    Package = "󰏗 ",
-    Property = " ", --" ",󱉯
-    Reference = " ", --"",
-    Snippet = " ",
-    String = " ",
-    Struct = " ", --" ",
-    Text = "󰊄 ", --" ",󰚞
-    TypeParameter = " ",
-    Unit = " ", --"",
-    Value = "󰎠",
-    Variable = "󰘛 ",
+      Array = " ",
+      Boolean = " ",
+      Class = " ", --"󰠱 ",
+      Color = "  ", --"󰏘 ", "󰸌 "
+      Constant = " ",
+      Constructor = "",
+      Copilot = " ",
+      Enum = " ",
+      EnumMember = "",
+      Event = " ", --"",
+      Field = "󰄶 ", --"󰘻 ","󰄷 "
+      File = "󰈙", -- 󰷈 󱪗 󱪝
+      Folder = "  ", --󰉋  
+      Function = "󰊕", --"󰡱 "
+      Interface = " ", --"",
+      Keyword = "󰌋 ", --"󱕵"
+      Method = "󰆧 ",
+      Module = " ",
+      Namespace = " ",
+      Null = " ",
+      Number = " ",
+      Object = " ",
+      Operator = " ", --"󰆕",
+      Package = "󰏗 ",
+      Property = " ", --" ",󱉯
+      Reference = " ", --"",
+      Snippet = " ",
+      String = " ",
+      Struct = " ", --" ",
+      Text = "󰊄 ", --" ",󰚞
+      TypeParameter = " ",
+      Unit = " ", --"",
+      Value = "󰎠",
+      Variable = "󰘛 ",
     },
   },
   -- options from nvim_open_win()| vim.diagnostic.open_float()
