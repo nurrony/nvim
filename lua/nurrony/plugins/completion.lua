@@ -88,17 +88,17 @@ return {
                   ["<C-n>"] = cmp.mapping.select_next_item(),
                   ["<C-p>"] = cmp.mapping.select_prev_item(),
                   ["<C-e>"] = cmp.mapping({
-                      i = cmp.mapping.abort(),
-                      c = cmp.mapping.close(),
+                    i = cmp.mapping.abort(),
+                    c = cmp.mapping.close(),
                   }),
                   ["<CR>"] = cmp.mapping.confirm({ select = false }),
                   ["<Tab>"] = cmp.mapping(function(fallback)
                       if cmp.visible() then
-                          cmp.select_next_item()
+                        cmp.select_next_item()
                       elseif luasnip.expand_or_jumpable() then
-                          luasnip.expand_or_jump()
+                        luasnip.expand_or_jump()
                       elseif has_words_before() then
-                          cmp.complete()
+                        cmp.complete()
                       else
                           -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
                           fallback()
