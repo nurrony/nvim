@@ -2,17 +2,17 @@ return {
   -- icons used by other plugins
   icons = {
     diagnostics = {
-    Error = "󰅚 ", --🅴," ""󰢃 "
-    Warn = "󰀪 ", --🆆," "
-    Hint = "󰌶", --🅸," " "󰛩 "
-    Info = " ", --🅷," ","󰗡 "
+      Error = "󰅚 ", --🅴," ""󰢃 "
+      Warn = "󰀪 ", --🆆," "
+      Hint = "󰌶", --🅸," " "󰛩 "
+      Info = " ", --🅷," ","󰗡 "
     },
     debugger = {
-    DapBreakpoint = " ", --▶️breakpoints
-    DapBreakpointCondition = " ", --conditional breakpoints
-    DapLogPoint = " ", --log points
-    DapStopped = " ", --🟥indicate where the debugee is stopped
-    DapBreakpointRejected = " ", --indicate breakpoints rejected by the debug
+      DapBreakpoint = " ", --▶️breakpoints
+      DapBreakpointCondition = " ", --conditional breakpoints
+      DapLogPoint = " ", --log points
+      DapStopped = " ", --🟥indicate where the debugee is stopped
+      DapBreakpointRejected = " ", --indicate breakpoints rejected by the debug
     },
     git = {
       add = { text = "│" }, --" ","▎"

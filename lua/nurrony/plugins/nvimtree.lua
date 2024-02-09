@@ -358,7 +358,7 @@ return {
             git_ignored = true,
             -- do not show dotfiles: files starting with a `.`
             -- Toggle via |nvim-tree-api.tree.toggle_hidden_filter()|
-            dotfiles = true,
+            dotfiles = false,
             -- Do not show files with no git status. This will show ignored files when
             -- |nvim-tree.filters.git_ignored| is set, as they are effectively dirty.
             -- Toggle via |nvim-tree-api.tree.toggle_git_clean_filter()|
@@ -369,7 +369,11 @@ return {
             custom = {},
             --list of directories or files to exclude from filtering: always show them.
             --Overrides `git.ignore`, `filters.dotfiles` and `filters.custom`.
-            exclude = {},
+            exclude = {
+                "node_modules",
+                ".git",
+                ".mvn",
+            },
         },
         --configuration for various actions
         actions = {
