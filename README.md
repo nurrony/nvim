@@ -19,10 +19,11 @@ To have my configuration please do these followings
 My customization comes with NvChad buit-ins + these following plugins and setup out of the box.
 
 1. Plugins
-   - Alpha
+   - Dashboard
    - Noice
    - Mason
-   - Comment
+   - Mini.Comment
+   - Mini.Pairs
    - Lualine
    - WhichKey
    - Dressing

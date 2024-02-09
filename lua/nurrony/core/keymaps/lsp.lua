@@ -141,16 +141,23 @@ utils.on_attach(function(client, bufnr)
                 end,
             })
         end, opts, "toggle autoformat")
-
         map("n", "<localleader>f", function()
-            vim.lsp.buf.format({ async = true })
-        end, opts, "range format buffer")
+            require('conform').format({
+                lsp_fallback = true,
+                async = false,
+                timeout_ms = 1000,
+              })
+        end, opts, "format file or buffer range (in visual mode)");
+
+        -- map("n", "<localleader>f", function()
+        --     vim.lsp.buf.format({ async = true })
+        -- end, opts, "range format buffer")
     end
-    if client.server_capabilities.documentRangeFormattingProvider then
-        map("v", "<localleader>f", function()
-            vim.lsp.buf.format({ async = true })
-        end, opts, "range format buffer")
-    end
+    -- if client.server_capabilities.documentRangeFormattingProvider then
+    --     map("v", "<localleader>f", function()
+    --         vim.lsp.buf.format({ async = true })
+    --     end, opts, "range format buffer")
+    -- end
     if client.server_capabilities.renameProvider then
         map("n", "<localleader>rn", function()
             vim.lsp.buf.rename()
