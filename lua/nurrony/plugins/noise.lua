@@ -51,15 +51,9 @@ return {
           ["cmp.entry.get_documentation"] = true,
       },
       --NOTE: install parsers for markdown and markdown_inline to see markdown documentation
-      hover = {
-          enabled = true,
-      },
-      signature = {
-          enabled = false,
-      },
-      message = {
-          enabled = true, -- Messages shown by lsp servers
-      },
+      hover = { enabled = true },
+      message = { enabled = true }, -- Messages shown by lsp servers
+      signature = { enabled = false },
     },
     routes = {
       {
