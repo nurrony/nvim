@@ -1,6 +1,7 @@
 return {
   {
     "JoosepAlviste/nvim-ts-context-commentstring",
+    event = { "BufNewFile", "BufReadPost" },
     lazy = true,
     opts = {
       enable_autocmd = false,
