@@ -79,7 +79,7 @@ return {
       -- "solid": Adds padding by a single whitespace cell.
       -- "shadow": A drop shadow effect by blending with the
       -- "none": No border (default).
-      border = "shadow",
+      border = "rounded",
       -- vim.lsp.util.open_floating_preview()
       max_width = math.floor(vim.o.columns * 0.84),
       max_height = math.floor(vim.o.lines * 0.6),

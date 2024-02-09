@@ -39,7 +39,7 @@ return {
 
           local cmp = require("cmp")
           local luasnip = require("luasnip")
-          -- local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
+          local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
 
           return {
               snippet = {
@@ -48,10 +48,19 @@ return {
                       luasnip.lsp_expand(args.body)
                   end,
               },
-              -- window = {
-              --     completion = { border = diagnostics_options.float.border },
-              --     documentation = { border = diagnostics_options.float.border },
-              -- },
+              window = {
+                completion = {
+                  scrollbar = true,
+                  border = diagnostics_options.float.border,
+                  winhighlight = "FloatBorder:None,CursorLine:PmenuSel,Normal:None,Search:None,ScrollbarHandle:None",
+                },
+                documentation = {
+                  scrollbar = false,
+                  border = diagnostics_options.float.border,
+                  max_height = diagnostics_options.float.max_height,
+                  winhighlight = "FloatBorder:None,CursorLine:PmenuSel,Normal:None,Search:None",
+                },
+              },
               formatting = {
                   format = function(entry, vim_item)
                       local icons = require("nurrony.core.defaults").icons.kinds
