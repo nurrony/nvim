@@ -1,5 +1,3 @@
-require("nurrony.core.options")
-
 -- Load editor options
 require("nurrony.core.options")
 
