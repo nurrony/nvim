@@ -2,7 +2,12 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
--- Enable LazyVim auto format
+-- disable netrw for nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+
+-- Enable auto format
 vim.g.autoformat = true
 
 -- * the name of a detector function like `lsp` or `cwd`
