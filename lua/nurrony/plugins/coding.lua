@@ -204,6 +204,7 @@ return {
       mason_tool_installer.setup({
         ensure_installed = {
           "shfmt", -- shell formatter
+          "hadolint", -- docker linter
           "prettier", -- prettier formatter
           "stylua", -- lua formatter
           "isort", -- python formatter
@@ -234,6 +235,7 @@ return {
         svelte = { "prettier" },
         graphql = { "prettier" },
         markdown = { "prettier" },
+        dockerfile = { "hadolint" },
         javascript = { "prettier" },
         typescript = { "prettier" },
         python = { "isort", "black" },
