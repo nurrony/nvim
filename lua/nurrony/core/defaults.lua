@@ -8,11 +8,11 @@ return {
       Info = " ", --🅷," ","󰗡 "
     },
     debugger = {
-      DapBreakpoint = " ", --▶️breakpoints
-      DapBreakpointCondition = " ", --conditional breakpoints
-      DapLogPoint = " ", --log points
-      DapStopped = " ", --🟥indicate where the debugee is stopped
-      DapBreakpointRejected = " ", --indicate breakpoints rejected by the debug
+      Stopped             = { " ", "DiagnosticWarn", "DapStoppedLine" }, --▶️breakpoints
+      Breakpoint          = " ",
+      BreakpointCondition = " ", --conditional breakpoints
+      BreakpointRejected  = { " ", "DiagnosticError" },
+      LogPoint            = ".>", --log points
     },
     git = {
       add = { text = "│" }, --" ","▎"
