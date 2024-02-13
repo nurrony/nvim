@@ -29,6 +29,7 @@ return   {
           { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = "󰈢",  key = "󱁐 fr" },
           { action = "Telescope live_grep",                                      desc = " Find text",       icon = "󰈬 ", key = "󱁐 sg" },
           { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "󱁐 l" },
+          { action = "qa",                                                       desc = " Quit",            icon = "󰍃 ", key = "q" },
         },
         footer = function()
           local stats = require("lazy").stats()
