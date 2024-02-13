@@ -44,7 +44,7 @@ return {
       separator_style = "slant",
       always_show_bufferline = true,
       themable = true,
-      diagnostics = "nvim_lsp",
+      diagnostics = false, -- "nvim_lsp",
       always_show_bufferline = false,
       diagnostics_indicator = function(_, _, diag)
         local icons = require("nurrony.core.defaults").icons.diagnostics
