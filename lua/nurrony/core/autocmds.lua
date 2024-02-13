@@ -89,14 +89,14 @@ autocmd("FileType", {
   end,
 })
 
-local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
--- automatically show diagnostics on current line
-autocmd({ "CursorHold" }, {
-  callback = function()
-    -- vim.diagnostic.open_float(nil, diagnostics_options.float) -- uncomment this to enable floation report
-    vim.diagnostic.config(diagnostics_options)
-  end,
-})
+-- local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
+-- -- automatically show diagnostics on current line
+-- autocmd({ "CursorHold" }, {
+--   callback = function()
+--     -- vim.diagnostic.open_float(nil, diagnostics_options.float) -- uncomment this to enable floation report
+--     vim.diagnostic.config(diagnostics_options)
+--   end,
+-- })
 
 -- Remove Trailing whitespaces in all files
 autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
