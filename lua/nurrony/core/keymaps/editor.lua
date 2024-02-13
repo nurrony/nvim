@@ -41,7 +41,7 @@ map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to t
 map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
 map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
 map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
-map("n", "<leader>bn", "<cmd>enew<cr>", { desc = "New File" }) -- new file
+map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
 map(mode, "<leader>t1", "<cmd>tabfirst<cr>", opt, "goto first tab")
