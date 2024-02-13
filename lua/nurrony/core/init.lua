@@ -14,7 +14,8 @@ vim.diagnostic.config(diagnostics_options)
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
   border = diagnostics_options.float.border,
 })
---
+
+-- signatureHelp
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
   border = diagnostics_options.float.border,
 })
