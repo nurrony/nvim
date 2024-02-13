@@ -8,11 +8,11 @@ return {
       Info = " ", --🅷," ","󰗡 "
     },
     debugger = {
-      Stopped             = { " ", "DiagnosticWarn", "DapStoppedLine" }, --▶️breakpoints
-      Breakpoint          = " ",
+      Stopped = { " ", "DiagnosticWarn", "DapStoppedLine" }, --▶️breakpoints
+      Breakpoint = " ",
       BreakpointCondition = " ", --conditional breakpoints
-      BreakpointRejected  = { " ", "DiagnosticError" },
-      LogPoint            = ".>", --log points
+      BreakpointRejected = { " ", "DiagnosticError" },
+      LogPoint = ".>", --log points
     },
     git = {
       add = { text = "│" }, --" ","▎"
@@ -63,13 +63,14 @@ return {
   -- | vim.lsp.util.open_floating_preview()| vim.diagnostic.config()
   ---@type table
   diagnostics_options = {
-    virtual_text = false,
-    -- virtual_text = {
-    --     severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
-    --     source = "if_many",
-    --     spacing = 0,
-    --     prefix = "●",
-    -- },
+    -- virtual_text = true,
+    -- open_float = false,
+    virtual_text = {
+      severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
+      source = "if_many",
+      spacing = 0,
+      prefix = "●",
+    },
     float = {
       --nvim_open_win() options
       relative = "cursor",
