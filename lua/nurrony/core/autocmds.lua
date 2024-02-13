@@ -3,6 +3,16 @@ local utils = require("nurrony.core.utils")
 local map = utils.map
 local augroup = utils.augroup
 
+-- Check if we need to reload the file when it changed
+autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
+  group = augroup("checktime"),
+  callback = function()
+    if vim.o.buftype ~= 'nofile' then
+      vim.cmd('checktime')
+    end
+  end
+})
+
 -- define autocmd in a group so that you can clear it easily
 autocmd({ "TermOpen" }, {
   group = augroup("Terminal"),
