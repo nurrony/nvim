@@ -130,6 +130,7 @@ utils.on_attach(function(client, bufnr)
         end, opts, "code action")
     end
     if client.server_capabilities.documentFormattingProvider then
+        -- toggle autoformat
         map("n", "<localleader>uf", function()
             utils.toggle("autoformat", { global = true })
             autocmd("BufWritePre", {
@@ -148,10 +149,6 @@ utils.on_attach(function(client, bufnr)
                 timeout_ms = 1000,
               })
         end, opts, "format file or buffer range (in visual mode)");
-
-        -- map("n", "<localleader>f", function()
-        --     vim.lsp.buf.format({ async = true })
-        -- end, opts, "range format buffer")
     end
     -- if client.server_capabilities.documentRangeFormattingProvider then
     --     map("v", "<localleader>f", function()
