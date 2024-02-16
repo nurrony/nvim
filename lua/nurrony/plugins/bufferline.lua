@@ -1,20 +1,20 @@
 -- This is what powers LazyVim's fancy-looking
-  -- tabs, which include filetype icons and close buttons.
+-- tabs, which include filetype icons and close buttons.
 return {
   "akinsho/bufferline.nvim",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
-    { 'nvim-lua/plenary.nvim' }, -- common functions library for other plugins
+    { 'nvim-lua/plenary.nvim' },       -- common functions library for other plugins
     { "nvim-tree/nvim-web-devicons" }, -- add nerdfont devicons support
   },
   keys = {
-    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
+    { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
+    { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
+    { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-    { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-    { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
-    { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
+    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
   },
   opts = {
     options = {
@@ -47,21 +47,21 @@ return {
       diagnostics_indicator = function(_, _, diag)
         local icons = require("nurrony.core.defaults").icons.diagnostics
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-          .. (diag.warning and icons.Warn .. diag.warning or "")
+            .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
       offsets = {
         {
-            filetype = "NvimTree",
-            text = "File Explorer",
-            highlight = "Directory",
-            text_align = "left", --[[| "center" | "right",]]
+          filetype = "NvimTree",
+          text = "File Explorer",
+          highlight = "Directory",
+          text_align = "left", --[[| "center" | "right",]]
         },
       },
       hover = {
-          enabled = true,
-          delay = 200,
-          reveal = { "close" },
+        enabled = true,
+        delay = 200,
+        reveal = { "close" },
       },
     },
   },
