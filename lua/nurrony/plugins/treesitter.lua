@@ -48,13 +48,13 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
       { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
+      { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
-    ---@type TSConfig
+
     ---@diagnostic disable-next-line: missing-fields
     opts = {
-      indent = { enable = true }, -- enable indent
-      autotag = { enable = true, }, -- enable autotagging (nvim-ts-autotag plugin)
+      indent = { enable = true },    -- enable indent
+      autotag = { enable = true, },  -- enable autotagging (nvim-ts-autotag plugin)
       highlight = { enable = true }, -- enable highlight
       ensure_installed = {
         "c",
@@ -102,7 +102,6 @@ return {
         },
       },
     },
-    ---@param opts TSConfig
     config = function(_, opts)
       if type(opts.ensure_installed) == "table" then
         ---@type table<string, boolean>
