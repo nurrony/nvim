@@ -40,7 +40,6 @@ return {
       view = "multiwindow",
       show_buffer_close_icons = true,
       separator_style = "slant",
-      always_show_bufferline = true,
       themable = true,
       diagnostics = false, -- "nvim_lsp",
       always_show_bufferline = false,
