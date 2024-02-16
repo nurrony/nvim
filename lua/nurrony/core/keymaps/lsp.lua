@@ -147,7 +147,7 @@ utils.on_attach(function(client, bufnr)
                 lsp_fallback = true,
                 async = false,
                 timeout_ms = 1000,
-              })
+            })
         end, opts, "format file or buffer range (in visual mode)");
     end
     -- if client.server_capabilities.documentRangeFormattingProvider then

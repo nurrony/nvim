@@ -27,20 +27,21 @@ map({ "n", "v" }, "<leader>d", [["_d]], { remap = false }, "delete content witho
 map({ "n", "v", "o" }, "<leader>cd", "<cmd>cd %:p:h<cr>:pwd<cr>", opt, "switch to cwd")
 
 -- Move to window using the <ctrl> hjkl keys
-map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true  })
-map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", noremap = true  })
-map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true  })
+map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", noremap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", noremap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true })
+
 
 local mode = { "n", "v", "o" }
 
 -- buffers
 map("n", "<leader>bb", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
 map("n", "<leader>`", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
-map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to the first buffer in the buffer list
-map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
-map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
+map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer")          -- move to the first buffer in the buffer list
+map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer")            -- move to the last buffer in the buffer list
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer")     -- Close the current buffer
+map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt)      -- Close all buffers except current
 map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
@@ -100,7 +101,7 @@ end, { desc = "Quit all" })
 -- open terminal on alt+t
 map({ "n", "t" }, "<M-t>", function()
     -- Checks whether an lsp is attached to the current buffer and is ready.
-        vim.cmd([[
+    vim.cmd([[
         split term://zsh
         resize 15
     ]])
@@ -155,3 +156,7 @@ map("n", "<leader>ue", function()
         { tab = [[→→]], trail = "•", extends = "»", precedes = "«", eol = "↴" },
     })
 end, { desc = "Toggle EOL" })
+
+-- indent and outdent lines in visual mode
+map('v', '<TAB>', '<S->>gv', { noremap = true, silent = true, desc = "indent line" })
+map('v', '<S-TAB>', '<S-<>gv', { noremap = true, silent = true, desc = "outdent line" })
