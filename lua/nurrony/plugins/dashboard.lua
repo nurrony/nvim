@@ -1,4 +1,4 @@
-return   {
+return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
   opts = function()
@@ -24,11 +24,11 @@ return   {
         header = vim.split(logo, "\n"),
         -- stylua: ignore
         center = {
-          { action = "Telescope find_files",                                     desc = " Find file",       icon = "󰱼 ", key = "󱁐 ff" },
-          { action = "ene | startinsert",                                        desc = " New file",        icon = "󰝒 ", key = "󱁐 bn" },
-          { action = "Telescope oldfiles",                                       desc = " Recent files",    icon = "󰈢 ",  key = "󱁐 fr" },
-          { action = "Telescope live_grep",                                      desc = " Find text",       icon = "󰈬 ", key = "󱁐 sg" },
-          { action = "Lazy",                                                     desc = " Lazy",            icon = "󰒲 ", key = "󱁐 l" },
+          { action = "Telescope find_files", desc = " Find file", icon = "󰱼 ", key = "󱁐 ff" },
+          { action = "ene | startinsert", desc = " New file", icon = "󰝒 ", key = "󱁐 bn" },
+          { action = "Telescope oldfiles", desc = " Recent files", icon = "󰈢 ", key = "󱁐 fr" },
+          { action = "Telescope live_grep", desc = " Find text", icon = "󰈬 ", key = "󱁐 sg" },
+          { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "󱁐 l" },
         },
         footer = function()
           local stats = require("lazy").stats()
