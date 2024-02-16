@@ -22,42 +22,6 @@ return {
       changedelete = { text = "~" },
       untracked = { text = "┆" },
     },
-    kinds = {
-      Array = " ",
-      Boolean = " ",
-      Class = " ", --"󰠱 ",
-      Color = "  ", --"󰏘 ", "󰸌 "
-      Constant = " ",
-      Constructor = "",
-      Copilot = " ",
-      Enum = " ",
-      EnumMember = "",
-      Event = " ", --"",
-      Field = "󰄶 ", --"󰘻 ","󰄷 "
-      File = "󰈙", -- 󰷈 󱪗 󱪝
-      Folder = "  ", --󰉋  
-      Function = "󰊕", --"󰡱 "
-      Interface = " ", --"",
-      Keyword = "󰌋 ", --"󱕵"
-      Method = "󰆧 ",
-      Module = " ",
-      Namespace = " ",
-      Null = " ",
-      Number = " ",
-      Object = " ",
-      Operator = " ", --"󰆕",
-      Package = "󰏗 ",
-      Property = " ", --" ",󱉯
-      Reference = " ", --"",
-      Snippet = " ",
-      String = " ",
-      Struct = " ", --" ",
-      Text = "󰊄 ", --" ",󰚞
-      TypeParameter = " ",
-      Unit = " ", --"",
-      Value = "󰎠",
-      Variable = "󰘛 ",
-    },
   },
   -- options from nvim_open_win()| vim.diagnostic.open_float()
   -- | vim.lsp.util.open_floating_preview()| vim.diagnostic.config()
