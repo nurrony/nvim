@@ -30,7 +30,7 @@ return {
   -- auto pairs
   {
     "echasnovski/mini.pairs",
-    event = { "BufReadPost", "BufNewFile" },
+    event = "InsertEnter",
     opts = {},
   },
 }
