@@ -29,6 +29,7 @@ return {
           { "hrsh7th/cmp-nvim-lua", lazy = true }, -- nvim-cmp source for nvim lua
           -- { "hrsh7th/cmp-emoji", lazy = true }, -- nvim-cmp source for emoji
           { "hrsh7th/cmp-cmdline", lazy = true }, --nvim-cmp source for vim's cmdline.
+          {    "onsails/lspkind.nvim", lazy = true }, -- vs-code like pictograms
       },
       opts = function()
           local has_words_before = function()
@@ -39,6 +40,7 @@ return {
 
           local cmp = require("cmp")
           local luasnip = require("luasnip")
+          local lspkind = require("lspkind")
           local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
 
           return {
@@ -62,24 +64,10 @@ return {
                 },
               },
               formatting = {
-                  format = function(entry, vim_item)
-                      local icons = require("nurrony.core.defaults").icons.kinds
-                      -- Kind icons
-                      -- This concatonates the icons with the name of the item kind
-                      vim_item.kind = string.format("%s", icons[vim_item.kind], vim_item.kind)
-                      -- Source
-                      vim_item.menu = ({
-                          buffer = "[Buffer]",
-                          nvim_lsp = "[LSP]",
-                          luasnip = "[LuaSnip]",
-                          nvim_lua = "[Lua]",
-                          path = "[Path]",
-                          -- emoji = "[Emoji]",
-                          -- neorg = "[Neorg]",
-                          spell = "[Spell]",
-                      })[entry.source.name]
-                      return vim_item
-                  end,
+                  format = lspkind.cmp_format({
+                    maxwidth = 50,
+                    ellipsis_char = "...",
+                  }),
               },
               mapping = cmp.mapping.preset.insert({
                   ["<C-Space>"] = cmp.mapping.complete({ TriggerOnly = "triggerOnly" }),
