@@ -164,6 +164,7 @@ return {
           "stylua",   -- lua formatter
           "shfmt",    -- shell formatter
           "eslint_d", -- js linter
+          "hadolint", -- docker linter
           "prettier", -- prettier formatter
           -- "isort",    -- python formatter
           -- "black",    -- python formatter
@@ -228,6 +229,7 @@ return {
       linters = {
         python = { "pylint" },
         svelte = { "eslint_d" },
+        dockerfile = { "hadolint" },
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
