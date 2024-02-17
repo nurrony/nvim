@@ -1,5 +1,4 @@
 local float = require("nurrony.core.defaults").diagnostics_options.float
-
 return {
   {
     "neovim/nvim-lspconfig",
@@ -26,25 +25,17 @@ return {
     opts = {
       -- LSP Server Settings
       servers = {
-        -- cssls = {},
-        -- html = {},
-        -- jsonls = {},
-        -- tailwindcss = {},
+        cssls = {},
+        html = {},
+        jsonls = {},
+        bashls = { filetypes = { "bash", "sh" } },
         tsserver = {
-          -- cmd = {
-          --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/typescript-language-server",
-          --   "--stdio"
-          -- },
           settings = {
             completions = {
               completeFunctionCalls = true,
             },
           },
         },
-        -- volar = {},
-        -- bashls = {
-        --     filetypes = { "bash", "sh" },
-        -- },
         lua_ls = {
           -- cmd = {
           --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
@@ -73,6 +64,9 @@ return {
             },
           },
         },
+        -- volar = {},
+        -- tailwindcss = {},
+
       },
       -- you can do any additional lsp server setup here
       setup = {
@@ -127,8 +121,7 @@ return {
       -- end
     end,
   },
-
-  -- install lsp tools and lsp servers
+  -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
@@ -138,17 +131,9 @@ return {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
     },
-    config = function()
-      -- import mason
-      local mason = require("mason")
-
-      -- import mason-lspconfig
-      local mason_lspconfig = require("mason-lspconfig")
-
-      local mason_tool_installer = require("mason-tool-installer")
-
-      -- enable mason and configure icons
-      mason.setup({
+    opts = {
+      attributes = {
+        PATH = "prepend",
         ui = {
           icons = {
             package_installed = "✓",
@@ -156,70 +141,116 @@ return {
             package_uninstalled = "✗",
           },
         },
-      })
-
-      mason_lspconfig.setup({
-        -- list of servers for mason to install
+      },
+      servers = {
         ensure_installed = {
+          "cssls",
+          "html",
+          "lua_ls",
+          "bashls",
           "tsserver",
-          -- "html",
-          -- "cssls",
+          "emmet_ls",
           -- "tailwindcss",
           -- "svelte",
-          "lua_ls",
           -- "graphql",
-          -- "emmet_ls",
           -- "prismals",
           -- "pyright",
         },
         -- auto-install configured servers (with lspconfig)
         automatic_installation = true, -- not the same as ensure_installed
-      })
-
-      mason_tool_installer.setup({
+      },
+      lsp_tools = {
         ensure_installed = {
-          "prettier", -- prettier formatter
           "stylua",   -- lua formatter
+          "shfmt",    -- shell formatter
+          "eslint_d", -- js linter
+          "prettier", -- prettier formatter
           -- "isort",    -- python formatter
           -- "black",    -- python formatter
           -- "pylint",   -- python linter
-          "eslint_d", -- js linter
         },
-      })
+      },
+    },
+    config = function(_, opts)
+      -- import mason
+      local mason = require("mason")
+      mason.setup(opts.attributes)
+
+      -- import mason-lspconfig
+      local mason_lspconfig = require("mason-lspconfig")
+      mason_lspconfig.setup(opts.servers)
+
+      local mason_tool_installer = require("mason-tool-installer")
+      mason_tool_installer.setup(opts.lsp_tools)
     end,
   },
-
-
   -- Format
   {
     "stevearc/conform.nvim",
     lazy = true,
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
-    config = function()
+    opts = {
+      formatters = {
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+        svelte = { "prettier" },
+        css = { "prettier" },
+        html = { "prettier" },
+        json = { "prettier" },
+        yaml = { "prettier" },
+        markdown = { "prettier" },
+        graphql = { "prettier" },
+        lua = { "stylua" },
+        python = { "isort", "black" },
+      },
+      format_on_save = {
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      },
+    },
+    config = function(_, opts)
       local conform = require("conform")
-
       conform.setup({
-        formatters_by_ft = {
-          javascript = { "prettier" },
-          typescript = { "prettier" },
-          javascriptreact = { "prettier" },
-          typescriptreact = { "prettier" },
-          svelte = { "prettier" },
-          css = { "prettier" },
-          html = { "prettier" },
-          json = { "prettier" },
-          yaml = { "prettier" },
-          markdown = { "prettier" },
-          graphql = { "prettier" },
-          lua = { "stylua" },
-          python = { "isort", "black" },
-        },
-        format_on_save = {
-          lsp_fallback = true,
-          async = false,
-          timeout_ms = 500,
-        },
+        formatters_by_ft = opts.formatters,
+        format_on_save = opts.format_on_save
       })
     end,
   },
+  -- Lint
+  {
+    "mfussenegger/nvim-lint",
+    lazy = true,
+    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    opts = {
+      linters = {
+        python = { "pylint" },
+        svelte = { "eslint_d" },
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+      }
+    },
+    config = function(_, opts)
+      local map = require("nurrony.core.utils").map;
+      local lint = require("lint")
+
+      lint.linters_by_ft = opts.linters
+
+      local lint_augroup = vim.api.nvim_create_augroup("LspLint", { clear = true })
+
+      vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+        group = lint_augroup,
+        callback = function()
+          lint.try_lint()
+        end,
+      })
+
+      -- bind key map
+      map("n", "<localleader>l", function() lint.try_lint(); end, { desc = "lint buffer" })
+    end,
+  }
 }
