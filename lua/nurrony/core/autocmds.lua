@@ -7,10 +7,10 @@ local augroup = utils.augroup
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
   callback = function()
-    if vim.o.buftype ~= 'nofile' then
-      vim.cmd('checktime')
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
     end
-  end
+  end,
 })
 
 -- define autocmd in a group so that you can clear it easily
