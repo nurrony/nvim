@@ -11,7 +11,7 @@ return {
         opts = {
           bind = true,
           hint_prefix = " ",
-          hint_enable = true,
+          hint_enable = false, -- enable it for single hint
           max_height = float.max_height,
           max_width = float.max_width,
           handler_opts = { border = float.border },
