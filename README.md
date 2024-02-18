@@ -49,8 +49,36 @@ nvim
 
 ### 💻 Windows
 
+Install with [PowerShell](https://github.com/PowerShell/PowerShell)
 
-## 📦 Goodies the box
+1. Make a backup of your current Neovim files:
+
+```sh
+# required
+Move-Item $env:LOCALAPPDATA\nvim $env:LOCALAPPDATA\nvim.bak
+
+# optional but recommended
+Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
+```
+
+2. Clone this repository
+
+```sh
+git clone https://github.com/nurrony/nvim $env:LOCALAPPDATA\nvim
+```
+3. Remove the `.git` folder, so you can add it to your own repo later 
+
+```sh
+Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
+  ```
+
+4. Start Neovim and let the magic happend :sparkles: :sparkles:
+
+```sh
+nvim
+```
+
+## 📦 Goodies in the box
 
 These are the followings that comes out of the box
 
