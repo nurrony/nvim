@@ -27,6 +27,7 @@ return {
       servers = {
         cssls = {},
         html = {},
+        terraformls = {},
         bashls = { filetypes = { "bash", "sh" } },
         tsserver = {
           settings = {
@@ -211,6 +212,7 @@ return {
           "lua_ls",
           "tsserver",
           "emmet_ls",
+          "terraformls",
           -- "tailwindcss",
           -- "svelte",
           -- "graphql",
@@ -266,6 +268,9 @@ return {
         graphql = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        terraform = { "terraform_fmt" },
+        tf = { "terraform_fmt" },
+        ["terraform-vars"] = { "terraform_fmt" },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -293,8 +298,10 @@ return {
         dockerfile = { "hadolint" },
         javascript = { "eslint_d" },
         typescript = { "eslint_d" },
+        tf = { "terraform_validate" },
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
+        terraform = { "terraform_validate" },
       }
     },
     config = function(_, opts)
