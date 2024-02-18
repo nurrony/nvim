@@ -17,7 +17,7 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
 
 ## 🛠️ Installation
 
-### Linux/MacOS
+### 🖥 Linux/MacOS
 1. Make a backup of your current Neovim files:
 
   ```bash
@@ -47,11 +47,14 @@ rm -rf ~/.config/nvim/.git
 nvim
 ```
 
+### 💻 Windows
 
 
-## Supported Languages and Tools
+## 📦 Goodies the box
 
-### Plugins
+These are the followings that comes out of the box
+
+### 🔌 Plugins
   - Lazy.vim - Package Manager
   - Nvim Language Server Config
   - Blankline
@@ -73,7 +76,7 @@ nvim
   - Trouble
   - Which Key
 
-### Languages Servers
+### 🔖 Languages Servers
 
   - BASH
   - HTML
@@ -86,7 +89,7 @@ nvim
   - Typescript
   - HashiCorp Language
 
-### Linters and Formatters
+### 🔧 Linters and Formatters
   - Prettier
   - ESlint
   - Shell Format
@@ -95,7 +98,7 @@ nvim
   - CloudFormation Linter
   - Python Linter
 
-### DevOps
+### 🚧 DevOps
   - Docker
   - Terraform
   - Kubernetes
