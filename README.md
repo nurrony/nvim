@@ -4,15 +4,18 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
 
 ## Prerequisites
 
-1. [NeoVim][neovim-link]
-
-## Customization
-
-To have my configuration please do these followings
-
-1. Copy `nvim` folder inside `$HOME/.config/nvim`
-2. Open `nvim` and run `:Lazy` and follow the instructions
-3. Open `nvim` and run `:Mason` and follow the instructions
+⚡️ Requirements
+  - [NeoVim][neovim-link] >= 0.9.0 (needs to be built with LuaJIT)
+  - Git >= 2.19.0 (for partial clones support)
+  - A [Nerd-Font][nerd-font](v3.0 or greater) (optional, but needed to display some icons)
+  - For telescope.nvim (optional)
+     - live grep: [ripgrep](https://github.com/BurntSushi/ripgrep)
+     - find files: [fd](https://github.com/sharkdp/fd)
+  - A terminal that support true color and undercurl:
+      - [kitty](https://github.com/kovidgoyal/kitty) (Linux & Macos)
+      - [wezterm](https://github.com/wez/wezterm) (Linux, Macos & Windows)
+      - [alacritty](https://github.com/alacritty/alacritty) (Linux, Macos & Windows)
+      - [iterm2](https://iterm2.com/) (Macos)
 
 ## Supported Languages and Tools
 
@@ -70,3 +73,4 @@ My customization comes with NvChad buit-ins + these following plugins and setup 
 <!-- Links -->
 
 [neovim-link]: https://neovim.io/
+[nerd-font]: https://www.nerdfonts.com/
