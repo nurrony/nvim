@@ -15,6 +15,39 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
       - [alacritty](https://github.com/alacritty/alacritty) (Linux, Macos & Windows)
       - [iterm2](https://iterm2.com/) (Macos)
 
+## 🛠️ Installation
+
+### Linux/MacOS
+1. Make a backup of your current Neovim files:
+
+  ```bash
+  # required
+  mv ~/.config/nvim{,.bak}
+
+  # optional but recommended
+  mv ~/.local/share/nvim{,.bak}
+  mv ~/.local/state/nvim{,.bak}
+  mv ~/.cache/nvim{,.bak}
+  ```
+
+2. Clone this repository
+
+```sh
+git clone https://github.com/nurrony/nvim ~/.config/nvim
+```
+3. Remove the `.git` folder, so you can add it to your own repo later 
+
+```sh
+rm -rf ~/.config/nvim/.git
+  ```
+
+4. Start Neovim and let the magic happend :sparkles: :sparkles:
+
+```sh
+nvim
+```
+
+
 
 ## Supported Languages and Tools
 
