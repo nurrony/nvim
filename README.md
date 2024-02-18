@@ -2,7 +2,7 @@
 
 I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customization. It is blazing fast and easily customizable.
 
-⚡️ Requirements
+## ⚡️ Requirements
   - [NeoVim](https://neovim.io/) >= 0.9.0 (needs to be built with LuaJIT)
   - [Git](https://git-scm.com/) >= 2.19.0 (for partial clones support)
   - A [Nerd-Font](https://www.nerdfonts.com/) (v3.0 or greater) (optional, but needed to display some icons)
@@ -14,6 +14,7 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
       - [wezterm](https://github.com/wez/wezterm) (Linux, Macos & Windows)
       - [alacritty](https://github.com/alacritty/alacritty) (Linux, Macos & Windows)
       - [iterm2](https://iterm2.com/) (Macos)
+
 
 ## Supported Languages and Tools
 
