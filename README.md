@@ -60,6 +60,8 @@ My customization comes with NvChad buit-ins + these following plugins and setup 
    - Shell Checker
    - Terraform Linter
    - CloudFormation Linter
+   - Python Linter
+
 1. DevOps
    - Docker
    - Terraform
