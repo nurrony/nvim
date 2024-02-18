@@ -5,7 +5,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      { "folke/neodev.nvim", opts = {} },
       {
         --TODO: enable inline hint with 0.10 release
         "ray-x/lsp_signature.nvim",
@@ -17,6 +16,10 @@ return {
           max_width = float.max_width,
           handler_opts = { border = float.border },
         },
+      },
+      {
+        "folke/neodev.nvim",
+        opts = { pathStrict = true, library = { plugins = { "nvim-dap-ui" }, types = true } },
       },
     },
     opts = {
@@ -220,14 +223,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
+          "stylua", -- lua formatter
+          "shfmt", -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
         },
       },
     },
