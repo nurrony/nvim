@@ -16,10 +16,6 @@ return {
           max_width = float.max_width,
           handler_opts = { border = float.border },
         },
-        config = function(_, opts)
-          local lsp_signature = require("lsp_signature")
-          lsp_signature.setup(opts)
-        end,
       },
       {
         "folke/neodev.nvim",
