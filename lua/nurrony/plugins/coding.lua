@@ -35,6 +35,42 @@ return {
             },
           },
         },
+        yamlls = {
+          -- Have to add this for yamlls to understand that we support line folding
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+              "force",
+              new_config.settings.yaml.schemas or {},
+              require("schemastore").yaml.schemas()
+            )
+          end,
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemaStore = {
+                -- Must disable built-in schemaStore support to use
+                -- schemas from SchemaStore.nvim plugin
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+            },
+          },
+        },
         jsonls = {
           -- lazy-load schemastore when needed
           on_new_config = function(new_config)
@@ -86,6 +122,16 @@ return {
       setup = {
         lua_ls = function(server, opts)
           require("lspconfig")[server].setup(opts)
+        end,
+        yamlls = function()
+          -- Neovim < 0.10 does not have dynamic registration for formatting
+          if vim.fn.has("nvim-0.10") == 0 then
+            require("nurrony.core.utils").on_attach(function(client, _)
+              if client.name == "yamlls" then
+                client.server_capabilities.documentFormattingProvider = true
+              end
+            end)
+          end
         end,
         -- example to setup with typescript.nvim
         -- tsserver = function(_, opts)
@@ -158,10 +204,11 @@ return {
       },
       servers = {
         ensure_installed = {
-          "cssls",
           "html",
-          "lua_ls",
+          "cssls",
           "bashls",
+          "yamlls",
+          "lua_ls",
           "tsserver",
           "emmet_ls",
           -- "tailwindcss",
