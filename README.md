@@ -1,4 +1,4 @@
-# Nur Rony's NeoVim PDE (Personal Development Environment)
+# Nur Rony's NeoVim PDE
 
 I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customization. It is blazing fast and easily customizable.
 
