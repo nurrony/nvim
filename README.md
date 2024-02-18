@@ -2,12 +2,10 @@
 
 I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customization. It is blazing fast and easily customizable.
 
-## Prerequisites
-
 ⚡️ Requirements
-  - [NeoVim][neovim-link] >= 0.9.0 (needs to be built with LuaJIT)
-  - Git >= 2.19.0 (for partial clones support)
-  - A [Nerd-Font][nerd-font](v3.0 or greater) (optional, but needed to display some icons)
+  - [NeoVim](https://neovim.io/) >= 0.9.0 (needs to be built with LuaJIT)
+  - [Git](https://git-scm.com/) >= 2.19.0 (for partial clones support)
+  - A [Nerd-Font](https://www.nerdfonts.com/) (v3.0 or greater) (optional, but needed to display some icons)
   - For telescope.nvim (optional)
      - live grep: [ripgrep](https://github.com/BurntSushi/ripgrep)
      - find files: [fd](https://github.com/sharkdp/fd)
@@ -19,58 +17,51 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
 
 ## Supported Languages and Tools
 
-My customization comes with NvChad buit-ins + these following plugins and setup out of the box.
-
 1. Plugins
-   - Lazy.vim - Package Manager
-   - Nvim Language Server Config
-   - Blankline
-   - Bufferline
-   - Mason
-   - Lint via nvim-lint
-   - Formatting via Conform
-   - Dressing
-   - Flash
-   - GitSign
-   - Lualine
-   - Mini Pairs
-   - Noice
-   - NvimTree
-   - Spectre
-   - Telescope
-   - ToggleTerm
-   - Treesitter
-   - Trouble
-   - Which Key
+  - Lazy.vim - Package Manager
+  - Nvim Language Server Config
+  - Blankline
+  - Bufferline
+  - Mason
+  - Lint via nvim-lint
+  - Formatting via Conform
+  - Dressing
+  - Flash
+  - GitSign
+  - Lualine
+  - Mini Pairs
+  - Noice
+  - NvimTree
+  - Spectre
+  - Telescope
+  - ToggleTerm
+  - Treesitter
+  - Trouble
+  - Which Key
 
 1. Languages Servers
 
-   - BASH
-   - HTML
-   - CSS
-   - Lua
-   - JSON
-   - Yaml
-   - Python
-   - Javascript
-   - Typescript
-   - HashiCorp Language
+  - BASH
+  - HTML
+  - CSS
+  - Lua
+  - JSON
+  - Yaml
+  - Python
+  - Javascript
+  - Typescript
+  - HashiCorp Language
 
 1. Linters and Formatters
-   - Prettier
-   - ESlint
-   - Shell Format
-   - Shell Checker
-   - Terraform Linter
-   - CloudFormation Linter
-   - Python Linter
+  - Prettier
+  - ESlint
+  - Shell Format
+  - Shell Checker
+  - Terraform Linter
+  - CloudFormation Linter
+  - Python Linter
 
 1. DevOps
-   - Docker
-   - Terraform
-   - Kubernetes
-
-<!-- Links -->
-
-[neovim-link]: https://neovim.io/
-[nerd-font]: https://www.nerdfonts.com/
+  - Docker
+  - Terraform
+  - Kubernetes
