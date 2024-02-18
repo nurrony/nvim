@@ -57,7 +57,6 @@ return {
       autotag = { enable = true, },  -- enable autotagging (nvim-ts-autotag plugin)
       highlight = { enable = true }, -- enable highlight
       ensure_installed = {
-        "c",
         "go",
         "tsx",
         "xml",
@@ -73,13 +72,10 @@ return {
         "java",
         "html",
         "yaml",
-        "rust",
-        "cron",
         "make",
         "jsonc",
         "query",
         "vimdoc",
-        "scala",
         "query",
         "regex",
         "python",

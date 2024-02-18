@@ -27,12 +27,26 @@ return {
       servers = {
         cssls = {},
         html = {},
-        jsonls = {},
         bashls = { filetypes = { "bash", "sh" } },
         tsserver = {
           settings = {
             completions = {
               completeFunctionCalls = true,
+            },
+          },
+        },
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = {
+                enable = true,
+              },
+              validate = { enable = true },
             },
           },
         },
@@ -254,5 +268,12 @@ return {
       -- bind key map
       map("n", "<localleader>l", function() lint.try_lint(); end, { desc = "lint buffer" })
     end,
-  }
+  },
+
+  -- yaml and json schema configuration
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
+  },
 }
