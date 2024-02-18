@@ -132,11 +132,11 @@ These are the followings that comes out of the box
   - Kubernetes
 
 
-## Special Thanks to
+## 🙏 Special Thanks to
 
 This is not only the journey of making my **PDE (Personal Development Environment)**, through this I also learned Lua
 
-### The Alphas
+### 👽 The Alphas
 - [Folke](https://twitter.com/folke)
 - [TJ DeVries](https://twitter.com/teej_dv)
 - [ThePrimeagen](https://twitter.com/ThePrimeagen)
