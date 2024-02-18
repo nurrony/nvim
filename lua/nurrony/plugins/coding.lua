@@ -1,4 +1,5 @@
 local float = require("nurrony.core.defaults").diagnostics_options.float
+
 return {
   {
     "neovim/nvim-lspconfig",
@@ -9,12 +10,15 @@ return {
         "ray-x/lsp_signature.nvim",
         opts = {
           bind = true,
+          hint_prefix = "",
           max_height = float.max_height,
           max_width = float.max_width,
-          handler_opts = {
-            border = float.border,
-          },
+          handler_opts = { border = float.border },
         },
+        config = function(_, opts)
+          local lsp_signature = require("lsp_signature")
+          lsp_signature.setup(opts)
+        end,
       },
       {
         "folke/neodev.nvim",
