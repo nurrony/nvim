@@ -27,7 +27,9 @@ return {
       servers = {
         cssls = {},
         html = {},
+        pyright = {},
         terraformls = {},
+        emmet_ls = {},
         bashls = { filetypes = { "bash", "sh" } },
         tsserver = {
           settings = {
@@ -210,6 +212,7 @@ return {
           "bashls",
           "yamlls",
           "lua_ls",
+          "pyright",
           "tsserver",
           "emmet_ls",
           "terraformls",
@@ -217,7 +220,6 @@ return {
           -- "svelte",
           -- "graphql",
           -- "prismals",
-          -- "pyright",
         },
         -- auto-install configured servers (with lspconfig)
         automatic_installation = true, -- not the same as ensure_installed
@@ -229,9 +231,9 @@ return {
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          -- "isort",    -- python formatter
-          -- "black",    -- python formatter
-          -- "pylint",   -- python linter
+          "isort",    -- python formatter
+          "black",    -- python formatter
+          "pylint",   -- python linter
         },
       },
     },
