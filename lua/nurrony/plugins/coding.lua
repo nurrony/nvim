@@ -111,15 +111,12 @@ return {
                 checkThirdParty = false,
               },
               -- disable lua_ls default formater since I use stylua
-              format = {
-                enable = false,
-              },
+              format = { enable = false },
             },
           },
         },
         -- volar = {},
         -- tailwindcss = {},
-
       },
       -- you can do any additional lsp server setup here
       setup = {
@@ -137,6 +134,7 @@ return {
           end
         end,
         -- example to setup with typescript.nvim
+        -- return true if you do not want to configure this
         -- tsserver = function(_, opts)
         --   require("typescript").setup({ server = opts })
         -- end,
@@ -163,8 +161,7 @@ return {
       end
 
       local servers = opts.servers
-      local capabilities =
-          require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
       for server, _ in pairs(servers) do
         local server_config = vim.tbl_deep_extend("force", {
@@ -226,14 +223,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
+          "stylua", -- lua formatter
+          "shfmt", -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
         },
       },
     },
@@ -284,7 +281,7 @@ return {
       local conform = require("conform")
       conform.setup({
         formatters_by_ft = opts.formatters,
-        format_on_save = opts.format_on_save
+        format_on_save = opts.format_on_save,
       })
     end,
   },
@@ -304,10 +301,10 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         terraform = { "terraform_validate" },
-      }
+      },
     },
     config = function(_, opts)
-      local map = require("nurrony.core.utils").map;
+      local map = require("nurrony.core.utils").map
       local lint = require("lint")
 
       lint.linters_by_ft = opts.linters
@@ -322,7 +319,9 @@ return {
       })
 
       -- bind key map
-      map("n", "<localleader>l", function() lint.try_lint(); end, { desc = "lint buffer" })
+      map("n", "<localleader>l", function()
+        lint.try_lint()
+      end, { desc = "lint buffer" })
     end,
   },
 
