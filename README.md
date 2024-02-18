@@ -51,7 +51,7 @@ nvim
 
 ## Supported Languages and Tools
 
-1. Plugins
+### Plugins
   - Lazy.vim - Package Manager
   - Nvim Language Server Config
   - Blankline
@@ -73,7 +73,7 @@ nvim
   - Trouble
   - Which Key
 
-1. Languages Servers
+### Languages Servers
 
   - BASH
   - HTML
@@ -86,7 +86,7 @@ nvim
   - Typescript
   - HashiCorp Language
 
-1. Linters and Formatters
+### Linters and Formatters
   - Prettier
   - ESlint
   - Shell Format
@@ -95,7 +95,7 @@ nvim
   - CloudFormation Linter
   - Python Linter
 
-1. DevOps
+### DevOps
   - Docker
   - Terraform
   - Kubernetes
