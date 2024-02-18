@@ -1,4 +1,4 @@
-# Nur Rony's NeoVim Setup and Customization
+# Nur Rony's NeoVim PDE (Personal Development Environment)
 
 I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customization. It is blazing fast and easily customizable.
 
@@ -130,3 +130,17 @@ These are the followings that comes out of the box
   - Docker
   - Terraform
   - Kubernetes
+
+
+## Special Thanks to
+
+This is not only the journey of making my **PDE (Personal Development Environment)**, through this I also learned Lua
+
+### The Alphas
+- [Folke](https://twitter.com/folke)
+- [TJ DeVries](https://twitter.com/teej_dv)
+- [ThePrimeagen](https://twitter.com/ThePrimeagen)
+
+### Projects
+- [LazyVim](https://github.com/LazyVim/LazyVim) contributors, especially The Awesome [Folke](https://twitter.com/folke)
+- [AstroVim](https://astronvim.com/)
