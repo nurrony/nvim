@@ -19,27 +19,27 @@ To have my configuration please do these followings
 My customization comes with NvChad buit-ins + these following plugins and setup out of the box.
 
 1. Plugins
-   - Dashboard
-   - Noice
-   - Mason
-   - Mini.Comment
-   - Mini.Pairs
-   - Lualine
-   - WhichKey
-   - Dressing
-   - NeoTree
-   - NvimSurround
-   - Blankline
-   - Telescope
-   - BufferLine
-   - ToogleTerm
-   - Confom
-   - NvimLint
-   - Treesitter
-   - Tokyonight
-   - AutoCloseTag
    - Lazy.vim - Package Manager
    - Nvim Language Server Config
+   - Blankline
+   - Bufferline
+   - Mason
+   - Lint via nvim-lint
+   - Formatting via Conform
+   - Dressing
+   - Flash
+   - GitSign
+   - Lualine
+   - Mini Pairs
+   - Noice
+   - NvimTree
+   - Spectre
+   - Telescope
+   - ToggleTerm
+   - Treesitter
+   - Trouble
+   - Which Key
+
 1. Languages Servers
 
    - BASH
