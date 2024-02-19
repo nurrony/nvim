@@ -45,7 +45,7 @@ return {
           {
             "filename",
             file_status = true, -- displays file status (readonly status, modified status)
-            path = 1, -- 0 = just filename, 1 = relative path, 2 = absolute path
+            path = 1,           -- 0 = just filename, 1 = relative path, 2 = absolute path
           },
           {
             "diagnostics",
@@ -73,7 +73,7 @@ return {
           -- stylua: ignore
           {
             function() return "  " .. require("dap").status() end,
-            cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
+            cond = function() return package.loaded["dap"] and require("dap").status() ~= "" end,
             color = fg("Debug"),
           },
           {
@@ -101,7 +101,7 @@ return {
           },
         },
         lualine_y = {
-          { "progress", separator = " ", padding = { left = 1, right = 0 } },
+          { "progress", separator = " ",                  padding = { left = 1, right = 0 } },
           { "location", padding = { left = 0, right = 1 } },
         },
         lualine_z = {
