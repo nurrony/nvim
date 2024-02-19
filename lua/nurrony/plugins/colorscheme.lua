@@ -20,7 +20,7 @@ return {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false,   -- Force no bold
+      no_bold = false, -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
@@ -57,6 +57,10 @@ return {
         symbols_outline = true,
         lsp_trouble = true,
         which_key = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = false,
+        },
         native_lsp = {
           enabled = true,
           virtual_text = {
@@ -78,5 +82,5 @@ return {
       require("catppuccin").setup(opts)
       vim.cmd.colorscheme("catppuccin")
     end,
-  }
+  },
 }
