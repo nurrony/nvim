@@ -1,4 +1,5 @@
 local float = require("nurrony.core.defaults").diagnostics_options.float
+local map = require("nurrony.core.utils").map
 
 return {
   {
@@ -223,14 +224,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua", -- lua formatter
-          "shfmt", -- shell formatter
+          "stylua",   -- lua formatter
+          "shfmt",    -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort", -- python formatter
-          "black", -- python formatter
-          "pylint", -- python linter
+          "isort",    -- python formatter
+          "black",    -- python formatter
+          "pylint",   -- python linter
         },
       },
     },
@@ -304,7 +305,6 @@ return {
       },
     },
     config = function(_, opts)
-      local map = require("nurrony.core.utils").map
       local lint = require("lint")
 
       lint.linters_by_ft = opts.linters
