@@ -156,7 +156,7 @@ utils.on_attach(function(client, bufnr)
         group = augroup("LspFormat"),
         callback = function()
           if vim.g["autoformat"] then
-            require('conform').format({
+            require("conform").format({
               async = false,
               timeout_ms = 500,
               lsp_fallback = true,
@@ -167,12 +167,12 @@ utils.on_attach(function(client, bufnr)
     end, opts, "toggle autoformat")
 
     map({ "n" }, "<localleader>f", function()
-      require('conform').format({
+      require("conform").format({
         async = false,
         timeout_ms = 500,
         lsp_fallback = true,
       })
-    end, opts, "Format buffer");
+    end, opts, "Format buffer")
   end
 
   if client.server_capabilities.renameProvider then
@@ -221,23 +221,10 @@ utils.on_attach(function(client, bufnr)
     end
   end, opts, "goto next diagnostics")
 
-  if utils.has("lspsaga.nvim") then
-    map("n", "<localleader>wd", function()
-      vim.cmd([[Lspsaga show_workspace_diagnostics]]) --can use ++normal to show in loclist
-    end, opts, "workspace diagnostics")
-    map("n", "<localleader>bd", function()
-      vim.cmd([[Lspsaga show_buf_diagnostics]])
-    end, opts, "workspace diagnostics")
-    map("n", "<localleader>wo", function()
-      vim.cmd([[Lspsaga outline]])
-    end, opts, "workspace outline")
-  end
-  map("n", "<localleader>sl", vim.diagnostic.setloclist, opts, "set loclist")
-  map("n", "<localleader>of", vim.diagnostic.open_float, opts, "open float")
-
   map("n", "<localleader>wf", function()
     vim.print(vim.lsp.buf.list_workspace_folders())
   end, opts, "list workspace folders")
+
   map("n", "<localleader>rd", function()
     print("Language server " .. (vim.lsp.buf.server_ready() and "is ready" or "is not ready"))
   end, opts, "check if lsp is ready")
