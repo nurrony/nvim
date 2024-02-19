@@ -32,16 +32,15 @@ map("n", "<C-j>", "<C-w>j", { desc = "Go to lower window", noremap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to upper window", noremap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to right window", noremap = true })
 
-
 local mode = { "n", "v", "o" }
 
 -- buffers
 map("n", "<leader>bb", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
 map("n", "<leader>`", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
-map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer")          -- move to the first buffer in the buffer list
-map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer")            -- move to the last buffer in the buffer list
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer")     -- Close the current buffer
-map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt)      -- Close all buffers except current
+map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to the first buffer in the buffer list
+map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
+map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
 map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
@@ -88,26 +87,13 @@ map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- save file
 map({ "i", "v", "n", "s" }, "<C-s>", function()
-    vim.cmd([[w]])
+  vim.cmd([[w]])
 end, { desc = "Save file" })
 
 -- quit
 map("n", "<C-q>", function()
-    vim.cmd([[qall]])
+  vim.cmd([[qall]])
 end, { desc = "Quit all" })
-
--- === Terminal === "
--- Mapping to open terminal emulator in nvim
--- open terminal on alt+t
-map({ "n", "t" }, "<M-t>", function()
-    -- Checks whether an lsp is attached to the current buffer and is ready.
-    vim.cmd([[
-        split term://zsh
-        resize 15
-    ]])
-end)
--- mapping to close terminal emulator
-map("t", "<M-t>", [[<C-\><C-n>:bd!<CR>]])
 
 -- better up/down
 map("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -123,40 +109,40 @@ map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 -- === Spell checking === "
 --vim.cmd [[set spell!]] also works
 map("n", "<leader>us", function()
-    utils.toggle("spell")
+  utils.toggle("spell")
 end, { desc = "Toggle Spelling" })
 
 map("n", "<leader>uw", function()
-    utils.toggle("wrap")
+  utils.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
 
 map("n", "<leader>ul", function()
-    utils.toggle("relativenumber")
-    utils.toggle("number")
+  utils.toggle("relativenumber")
+  utils.toggle("number")
 end, { desc = "Toggle Line Numbers" })
 
 map("n", "<leader>uc", function()
-    local disable_conceal = 0
-    local enable_conceal = 3
-    local conceallevel = vim.o.conceallevel > 0 and disable_conceal or enable_conceal
+  local disable_conceal = 0
+  local enable_conceal = 3
+  local conceallevel = vim.o.conceallevel > 0 and disable_conceal or enable_conceal
 
-    local filetype = vim.filetype.match({ buf = 0 })
+  local filetype = vim.filetype.match({ buf = 0 })
 
-    if filetype == "norg" and utils.has("neorg") then
-        utils.toggle("conceallevel", nil, { 0, conceallevel })
-        vim.cmd([[Neorg toggle-concealer]])
-    else
-        utils.toggle("conceallevel", nil, { 0, conceallevel })
-    end
+  if filetype == "norg" and utils.has("neorg") then
+    utils.toggle("conceallevel", nil, { 0, conceallevel })
+    vim.cmd([[Neorg toggle-concealer]])
+  else
+    utils.toggle("conceallevel", nil, { 0, conceallevel })
+  end
 end, { desc = "Toggle Conceal" })
 
 map("n", "<leader>ue", function()
-    utils.toggle("listchars", nil, {
-        { tab = [[→→]], trail = "•", extends = "»", precedes = "«" },
-        { tab = [[→→]], trail = "•", extends = "»", precedes = "«", eol = "↴" },
-    })
+  utils.toggle("listchars", nil, {
+    { tab = [[→→]], trail = "•", extends = "»", precedes = "«" },
+    { tab = [[→→]], trail = "•", extends = "»", precedes = "«", eol = "↴" },
+  })
 end, { desc = "Toggle EOL" })
 
 -- indent and outdent lines in visual mode
-map('v', '<TAB>', '<S->>gv', { noremap = true, silent = true, desc = "indent line" })
-map('v', '<S-TAB>', '<S-<>gv', { noremap = true, silent = true, desc = "outdent line" })
+map("v", "<TAB>", "<S->>gv", { noremap = true, silent = true, desc = "indent line" })
+map("v", "<S-TAB>", "<S-<>gv", { noremap = true, silent = true, desc = "outdent line" })
