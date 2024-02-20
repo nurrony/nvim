@@ -203,6 +203,8 @@ return {
         return require("trouble.providers.telescope").open_selected_with_trouble(...)
       end
 
+
+
       return {
         defaults = {
           prompt_prefix = " ",
@@ -344,4 +346,26 @@ return {
       })
     end,
   },
+
+  -- Telescope integration of aerial
+  {
+    "nvim-telescope/telescope.nvim",
+    optional = true,
+    opts = function()
+      if not Util.has("aerial.nvim") then
+        return
+      end
+
+      require("telescope").load_extension("aerial")
+    end,
+    keys = {
+      {
+        "<leader>ss",
+        "<cmd>Telescope aerial<cr>",
+        desc = "Goto Symbol (Aerial)",
+      },
+    },
+  },
+
+
 }
