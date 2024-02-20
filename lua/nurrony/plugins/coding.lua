@@ -226,14 +226,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua", -- lua formatter
-          "shfmt", -- shell formatter
+          "stylua",   -- lua formatter
+          "shfmt",    -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort", -- python formatter
-          "black", -- python formatter
-          "pylint", -- python linter
+          "isort",    -- python formatter
+          "black",    -- python formatter
+          "pylint",   -- python linter
         },
       },
     },
@@ -333,4 +333,13 @@ return {
     lazy = true,
     version = false, -- last release is way too old
   },
+
+  -- Code outline window for skimming and quick navigation
+  {
+    "stevearc/aerial.nvim",
+    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter"
+    },
+  }
 }
