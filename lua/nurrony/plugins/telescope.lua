@@ -193,6 +193,14 @@ return {
     },
     opts = function()
       local actions = require("telescope.actions")
+
+      local open_with_trouble = function(...)
+        return require("trouble.providers.telescope").open_with_trouble(...)
+      end
+      local open_selected_with_trouble = function(...)
+        return require("trouble.providers.telescope").open_selected_with_trouble(...)
+      end
+
       return {
         defaults = {
           prompt_prefix = " ",
@@ -212,6 +220,8 @@ return {
           end,
           mappings = {
             i = {
+              ["<c-t>"] = open_with_trouble,
+              ["<a-t>"] = open_selected_with_trouble,
               ["<C-[>"] = actions.close,
               ["<a-i>"] = function()
                 telescope_builtin("find_files", { no_ignore = true })()
@@ -297,7 +307,7 @@ return {
             theme = "dropdown",
             previewer = false,
           },
-        }
+        },
       }
     end,
   },
