@@ -35,7 +35,7 @@ I now use NeoVim with Lazy Plugin Manager with bare minimal plugins and customiz
 ```sh
 git clone https://github.com/nurrony/nvim ~/.config/nvim
 ```
-3. Remove the `.git` folder, so you can add it to your own repo later 
+3. Remove the `.git` folder, so you can add it to your own repo later
 
 ```sh
 rm -rf ~/.config/nvim/.git
@@ -66,7 +66,7 @@ Move-Item $env:LOCALAPPDATA\nvim-data $env:LOCALAPPDATA\nvim-data.bak
 ```sh
 git clone https://github.com/nurrony/nvim $env:LOCALAPPDATA\nvim
 ```
-3. Remove the `.git` folder, so you can add it to your own repo later 
+3. Remove the `.git` folder, so you can add it to your own repo later
 
 ```sh
 Remove-Item $env:LOCALAPPDATA\nvim\.git -Recurse -Force
@@ -99,7 +99,6 @@ These are the followings that comes out of the box
   - NvimTree
   - Spectre
   - Telescope
-  - ToggleTerm
   - Treesitter
   - Trouble
   - Which Key
