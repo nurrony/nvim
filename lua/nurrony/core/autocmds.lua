@@ -59,16 +59,16 @@ autocmd("BufReadPost", {
 autocmd("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "PlenaryTestPopup",
-    "help",
-    "lspinfo",
-    "man",
-    "notify",
     "qf",
+    "help",
+    "man",
     "query", -- :InspectTree
-    "spectre_panel",
+    "notify",
+    "lspinfo",
     "startuptime",
     "tsplayground",
+    "spectre_panel",
+    "PlenaryTestPopup",
   },
   callback = function(event)
     -- :help api-autocmd
