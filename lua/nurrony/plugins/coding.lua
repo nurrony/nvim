@@ -113,6 +113,8 @@ return {
               },
               -- disable lua_ls default formater since I use stylua
               format = { enable = false },
+              -- set telemetry false
+              telemetry = { enable = false },
             },
           },
         },
@@ -224,14 +226,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
+          "stylua", -- lua formatter
+          "shfmt", -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
         },
       },
     },
