@@ -10,6 +10,7 @@ local function is_git_repo()
 end
 
 -- this will return a function that calls telescope.
+-- cwd will default to lazyvim.util.get_root
 -- for `files`, git_files or find_files will be chosen depending on .git
 local telescope_builtin = function(builtin, opts)
   local params = { builtin = builtin, opts = opts or {} }
@@ -195,7 +196,20 @@ return {
       return {
         defaults = {
           prompt_prefix = " ",
-          selection_caret = "",
+          selection_caret = " ",
+          -- open files in the first window that is an actual file.
+          -- use the current window if no other window is available.
+          get_selection_window = function()
+            local wins = vim.api.nvim_list_wins()
+            table.insert(wins, 1, vim.api.nvim_get_current_win())
+            for _, win in ipairs(wins) do
+              local buf = vim.api.nvim_win_get_buf(win)
+              if vim.bo[buf].buftype == "" then
+                return win
+              end
+            end
+            return 0
+          end,
           mappings = {
             i = {
               ["<C-[>"] = actions.close,
