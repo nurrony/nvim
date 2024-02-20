@@ -1,7 +1,10 @@
+local map = require("nurrony.core.utils").map
+
 return {
   "akinsho/toggleterm.nvim",
-  version = "*",
   lazy = true,
+  version = "*",
+  event = "VeryLazy",
   keys = {
     { "<C-`>", "<cmd>Toggleterm<cr>", desc = "Open terminal" },
   },
@@ -71,5 +74,26 @@ return {
   config = function(_, opts)
     local toggleterm = require("toggleterm")
     toggleterm.setup(opts)
+
+    local Terminal = require("toggleterm.terminal").Terminal
+
+    local lazygit = Terminal:new({
+      cmd = "lazygit",
+      dir = "git_dir",
+      direction = "float",
+      float_opts = { border = "curved" },
+    })
+
+    function _lazygit_toggle()
+      lazygit:toggle()
+    end
+
+    map(
+      { "n", "v" },
+      "<leader>gt",
+      "<cmd>lua _lazygit_toggle()<CR>",
+      { noremap = true, silent = true },
+      "Toggle LazyGit"
+    )
   end,
 }
