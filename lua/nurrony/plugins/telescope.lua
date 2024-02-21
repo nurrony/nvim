@@ -6,9 +6,12 @@ local Util = require("nurrony.core.utils")
 --https://github.com/nvim-telescope/telescope.nvim/blob/master/lua/telescope/builtin/__files.lua
 --HELP: telescope nvim
 local function is_git_repo()
-  vim.fn.system("git rev-parse --is-inside-work-tree")
-  ---@diagnostic disable-next-line: undefined-field
-  return vim.v.shell_error == 0
+  local result = vim.fn.system("git rev-parse --is-inside-work-tree")
+  if vim.v.shell_error == 0 and result:find("true") then
+    return true
+  else
+    return false
+  end
 end
 
 -- this will return a function that calls telescope.
@@ -202,8 +205,6 @@ return {
       local open_selected_with_trouble = function(...)
         return require("trouble.providers.telescope").open_selected_with_trouble(...)
       end
-
-
 
       return {
         defaults = {
