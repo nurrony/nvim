@@ -1,4 +1,4 @@
--- This file is automatically loaded by plugins.core
+-- Set leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
