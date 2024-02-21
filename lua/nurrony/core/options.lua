@@ -6,7 +6,6 @@ vim.g.maplocalleader = "\\"
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-
 -- Enable auto format
 vim.g.autoformat = true
 
@@ -75,14 +74,14 @@ opt.backup = false -- disable backup
 opt.hidden = true -- change buffer without saving
 opt.errorbells = false -- turn of the error bells
 opt.history = 1000 -- history count
-opt.breakindent=true -- break indent
+opt.breakindent = true -- break indent
 opt.autoindent = true -- copy indent from current line when starting new one
 opt.background = "dark" -- colorschemes that can be light or dark will be made dark
 opt.cmdheight = 1 -- commonad bar heig  ht in nvim
 opt.backspace = "indent,eol,start" -- allow backspace on indent, end of line or insert mode start position
 opt.autochdir = false -- do not auto change the directory
-opt.iskeyword:append('-') -- treat hyphen as keyword
-opt.colorcolumn= "120" -- place a cloumn line
+opt.iskeyword:append("-") -- treat hyphen as keyword
+opt.colorcolumn = "120" -- place a cloumn line
 
 -- Prompt confirmation dialogs
 opt.confirm = true
