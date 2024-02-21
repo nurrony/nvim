@@ -333,13 +333,4 @@ return {
     lazy = true,
     version = false, -- last release is way too old
   },
-
-  -- Code outline window for skimming and quick navigation
-  {
-    "stevearc/aerial.nvim",
-    event = { "BufReadPost", "BufNewFile", "BufWritePre" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter"
-    },
-  }
 }

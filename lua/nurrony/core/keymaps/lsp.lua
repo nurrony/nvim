@@ -139,6 +139,7 @@ utils.on_attach(function(client, bufnr)
   if client.server_capabilities.documentSymbolProvider then
     map("n", "<localleader>ds", vim.lsp.buf.document_symbol, opts, "document symbols")
   end
+
   if client.server_capabilities.codeActionProvider then
     map({ "n", "v" }, "<localleader>ca", function()
       if utils.has("lspsaga.nvim") then
