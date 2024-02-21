@@ -23,9 +23,9 @@ return {
     dependencies = {
       -- Autocompletion plugin
       -- Completion Sources --
-      { "hrsh7th/cmp-path",     lazy = true }, -- nvim-cmp source for path
-      { "hrsh7th/cmp-buffer",   lazy = true }, -- nvim-cmp source for buffer words
-      { "hrsh7th/cmp-cmdline",  lazy = true }, --nvim-cmp source for vim's cmdline.
+      { "hrsh7th/cmp-path", lazy = true }, -- nvim-cmp source for path
+      { "hrsh7th/cmp-buffer", lazy = true }, -- nvim-cmp source for buffer words
+      { "hrsh7th/cmp-cmdline", lazy = true }, --nvim-cmp source for vim's cmdline.
       { "hrsh7th/cmp-nvim-lsp", lazy = true }, -- nvim-cmp source for neovim builtin LSP client
       { "hrsh7th/cmp-nvim-lua", lazy = true }, -- nvim-cmp source for nvim lua
       { "onsails/lspkind.nvim", lazy = true }, -- vs-code like pictograms
@@ -34,8 +34,7 @@ return {
     opts = function()
       local has_words_before = function()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0
-            and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
       end
 
       local cmp = require("cmp")
@@ -54,8 +53,7 @@ return {
           completion = {
             scrollbar = true,
             border = diagnostics_options.float.border,
-            winhighlight =
-            "FloatBorder:None,CursorLine:PmenuSel,Normal:None,Search:None,ScrollbarHandle:None",
+            winhighlight = "FloatBorder:None,CursorLine:PmenuSel,Normal:None,Search:None,ScrollbarHandle:None",
           },
           documentation = {
             scrollbar = false,
@@ -65,15 +63,20 @@ return {
           },
         },
         formatting = {
+          expandable_indicator = true,
           format = lspkind.cmp_format({
             maxwidth = 50,
+            mode = "symbol_text",
             ellipsis_char = "...",
+            symbol_map = {
+              Copilot = "",
+            },
           }),
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-Space>"] = cmp.mapping.complete({ TriggerOnly = "triggerOnly" }),
           ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
-          ["<CR>"] = cmp.mapping.confirm({ select = false }),
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -97,14 +100,17 @@ return {
           end, { "i", "s" }),
         }),
         sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "buffer" },
-          { name = "luasnip" },
-          { name = "path" },
           { name = "nvim_lua" },
+          { name = "nvim_lsp" }, -- lsp
+          { name = "path", max_item_count = 3 }, -- file system path
+          { name = "buffer", max_item_count = 5 }, -- text within current buffer
+          { name = "luasnip", max_item_count = 3 }, -- snippets
           -- { name = "emoji" },
           -- { name = "neorg" },
         }),
+        -- experimental = {
+        --   ghost_text = true,
+        -- },
       }
     end,
     config = function(_, opts)
