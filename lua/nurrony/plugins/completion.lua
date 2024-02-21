@@ -74,6 +74,8 @@ return {
           }),
         },
         mapping = cmp.mapping.preset.insert({
+          ["<C-u>"] = cmp.mapping.scroll_docs(4), -- scroll up preview
+          ["<C-d>"] = cmp.mapping.scroll_docs(-4), -- scroll down preview
           ["<C-Space>"] = cmp.mapping.complete({ TriggerOnly = "triggerOnly" }),
           ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
