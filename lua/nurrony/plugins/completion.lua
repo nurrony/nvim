@@ -17,7 +17,7 @@ return {
   -- completion engine
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter", -- load cmp on InsertEnter
+    event = { "BufReadPost", "BufNewFile" }, -- load cmp
     -- these dependencies will only be loaded when cmp loads
     -- dependencies are always lazy-loaded unless specified otherwise
     dependencies = {
