@@ -104,6 +104,7 @@ These are the followings that comes out of the box
 - NvimTree
 - Spectre
 - Telescope
+- UndoTree
 - ToggleTerm
 - Treesitter
 - Trouble
