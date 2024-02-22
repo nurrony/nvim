@@ -37,10 +37,10 @@ local mode = { "n", "v", "o" }
 -- buffers
 map("n", "<leader>bb", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
 map("n", "<leader>`", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
-map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to the first buffer in the buffer list
-map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
-map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
+map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer")          -- move to the first buffer in the buffer list
+map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer")            -- move to the last buffer in the buffer list
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer")     -- Close the current buffer
+map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt)      -- Close all buffers except current
 map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
@@ -146,3 +146,5 @@ end, { desc = "Toggle EOL" })
 -- indent and outdent lines in visual mode
 map("v", "<TAB>", "<S->>gv", { noremap = true, silent = true, desc = "indent line" })
 map("v", "<S-TAB>", "<S-<>gv", { noremap = true, silent = true, desc = "outdent line" })
+
+vim.api.nvim_set_keymap('n', '<A-x>', "<cmd>lua print('uelll')<cr>", { noremap = true, silent = true, desc = "test" })
