@@ -146,5 +146,3 @@ end, { desc = "Toggle EOL" })
 -- indent and outdent lines in visual mode
 map("v", "<TAB>", "<S->>gv", { noremap = true, silent = true, desc = "indent line" })
 map("v", "<S-TAB>", "<S-<>gv", { noremap = true, silent = true, desc = "outdent line" })
-
-vim.api.nvim_set_keymap('n', '<A-x>', "<cmd>lua print('uelll')<cr>", { noremap = true, silent = true, desc = "test" })
