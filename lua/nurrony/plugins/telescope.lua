@@ -51,6 +51,9 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
+    dependencies = {
+      "debugloop/telescope-undo.nvim", -- undo tree of buffer
+    },
     keys = {
       {
         "<leader>,",
@@ -202,6 +205,7 @@ return {
       local open_with_trouble = function(...)
         return require("trouble.providers.telescope").open_with_trouble(...)
       end
+
       local open_selected_with_trouble = function(...)
         return require("trouble.providers.telescope").open_selected_with_trouble(...)
       end
@@ -344,6 +348,30 @@ return {
       end
       opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
         mappings = { n = { s = flash }, i = { ["<c-s>"] = flash } },
+      })
+    end,
+  },
+
+  {
+    "nvim-telescope/telescope.nvim",
+    optional = true,
+    keys = {
+      { "<localleader>h", "<cmd>Telescope undo<cr>", desc = "Undo file history" },
+    },
+    opts = function(_, opts)
+      if not Util.has("telescope-undo.nvim") then
+        return
+      end
+      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
+        extensions = {
+          undo = {
+            side_by_side = true,
+            use_custom_command = nil,
+            layout_strategy = "vertical",
+            diff_context_lines = vim.o.scrolloff,
+            layout_config = { preview_height = 0.8 },
+          },
+        },
       })
     end,
   },
