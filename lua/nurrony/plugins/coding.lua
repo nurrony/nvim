@@ -210,6 +210,7 @@ return {
           "html",
           "cssls",
           "bashls",
+          "jsonls",
           "yamlls",
           "lua_ls",
           "pyright",
