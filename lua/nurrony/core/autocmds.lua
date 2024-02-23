@@ -3,6 +3,26 @@ local utils = require("nurrony.core.utils")
 local map = utils.map
 local augroup = utils.augroup
 
+
+-- resize splits if window got resized
+vim.api.nvim_create_autocmd({ "VimResized" }, {
+  group = augroup("resize_splits"),
+  callback = function()
+    local current_tab = vim.fn.tabpagenr()
+    vim.cmd("tabdo wincmd =")
+    vim.cmd("tabnext " .. current_tab)
+  end,
+})
+
+-- Fix conceallevel for json files
+vim.api.nvim_create_autocmd({ "FileType" }, {
+  group = augroup("json_conceal"),
+  pattern = { "json", "jsonc", "json5" },
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
 -- Check if we need to reload the file when it changed
 autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
   group = augroup("checktime"),
@@ -32,14 +52,6 @@ autocmd("TextYankPost", {
   end,
 })
 
--- resize splits if window got resized
-autocmd({ "VimResized" }, {
-  group = augroup("resize_splits"),
-  callback = function()
-    vim.cmd("wincmd =")
-    vim.cmd("tabdo wincmd =")
-  end,
-})
 
 -- go to the last known loc/position when opening a file/buffer
 -- :h restore-position and :h restore-cursor

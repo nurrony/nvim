@@ -7,15 +7,15 @@ end
 function M.reload_all()
   for name, _ in pairs(package.loaded) do
     if
-      name:match("^lazy")
-      or name:match("^mapping")
-      or name:match("^plugrc")
-      or name:match("^ui")
-      or name:match("^editor")
-      or name:match("^plugins")
-      or name:match("^syntax")
-      or name:match("^terminal")
-      or name:match("^utils")
+        name:match("^lazy")
+        or name:match("^mapping")
+        or name:match("^plugrc")
+        or name:match("^ui")
+        or name:match("^editor")
+        or name:match("^plugins")
+        or name:match("^syntax")
+        or name:match("^terminal")
+        or name:match("^utils")
     then
       package.loaded[name] = nil
     end
@@ -179,15 +179,26 @@ local function mdesc(opt, description)
   return vim.tbl_extend("force", opt, { desc = description })
 end
 
----@param mode string|table
----@param lhs string
----@param rhs string|function
----@param opts? table
----@param desc? string
-M.map = function(mode, lhs, rhs, opts, desc)
-  opts = opts and opts or {}
-  opts = mdesc(opts, desc)
-  vim.keymap.set(mode, lhs, rhs, opts)
+-- Wrapper around vim.keymap.set that will
+-- not create a keymap if a lazy key handler exists.
+-- It will also set `silent` to true by default.
+function M.map(mode, lhs, rhs, opts)
+  local keys = require("lazy.core.handler").handlers.keys
+  local modes = type(mode) == "string" and { mode } or mode
+
+  modes = vim.tbl_filter(function(m)
+    return not (keys.have and keys:have(lhs, m))
+  end, modes)
+
+  -- do not create the keymap if a lazy keys handler exists
+  if #modes > 0 then
+    opts = opts or {}
+    opts.silent = opts.silent ~= false
+    if opts.remap and not vim.g.vscode then
+      opts.remap = nil
+    end
+    vim.keymap.set(modes, lhs, rhs, opts)
+  end
 end
 
 M.augroup = function(name)
