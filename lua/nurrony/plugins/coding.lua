@@ -2,6 +2,8 @@ local float = require("nurrony.core.defaults").diagnostics_options.float
 local map = require("nurrony.core.utils").map
 
 return {
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth" },
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
