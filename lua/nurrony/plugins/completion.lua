@@ -3,6 +3,16 @@ return {
   {
     "L3MON4D3/LuaSnip",
     lazy = true,
+    build = (function()
+      -- Build Step is needed for regex support in snippets
+      -- This step is not supported in many windows environments
+      -- Remove the below condition to re-enable on windows
+      if vim.fn.has 'win32' == 1 then
+        return
+      end
+      return 'make install_jsregexp'
+    end)(),
+
     dependencies = {
       { "saadparwaiz1/cmp_luasnip", lazy = true }, -- luasnip completion source for nvim-cmp
       {
@@ -23,9 +33,9 @@ return {
     dependencies = {
       -- Autocompletion plugin
       -- Completion Sources --
-      { "hrsh7th/cmp-path", lazy = true }, -- nvim-cmp source for path
-      { "hrsh7th/cmp-buffer", lazy = true }, -- nvim-cmp source for buffer words
-      { "hrsh7th/cmp-cmdline", lazy = true }, --nvim-cmp source for vim's cmdline.
+      { "hrsh7th/cmp-path",     lazy = true }, -- nvim-cmp source for path
+      { "hrsh7th/cmp-buffer",   lazy = true }, -- nvim-cmp source for buffer words
+      { "hrsh7th/cmp-cmdline",  lazy = true }, --nvim-cmp source for vim's cmdline.
       { "hrsh7th/cmp-nvim-lsp", lazy = true }, -- nvim-cmp source for neovim builtin LSP client
       { "hrsh7th/cmp-nvim-lua", lazy = true }, -- nvim-cmp source for nvim lua
       { "onsails/lspkind.nvim", lazy = true }, -- vs-code like pictograms
@@ -74,7 +84,7 @@ return {
           }),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-u>"] = cmp.mapping.scroll_docs(4), -- scroll up preview
+          ["<C-u>"] = cmp.mapping.scroll_docs(4),  -- scroll up preview
           ["<C-d>"] = cmp.mapping.scroll_docs(-4), -- scroll down preview
           ["<C-Space>"] = cmp.mapping.complete({ TriggerOnly = "triggerOnly" }),
           ["<C-e>"] = cmp.mapping({ i = cmp.mapping.abort(), c = cmp.mapping.close() }),
@@ -103,9 +113,9 @@ return {
         }),
         sources = cmp.config.sources({
           { name = "nvim_lua" },
-          { name = "nvim_lsp" }, -- lsp
-          { name = "path", max_item_count = 3 }, -- file system path
-          { name = "buffer", max_item_count = 5 }, -- text within current buffer
+          { name = "nvim_lsp" },                    -- lsp
+          { name = "path",    max_item_count = 3 }, -- file system path
+          { name = "buffer",  max_item_count = 5 }, -- text within current buffer
           { name = "luasnip", max_item_count = 3 }, -- snippets
           -- { name = "emoji" },
           -- { name = "neorg" },
