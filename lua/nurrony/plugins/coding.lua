@@ -184,7 +184,7 @@ return {
       -- end
     end,
   },
-  -- cmdline tools and lsp servers
+  -- to automate install lsp tools and servers
   {
     "williamboman/mason.nvim",
     cmd = "Mason",
