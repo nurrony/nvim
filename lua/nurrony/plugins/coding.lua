@@ -4,6 +4,8 @@ local map = require("nurrony.core.utils").map
 return {
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
+
+  -- configure neovim
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -186,6 +188,7 @@ return {
       -- end
     end,
   },
+
   -- to automate install lsp tools and servers
   {
     "williamboman/mason.nvim",
