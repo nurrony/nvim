@@ -4,14 +4,13 @@ local map = utils.map
 local augroup = utils.augroup
 
 -- disable ufo for certain file type
-vim.api.nvim_create_autocmd('FileType', {
-  group = augroup('detach_ufo'),
-  pattern = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' },
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("detach_ufo"),
+  pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
   callback = function()
-    require('ufo').detach()
+    require("ufo").detach()
   end,
 })
-
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
@@ -60,7 +59,6 @@ autocmd("TextYankPost", {
     vim.highlight.on_yank()
   end,
 })
-
 
 -- go to the last known loc/position when opening a file/buffer
 -- :h restore-position and :h restore-cursor
