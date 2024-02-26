@@ -108,6 +108,7 @@ These are the followings that comes out of the box
 - ToggleTerm
 - Treesitter
 - Trouble
+- UFO (Folding)
 - Which Key
 
 ### 🔖 Languages Servers
