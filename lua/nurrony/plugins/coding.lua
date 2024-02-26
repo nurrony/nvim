@@ -366,8 +366,13 @@ return {
       -- have equivalents for zr and zm because there is no saved fold level.
       -- Consequently, the vim-internal fold levels need to be disabled by setting
       -- them to 99
+      -- Set fold settings
+      -- These options were reccommended by nvim-ufo
+      -- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+      vim.opt.foldcolumn = "0"
       vim.opt.foldlevel = 99
       vim.opt.foldlevelstart = 99
+      vim.opt.foldenable = true
     end,
     opts = {
       provider_selector = function(_, ft, _)
