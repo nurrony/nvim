@@ -221,7 +221,7 @@ end
 function M.foldTextFormatter(virtText, lnum, endLnum, width, truncate)
   local hlgroup = "NonText"
   local newVirtText = {}
-  local suffix = "    " .. tostring(endLnum - lnum)
+  local suffix = "  " .. tostring(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
