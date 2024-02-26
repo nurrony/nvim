@@ -335,6 +335,48 @@ return {
     end,
   },
 
+  -- manage folding using ufo
+  {
+    'kevinhwang91/nvim-ufo',
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { 'kevinhwang91/promise-async' },
+    init = function()
+      -- INFO fold commands usually change the foldlevel, which fixes folds, e.g.
+      -- auto-closing them after leaving insert mode, however ufo does not seem to
+      -- have equivalents for zr and zm because there is no saved fold level.
+      -- Consequently, the vim-internal fold levels need to be disabled by setting
+      -- them to 99
+      -- These options were reccommended by nvim-ufo
+      -- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+      vim.opt.foldcolumn = "1"
+      vim.opt.foldlevel = 99
+      vim.opt.foldlevelstart = 99
+      vim.opt.foldenable = true
+    end,
+    opts = {
+      provider_selector = function(_, ft, _)
+        -- INFO some filetypes only allow indent, some only LSP, some only
+        -- treesitter. However, ufo only accepts two kinds as priority,
+        -- therefore making this function necessary :/
+        local lspWithOutFolding = { "markdown", "sh", "css", "html", "python" }
+        if vim.tbl_contains(lspWithOutFolding, ft) then return { "treesitter", "indent" } end
+        return { "lsp", "indent" }
+      end,
+      preview = {
+        win_config = {
+          border = { '', '─', '', '', '', '─', '', '' },
+          winhighlight = 'Normal:Folded',
+          winblend = 0
+        },
+      },
+      -- when opening the buffer, close these fold kinds
+      -- use `:UfoInspect` to get available fold kinds from the LSP
+      close_fold_kinds = { "imports", "comment" },
+      open_fold_hl_timeout = 500,
+      fold_virt_text_handler = Util.fold_text_formatter,
+    },
+  },
+
   -- yaml and json schema configuration
   {
     "b0o/SchemaStore.nvim",
