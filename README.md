@@ -130,9 +130,9 @@ These are the followings that comes out of the box
 - ESlint
 - Shell Format
 - Shell Checker
+- Python Linter
 - Terraform Linter
 - CloudFormation Linter
-- Python Linter
 
 ### 🚧 DevOps
 
