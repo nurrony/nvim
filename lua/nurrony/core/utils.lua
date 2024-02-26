@@ -215,7 +215,7 @@ function M.map(mode, lhs, rhs, opts, desc)
 end
 
 M.augroup = function(name)
-  return vim.api.nvim_create_augroup(name, { clear = true })
+  return vim.api.nvim_create_augroup("nmr_" .. name, { clear = true })
 end
 
 function M.foldTextFormatter(virtText, lnum, endLnum, width, truncate)
