@@ -232,14 +232,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
+          "stylua", -- lua formatter
+          "shfmt", -- shell formatter
           "eslint_d", -- js linter
           "hadolint", -- docker linter
           "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
         },
       },
     },
@@ -337,9 +337,9 @@ return {
 
   -- manage folding using ufo
   {
-    'kevinhwang91/nvim-ufo',
+    "kevinhwang91/nvim-ufo",
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = { 'kevinhwang91/promise-async' },
+    dependencies = { "kevinhwang91/promise-async" },
     init = function()
       -- INFO fold commands usually change the foldlevel, which fixes folds, e.g.
       -- auto-closing them after leaving insert mode, however ufo does not seem to
@@ -348,7 +348,7 @@ return {
       -- them to 99
       -- These options were reccommended by nvim-ufo
       -- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-      vim.opt.foldcolumn = "1"
+      vim.opt.foldcolumn = "0"
       vim.opt.foldlevel = 99
       vim.opt.foldlevelstart = 99
       vim.opt.foldenable = true
@@ -359,7 +359,9 @@ return {
         -- treesitter. However, ufo only accepts two kinds as priority,
         -- therefore making this function necessary :/
         local lspWithOutFolding = { "markdown", "sh", "css", "html", "python" }
-        if vim.tbl_contains(lspWithOutFolding, ft) then return { "treesitter", "indent" } end
+        if vim.tbl_contains(lspWithOutFolding, ft) then
+          return { "treesitter", "indent" }
+        end
         return { "lsp", "indent" }
       end,
       -- when opening the buffer, close these fold kinds
