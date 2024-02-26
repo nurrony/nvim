@@ -3,6 +3,15 @@ local utils = require("nurrony.core.utils")
 local map = utils.map
 local augroup = utils.augroup
 
+-- disable ufo for certain file type
+vim.api.nvim_create_autocmd('FileType', {
+  group = augroup('detach_ufo'),
+  pattern = { 'help', 'alpha', 'dashboard', 'neo-tree', 'Trouble', 'lazy', 'mason' },
+  callback = function()
+    require('ufo').detach()
+  end,
+})
+
 
 -- resize splits if window got resized
 vim.api.nvim_create_autocmd({ "VimResized" }, {
