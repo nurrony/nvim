@@ -28,21 +28,33 @@ require("lazy").setup({
     rtp = {
       -- disable some rtp plugins
       disabled_plugins = {
-        "gzip",        -- Vim plugin for editing compressed files.
-        "tarPlugin",   -- tarPlugin.vim -- a Vim plugin for browsing tarfiles
-        "tohtml",      -- Vim plugin for converting a syntax highlighted file to HTML.
-        "zipPlugin",   -- zipPlugin.vim: Handles browsing zipfiles
-        "netrwPlugin", -- netrwPlugin.vim: Handles file transfer and remote directory listing across a network
-        "rplugin",     -- support of plugins written in other languages
-        -- "spellfile",   -- Vim plugin for downloading spell files
-        -- "matchit",  -- matchit.vim: (global plugin) Extended "%" matching
-        -- "matchparen", -- Vim plugin for showing matching parens
+        "2html_plugin",
+        "tohtml",
+        "getscript",
+        "getscriptPlugin",
+        "gzip",
+        "logipat",
+        "netrw",
+        "netrwPlugin",
+        "netrwSettings",
+        "netrwFileHandlers",
+        -- "matchit",
+        "tar",
+        "tarPlugin",
+        "rrhelper",
+        "spellfile_plugin",
+        "vimball",
+        "vimballPlugin",
+        "zip",
+        "zipPlugin",
         -- "tutor",
-        -- "man",
-        -- "shada",
-        -- "health",
-        -- "editorconfig",
-        -- "nvim",
+        "rplugin",
+        "syntax",
+        "synmenu",
+        "optwin",
+        "compiler",
+        "bugreport",
+        "ftplugin",
       },
     },
   },
