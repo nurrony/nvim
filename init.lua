@@ -5,4 +5,4 @@ vim.loader.enable()
 require("nurrony.core")
 
 -- bootstrap lazy.nvim
-require("nurrony.lazy")
+require("nurrony.lazy-package")
