@@ -254,9 +254,9 @@ end
 ---@param truncate any
 ---@return table
 function M.fold_text_formatter(virtText, lnum, endLnum, width, truncate)
-  local hlgroup = "NonText"
   local newVirtText = {}
-  local suffix = "    " .. tostring(endLnum - lnum)
+  local hlgroup = "NonText"
+  local suffix = (' 󰁂 %d '):format(endLnum - lnum)
   local sufWidth = vim.fn.strdisplaywidth(suffix)
   local targetWidth = width - sufWidth
   local curWidth = 0
@@ -270,8 +270,9 @@ function M.fold_text_formatter(virtText, lnum, endLnum, width, truncate)
       local hlGroup = chunk[2]
       table.insert(newVirtText, { chunkText, hlGroup })
       chunkWidth = vim.fn.strdisplaywidth(chunkText)
+      -- str width returned from truncate() may less than 2nd argument, need padding
       if curWidth + chunkWidth < targetWidth then
-        suffix = suffix .. (" "):rep(targetWidth - curWidth - chunkWidth)
+        suffix = suffix .. (' '):rep(targetWidth - curWidth - chunkWidth)
       end
       break
     end
