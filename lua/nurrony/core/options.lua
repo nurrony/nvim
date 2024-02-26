@@ -109,11 +109,3 @@ vim.g.markdown_recommended_style = 0
 
 -- make diff mode always open in vertical split
 -- vim.g.diffopt:append({ "vertical" })
-
--- Set fold settings
--- These options were reccommended by nvim-ufo
--- See: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
-vim.opt.foldcolumn = "0"
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
