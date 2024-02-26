@@ -362,13 +362,6 @@ return {
         if vim.tbl_contains(lspWithOutFolding, ft) then return { "treesitter", "indent" } end
         return { "lsp", "indent" }
       end,
-      preview = {
-        win_config = {
-          border = { '', '─', '', '', '', '─', '', '' },
-          winhighlight = 'Normal:Folded',
-          winblend = 0
-        },
-      },
       -- when opening the buffer, close these fold kinds
       -- use `:UfoInspect` to get available fold kinds from the LSP
       close_fold_kinds = { "imports", "comment" },
