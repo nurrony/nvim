@@ -1,6 +1,5 @@
 local float = require("nurrony.core.defaults").diagnostics_options.float
 local Util = require("nurrony.core.utils")
-local map = Util.map
 
 return {
   -- Detect tabstop and shiftwidth automatically
@@ -330,7 +329,7 @@ return {
       })
 
       -- bind key map
-      map("n", "<localleader>l", function()
+      Util.map("n", "<localleader>l", function()
         lint.try_lint()
       end, { desc = "lint buffer" })
     end,
@@ -342,4 +341,6 @@ return {
     lazy = true,
     version = false, -- last release is way too old
   },
+
+
 }
