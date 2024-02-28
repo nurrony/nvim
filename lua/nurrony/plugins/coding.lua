@@ -31,6 +31,8 @@ return {
       },
     },
     opts = {
+      -- for any global capabilities
+      capabilities = {},
       -- LSP Server Settings
       servers = {
         cssls = {},
