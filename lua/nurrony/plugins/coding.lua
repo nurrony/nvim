@@ -9,6 +9,9 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
+    },
     dependencies = {
       {
         --TODO: enable inline hint with 0.10 release
