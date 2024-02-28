@@ -92,9 +92,7 @@ return {
           end,
           settings = {
             json = {
-              format = {
-                enable = true,
-              },
+              format = { enable = true },
               validate = { enable = true },
             },
           },
@@ -341,9 +339,9 @@ return {
       })
 
       -- bind key map
-      Util.map("n", "<localleader>l", function()
+      Util.map("n", "<localleader>cv", function()
         lint.try_lint()
-      end, { desc = "lint buffer" })
+      end, { desc = "vet/lint code" })
     end,
   },
 
