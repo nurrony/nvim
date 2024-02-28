@@ -33,7 +33,7 @@ return {
     virtual_text = {
       severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
       source = "if_many",
-      spacing = 0,
+      spacing = 4,
       prefix = "●",
     },
     float = {
