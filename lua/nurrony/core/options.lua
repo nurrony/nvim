@@ -1,6 +1,6 @@
 -- Set leader keys
 vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
+vim.g.maplocalleader = " "
 
 -- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
