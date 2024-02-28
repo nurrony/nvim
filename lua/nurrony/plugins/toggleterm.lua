@@ -91,7 +91,7 @@ return {
 
     map(
       { "n", "v" },
-      "<leader>gt",
+      "<leader>gg",
       "<cmd>lua _lazygit_toggle()<CR>",
       { noremap = true, silent = true },
       "Toggle LazyGit"
