@@ -1,4 +1,5 @@
 return {
+  transparent = true,
   -- icons used by other plugins
   icons = {
     diagnostics = {
