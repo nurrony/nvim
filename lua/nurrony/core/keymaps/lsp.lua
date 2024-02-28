@@ -167,13 +167,13 @@ utils.on_attach(function(client, bufnr)
       })
     end, opts, "toggle autoformat")
 
-    map({ "n" }, "<localleader>f", function()
+    map({ "n" }, "<localleader>cf", function()
       require("conform").format({
         async = false,
         timeout_ms = 500,
         lsp_fallback = true,
       })
-    end, opts, "Format buffer")
+    end, opts, "Format code")
   end
 
   if client.server_capabilities.renameProvider then
