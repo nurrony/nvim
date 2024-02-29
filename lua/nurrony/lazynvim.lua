@@ -18,8 +18,8 @@ require("lazy").setup({
   install = { colorscheme = { "catppuccin" } },
   checker = { enabled = true, notify = false }, -- automatically check for plugin updates
   change_detection = {
-    enabled = true, -- automatically check for config file changes and reload the uid
-    notify = false, -- get a notification when changes are found
+    enabled = true,                             -- automatically check for config file changes and reload the uid
+    notify = false,                             -- get a notification when changes are found
   },
   performance = {
     cache = {
