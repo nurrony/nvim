@@ -339,7 +339,7 @@ return {
       })
 
       -- bind key map
-      Util.map("n", "<localleader>cv", function()
+      Util.map("n", "<leader>cv", function()
         lint.try_lint()
       end, { desc = "vet/lint code" })
     end,
