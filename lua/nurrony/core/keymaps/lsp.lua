@@ -17,7 +17,7 @@ utils.on_attach(function(client, bufnr)
   end
   -- capabilitiies: tokenProvider
   if client.server_capabilities.semanticTokensProvider then
-    map("n", "<localleader>us", function()
+    map("n", "<leader>us", function()
       utils.toggle("enable_semantic_tokens", { global = true }, nil)
       if vim.g["enable_semantic_tokens"] then
         vim.lsp.semantic_tokens.start(bufnr, client.id)
@@ -29,12 +29,12 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: signatureHelpProvider
   if client.server_capabilities.signatureHelpProvider then
-    map("n", "<localleader>k", vim.lsp.buf.signature_help, opts, "get fn signature help")
+    map("n", "<leader>k", vim.lsp.buf.signature_help, opts, "get fn signature help")
   end
 
   -- capabilities: declarationProvider
   if client.server_capabilities.declarationProvider then
-    map("n", "<localleader>gD", vim.lsp.buf.declaration, opts, "goto declaration")
+    map("n", "<leader>gD", vim.lsp.buf.declaration, opts, "goto declaration")
   end
 
   -- capabilitiies: completionProvider
@@ -45,7 +45,7 @@ utils.on_attach(function(client, bufnr)
   -- capabilitiies: definitionProvider
   if client.server_capabilities.definitionProvider then
     vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-    map("n", "<localleader>gd", function()
+    map("n", "<leader>gd", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_definition]])
       else
@@ -54,7 +54,7 @@ utils.on_attach(function(client, bufnr)
     end, opts, "goto definition")
 
     if utils.has("lspsaga.nvim") then
-      map("n", "<localleader>pd", function()
+      map("n", "<leader>pd", function()
         vim.cmd([[Lspsaga peek_definition]])
       end, opts, "peek definition")
     end
@@ -62,7 +62,7 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: typeDefinitionProvider
   if client.server_capabilities.typeDefinitionProvider then
-    map("n", "<localleader>gt", function()
+    map("n", "<leader>gt", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_type_definition]])
       else
@@ -71,7 +71,7 @@ utils.on_attach(function(client, bufnr)
     end, opts, "goto type definition")
 
     if utils.has("lspsaga.nvim") then
-      map("n", "<localleader>pt", function()
+      map("n", "<leader>pt", function()
         vim.cmd([[Lspsaga peek_type_definition]])
       end, opts, "peek type definition")
     end
@@ -79,7 +79,7 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: implementationProvider
   if client.server_capabilities.implementationProvider then
-    map("n", "<localleader>gi", function()
+    map("n", "<leader>gi", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder imp+def]])
       else
@@ -90,7 +90,7 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: referencesProvider
   if client.server_capabilities.referencesProvider then
-    map("n", "<localleader>gr", function()
+    map("n", "<leader>gr", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder ref]])
       else
@@ -130,18 +130,18 @@ utils.on_attach(function(client, bufnr)
         group = doc_highlight,
       })
     end
-    map("n", "<localleader>uh", function()
+    map("n", "<leader>uh", function()
       utils.toggle("highlight", {}, { enable_highlight, disable_highlight })
       vim.b[vim.fn.bufnr()]["highlight"]()
     end, opts, "toggle document highlight")
   end
 
   if client.server_capabilities.documentSymbolProvider then
-    map("n", "<localleader>ds", vim.lsp.buf.document_symbol, opts, "document symbols")
+    map("n", "<leader>ds", vim.lsp.buf.document_symbol, opts, "document symbols")
   end
 
   if client.server_capabilities.codeActionProvider then
-    map({ "n", "v" }, "<localleader>ca", function()
+    map({ "n", "v" }, "<leader>ca", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga code_action]])
       else
@@ -151,7 +151,7 @@ utils.on_attach(function(client, bufnr)
   end
   if client.server_capabilities.documentFormattingProvider then
     -- toggle autoformat
-    map("n", "<localleader>uf", function()
+    map("n", "<leader>uf", function()
       utils.toggle("autoformat", { global = true })
       autocmd("BufWritePre", {
         group = augroup("LspFormat"),
@@ -167,7 +167,7 @@ utils.on_attach(function(client, bufnr)
       })
     end, opts, "toggle autoformat")
 
-    map({ "n" }, "<localleader>cf", function()
+    map({ "n" }, "<leader>cf", function()
       require("conform").format({
         async = false,
         timeout_ms = 500,
@@ -177,25 +177,25 @@ utils.on_attach(function(client, bufnr)
   end
 
   if client.server_capabilities.renameProvider then
-    map("n", "<localleader>rn", function()
+    map("n", "<leader>rn", function()
       vim.lsp.buf.rename()
     end, opts, "rename symbol")
 
     if utils.has("lspsaga.nvim") then
-      map("n", "<localleader>rnw", function()
+      map("n", "<leader>rnw", function()
         vim.cmd([[Lspsaga project_replace]])
       end, opts, "rename across workspace")
     end
   end
   if client.server_capabilities.callHierarchyProvider then
-    map("n", "<localleader>ci", function()
+    map("n", "<leader>ci", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga incoming_calls]])
       else
         vim.lsp.buf.incoming_calls()
       end
     end, opts, "incoming calls")
-    map("n", "<localleader>co", function()
+    map("n", "<leader>co", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga outgoing_calls]])
       else
@@ -204,7 +204,7 @@ utils.on_attach(function(client, bufnr)
     end, opts, "outgoing calls")
   end
   if client.server_capabilities.workspaceSymbolProvider then
-    map("n", "<localleader>ws", vim.lsp.buf.workspace_symbol, opts, "list workspace symbols")
+    map("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts, "list workspace symbols")
   end
 
   map("n", "[d", function()
@@ -222,11 +222,11 @@ utils.on_attach(function(client, bufnr)
     end
   end, opts, "goto next diagnostics")
 
-  map("n", "<localleader>wf", function()
+  map("n", "<leader>wf", function()
     vim.print(vim.lsp.buf.list_workspace_folders())
   end, opts, "list workspace folders")
 
-  map("n", "<localleader>rd", function()
+  map("n", "<leader>rd", function()
     print("Language server " .. (vim.lsp.buf.server_ready() and "is ready" or "is not ready"))
   end, opts, "check if lsp is ready")
 end)
