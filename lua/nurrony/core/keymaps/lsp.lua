@@ -13,7 +13,7 @@ utils.on_attach(function(client, bufnr)
   if client.server_capabilities.hoverProvider then
     map("n", "K", function()
       vim.lsp.buf.hover()
-    end, opts, "get hover info")
+    end, opts, "Hover Info")
   end
   -- capabilitiies: tokenProvider
   if client.server_capabilities.semanticTokensProvider then
