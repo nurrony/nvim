@@ -141,12 +141,19 @@ utils.on_attach(function(client, bufnr)
     end, opts, "toggle document highlight")
   end
 
-  if client.server_capabilities.documentSymbolProvider then
-    -- vim.lsp.buf.document_symbol
-    map("n", "ds", function()
-      require("telescope.builtin").lsp_document_symbols({ reuse_win = true })
-    end, opts, "document symbols")
-  end
+  -- if client.server_capabilities.documentSymbolProvider then
+  --   -- vim.lsp.buf.document_symbol
+  --   map("n", "gs", function()
+  --     require("telescope.builtin").lsp_document_symbols({ reuse_win = true })
+  --   end, opts, "document symbols")
+  -- end
+
+  -- if client.server_capabilities.workspaceSymbolProvider then
+  --   -- vim.lsp.buf.document_symbol
+  --   map("n", "gS", function()
+  --     require("telescope.builtin").lsp_workspace_symbols({ reuse_win = true })
+  --   end, opts, "workspace symbols")
+  -- end
 
   if client.server_capabilities.codeActionProvider then
     map({ "n", "v" }, "<leader>ca", function()
