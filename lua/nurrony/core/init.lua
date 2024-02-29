@@ -2,6 +2,7 @@
 require("nurrony.core.options")
 
 local utils = require("nurrony.core.utils")
+
 -- Load editor syntax, autocmds and keymaps
 utils.lazy_load({ "nurrony.core.syntax", "nurrony.core.autocmds", "nurrony.core.keymaps" })
 
