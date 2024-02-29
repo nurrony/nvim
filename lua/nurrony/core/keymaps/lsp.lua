@@ -15,26 +15,27 @@ utils.on_attach(function(client, bufnr)
       vim.lsp.buf.hover()
     end, opts, "Hover Info")
   end
+
   -- capabilitiies: tokenProvider
-  if client.server_capabilities.semanticTokensProvider then
-    map("n", "<leader>us", function()
-      utils.toggle("enable_semantic_tokens", { global = true }, nil)
-      if vim.g["enable_semantic_tokens"] then
-        vim.lsp.semantic_tokens.start(bufnr, client.id)
-      else
-        vim.lsp.semantic_tokens.stop(bufnr, client.id)
-      end
-    end, opts, "toggle semantic token highlighting")
-  end
+  -- if client.server_capabilities.semanticTokensProvider then
+  --   map("n", "<leader>us", function()
+  --     utils.toggle("enable_semantic_tokens", { global = true }, nil)
+  --     if vim.g["enable_semantic_tokens"] then
+  --       vim.lsp.semantic_tokens.start(bufnr, client.id)
+  --     else
+  --       vim.lsp.semantic_tokens.stop(bufnr, client.id)
+  --     end
+  --   end, opts, "toggle semantic token highlighting")
+  -- end
 
   -- capabilitiies: signatureHelpProvider
   if client.server_capabilities.signatureHelpProvider then
-    map("n", "<leader>k", vim.lsp.buf.signature_help, opts, "get fn signature help")
+    map("n", "gK", vim.lsp.buf.signature_help, opts, "signature help")
   end
 
   -- capabilities: declarationProvider
   if client.server_capabilities.declarationProvider then
-    map("n", "<leader>gD", vim.lsp.buf.declaration, opts, "goto declaration")
+    map("n", "gD", vim.lsp.buf.declaration, opts, "goto declaration")
   end
 
   -- capabilitiies: completionProvider
@@ -45,11 +46,12 @@ utils.on_attach(function(client, bufnr)
   -- capabilitiies: definitionProvider
   if client.server_capabilities.definitionProvider then
     vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
-    map("n", "<leader>gd", function()
+    map("n", "gd", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_definition]])
       else
-        vim.lsp.buf.definition()
+        -- vim.lsp.buf.definition()
+        require("telescope.builtin").lsp_definitions({ reuse_win = true })
       end
     end, opts, "goto definition")
 
@@ -62,11 +64,12 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: typeDefinitionProvider
   if client.server_capabilities.typeDefinitionProvider then
-    map("n", "<leader>gt", function()
+    map("n", "gy", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_type_definition]])
       else
-        vim.lsp.buf.type_definition()
+        -- vim.lsp.buf.type_definition()
+        require("telescope.builtin").lsp_type_definitions({ reuse_win = true })
       end
     end, opts, "goto type definition")
 
@@ -79,22 +82,24 @@ utils.on_attach(function(client, bufnr)
 
   -- capabilitiies: implementationProvider
   if client.server_capabilities.implementationProvider then
-    map("n", "<leader>gi", function()
+    map("n", "gI", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder imp+def]])
       else
-        vim.lsp.buf.implementation()
+        -- vim.lsp.buf.implementation()
+        require("telescope.builtin").lsp_implementations({ reuse_win = true })
       end
-    end, opts, "goto type implementation")
+    end, opts, "goto implementation")
   end
 
   -- capabilitiies: referencesProvider
   if client.server_capabilities.referencesProvider then
-    map("n", "<leader>gr", function()
+    map("n", "gr", function()
       if utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder ref]])
       else
-        vim.lsp.buf.references({})
+        vim.cmd([[Telescope lsp_references]])
+        -- vim.lsp.buf.references({})
       end
     end, opts, "goto type references")
   end
@@ -137,7 +142,10 @@ utils.on_attach(function(client, bufnr)
   end
 
   if client.server_capabilities.documentSymbolProvider then
-    map("n", "<leader>ds", vim.lsp.buf.document_symbol, opts, "document symbols")
+    -- vim.lsp.buf.document_symbol
+    map("n", "ds", function()
+      require("telescope.builtin").lsp_document_symbols({ reuse_win = true })
+    end, opts, "document symbols")
   end
 
   if client.server_capabilities.codeActionProvider then
@@ -148,7 +156,19 @@ utils.on_attach(function(client, bufnr)
         vim.lsp.buf.code_action()
       end
     end, opts, "code action")
+
+    map({ "n", "v" }, "<leader>cA", function()
+      vim.lsp.buf.code_action({
+        context = {
+          only = {
+            "source",
+          },
+          diagnostics = {},
+        },
+      })
+    end, opts, "source action")
   end
+
   if client.server_capabilities.documentFormattingProvider then
     -- toggle autoformat
     map("n", "<leader>uf", function()
@@ -173,7 +193,7 @@ utils.on_attach(function(client, bufnr)
         timeout_ms = 500,
         lsp_fallback = true,
       })
-    end, opts, "Format code")
+    end, opts, "format code")
   end
 
   if client.server_capabilities.renameProvider then
@@ -187,6 +207,7 @@ utils.on_attach(function(client, bufnr)
       end, opts, "rename across workspace")
     end
   end
+
   if client.server_capabilities.callHierarchyProvider then
     map("n", "<leader>ci", function()
       if utils.has("lspsaga.nvim") then
