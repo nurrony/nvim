@@ -356,7 +356,7 @@ return {
     "nvim-telescope/telescope.nvim",
     optional = true,
     keys = {
-      { "<localleader>h", "<cmd>Telescope undo<cr>", desc = "Undo file history" },
+      { "<leader>h", "<cmd>Telescope undo<cr>", desc = "Undo file history" },
     },
     opts = function(_, opts)
       if not Util.has("telescope-undo.nvim") then
