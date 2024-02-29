@@ -282,9 +282,4 @@ function M.fold_text_formatter(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
----@param palette CtpColors<string> | CtpColor
-function M.filling_pigments(palette)
-  M.palette = palette
-end
-
 return M
