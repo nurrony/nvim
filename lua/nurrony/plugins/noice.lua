@@ -65,10 +65,10 @@ return {
       },
     },
     presets = {
-      inc_rename = true,
-      bottom_search = false,
+      inc_rename = false,
+      bottom_search = true,
       command_palette = true,
-      lsp_doc_border = false, -- add a border to hover docs and signature help
+      lsp_doc_border = true, -- add a border to hover docs and signature help
       long_message_to_split = true,
     },
   },
