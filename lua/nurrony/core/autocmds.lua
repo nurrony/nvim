@@ -113,7 +113,6 @@ autocmd("FileType", {
 -- autocmd({ "CursorHold" }, {
 --   callback = function()
 --     -- vim.diagnostic.open_float(nil, diagnostics_options.float) -- uncomment this to enable floation report
---     vim.diagnostic.config(diagnostics_options)
 --   end,
 -- })
 
