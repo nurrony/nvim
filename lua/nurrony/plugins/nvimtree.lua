@@ -156,7 +156,7 @@ return {
     end
 
     return {
-      on_attach = on_attach,
+      -- on_attach = on_attach,
       -- hijack the cursor in the tree to put it at the start of the filename
       hijack_cursor = true,
       --  reload the explorer every time a buffer is written to
