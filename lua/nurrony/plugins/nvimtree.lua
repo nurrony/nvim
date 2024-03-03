@@ -22,9 +22,9 @@ return {
       callback = function()
         local layout = vim.api.nvim_call_function("winlayout", {})
         if
-          layout[1] == "leaf"
-          and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
-          and layout[3] == nil
+            layout[1] == "leaf"
+            and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "NvimTree"
+            and layout[3] == nil
         then
           vim.cmd("confirm quit")
         end
@@ -192,7 +192,7 @@ return {
       sort = {
         sorter = "name",
         -- Sort folders before files. Has no effect when |nvim-tree.sort.sorter| is a function
-        folders_first = false,
+        folders_first = true,
         -- Sort files before folders. Has no effect when |nvim-tree.sort.sorter| is a
         -- function. If set to `true` it overrides |nvim-tree.sort.folders_first|                   folders_first = true,
         files_first = false,
