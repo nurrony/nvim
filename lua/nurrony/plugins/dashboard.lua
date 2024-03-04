@@ -1,8 +1,8 @@
-return {
+local M = {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
   opts = function()
-    local logo = [[
+    local banner = [[
       ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
       ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
       ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
@@ -10,37 +10,77 @@ return {
       ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
       ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
     ]]
-
-    logo = string.rep("\n", 3) .. logo .. "\n\n"
-
+    local logo = string.rep("\n", 7) .. banner .. "\n"
     local opts = {
       theme = "doom",
       hide = {
-        -- this is taken care of by lualine
-        -- enabling this messes up the actual laststatus setting after loading a file
         statusline = false,
+        tabline = false,
+        winbar = false,
       },
       config = {
         header = vim.split(logo, "\n"),
-        -- stylua: ignore
         center = {
-          { action = "Telescope find_files", desc = " Find file", icon = "󰱼 ", key = "󱁐 ff" },
-          { action = "ene | startinsert", desc = " New file", icon = "󰝒 ", key = "󱁐 bn" },
-          { action = "Telescope oldfiles", desc = " Recent files", icon = "󰈢 ", key = "󱁐 fr" },
-          { action = "Telescope live_grep", desc = " Find text", icon = "󰈬 ", key = "󱁐 sg" },
-          { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "󱁐 l" },
+          {
+            action = "ene | startinsert",
+            desc = " New file",
+            icon = " ",
+            icon_hl = "Character",
+            key = "󱁐 bn",
+          },
+          {
+            action = "Telescope find_files",
+            desc = " Find file",
+            icon = " ",
+            icon_hl = "Label",
+            key = "󱁐 ff",
+          },
+          {
+            action = "Telescope live_grep",
+            desc = " Find text",
+            icon = " ",
+            icon_hl = "Special",
+            key = "󱁐 sg",
+          },
+          {
+            action = "Telescope oldfiles",
+            desc = " Recent files",
+            icon = " ",
+            icon_hl = "Macro",
+            key = "󱁐 fr",
+          },
+          {
+            action = "qa",
+            desc = " Quit",
+            icon = " ",
+            icon_hl = "Error",
+            key = "󱁐 qq",
+          },
         },
         footer = function()
           local stats = require("lazy").stats()
           local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-          return { "⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms" }
+
+          local version = vim.version()
+
+          return {
+            string.format(
+              " Neovim v%d.%d.%d%s",
+              version.major,
+              version.minor,
+              version.patch,
+              version.prerelease and "(nightly)" or ""
+            ) .. " loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
+          }
         end,
       },
     }
 
     for _, button in ipairs(opts.config.center) do
-      button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-      button.key_format = "  %s"
+      button.key_format = "%s"
+      button.key_hl = "Constant"
+      button.desc_hl = "CursorLineNr"
+      button.desc = button.desc .. string.rep(" ", 50 - #button.desc)
     end
 
     -- close Lazy and re-open when the dashboard is ready
@@ -57,3 +97,5 @@ return {
     return opts
   end,
 }
+
+return M
