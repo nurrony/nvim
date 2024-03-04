@@ -5,6 +5,14 @@ return {
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
 
+  {
+    "mbbill/undotree",
+    event = { "BufReadPre", "BufNewFile" },
+    keys = {
+      "<leader>cu", "<cmd>UndotreeToggle<cr>", "toggle undotree",
+    }
+  },
+
   -- configure neovim
   {
     "neovim/nvim-lspconfig",
