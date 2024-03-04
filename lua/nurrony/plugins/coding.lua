@@ -9,7 +9,7 @@ return {
     "mbbill/undotree",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      "<leader>cu", "<cmd>UndotreeToggle<cr>", "toggle undotree",
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", "toggle undotree" }
     }
   },
 
