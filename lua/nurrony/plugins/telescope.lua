@@ -315,6 +315,9 @@ return {
           buffers = {
             theme = "dropdown",
             previewer = false,
+            sort_mru = true,
+            sort_lastused = true,
+            ignore_current_buffer = true,
           },
         },
       }
