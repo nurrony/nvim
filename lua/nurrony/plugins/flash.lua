@@ -3,7 +3,12 @@
 return {
   "folke/flash.nvim",
   event = "VeryLazy",
-  opts = {},
+  opts = {
+    prompt = {
+      enabled = true,
+      prefix = { { " 󰉂 ", "FlashPromptIcon" } },
+    },
+  },
   keys = {
     {
       "s",
@@ -28,14 +33,6 @@ return {
         require("flash").treesitter_search()
       end,
       desc = "Treesitter Search",
-    },
-    {
-      "<C-s>",
-      mode = { "c" },
-      function()
-        require("flash").toggle()
-      end,
-      desc = "Toggle Flash Search",
     },
   },
 }
