@@ -84,6 +84,7 @@ autocmd("FileType", {
     "query", -- :InspectTree
     "notify",
     "lspinfo",
+    "undotree",
     "startuptime",
     "tsplayground",
     "spectre_panel",
