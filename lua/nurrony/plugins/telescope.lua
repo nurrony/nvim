@@ -62,7 +62,7 @@ return {
       },
       {
         "<leader>fb",
-        telescope_builtin("buffers"),
+        telescope_builtin("buffers", { sort_lastused = true }),
         desc = "Buffers",
       },
       {
