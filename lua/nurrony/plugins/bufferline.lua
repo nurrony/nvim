@@ -1,5 +1,7 @@
 -- This is what powers LazyVim's fancy-looking
 -- tabs, which include filetype icons and close buttons.
+local Configs = require("nurrony.core.defaults")
+
 return {
   "akinsho/bufferline.nvim",
   event = { "BufReadPost", "BufNewFile" },
@@ -55,6 +57,20 @@ return {
           text = "File Explorer",
           highlight = "Directory",
           text_align = "left", --[[| "center" | "right",]]
+        },
+        {
+          filetype = "undotree",
+          text = "Undotree",
+          separator = Configs.transparent,
+          text_align = "center",
+          highlight = "PanelHeading",
+        },
+        {
+          filetype = "dapui_scopes",
+          text = "Debugger",
+          separator = Configs.transparent,
+          text_align = "center",
+          highlight = "PanelHeading",
         },
       },
       hover = {
