@@ -310,7 +310,8 @@ return {
           },
           command_history = {
             theme = "dropdown",
-            previewer = true,
+            previewer = false,
+            sort_lastused = true,
           },
           buffers = {
             theme = "dropdown",
