@@ -214,6 +214,27 @@ return {
         defaults = {
           prompt_prefix = " ",
           selection_caret = " ",
+          file_ignore_patterns = {
+            "%.jpg",
+            "%.jpeg",
+            "%.png",
+            "%.otf",
+            "%.ttf",
+            "%.doc",
+            "%.docx",
+            "%.DS_Store",
+            "%.git/",
+            "%.mypy_cache/",
+            "dist/",
+            "build",
+            "node_modules/",
+            "site-packages/",
+            "__pycache__/",
+            "migrations/",
+            "package-lock.json",
+            "yarn.lock",
+            "pnpm-lock.yaml",
+          },
           -- open files in the first window that is an actual file.
           -- use the current window if no other window is available.
           get_selection_window = function()
