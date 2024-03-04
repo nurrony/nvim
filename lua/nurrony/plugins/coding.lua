@@ -9,6 +9,7 @@ return {
     "mbbill/undotree",
     event = { "BufReadPre", "BufNewFile" },
     init = function()
+      -- open right
       vim.g.undotree_WindowLayout = 3
     end,
     keys = {
