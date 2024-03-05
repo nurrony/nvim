@@ -16,6 +16,10 @@ require("lazy").setup({
   spec = { { import = "nurrony.plugins" } },
   defaults = { lazy = true },
   install = { colorscheme = { "catppuccin" } },
+  ui = {
+    size = { width = 0.8, height = 0.8 },
+    border = "rounded",
+  },
   checker = { enabled = true, notify = false }, -- automatically check for plugin updates
   change_detection = {
     enabled = true,                             -- automatically check for config file changes and reload the uid
