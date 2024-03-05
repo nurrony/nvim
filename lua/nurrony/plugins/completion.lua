@@ -41,7 +41,7 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
-      local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
+      local diagnostics_options = require("nurrony.core.configs").diagnostics_options
 
       return {
         snippet = {
