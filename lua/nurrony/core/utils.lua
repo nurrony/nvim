@@ -281,7 +281,9 @@ function M.fold_text_formatter(virtText, lnum, endLnum, width, truncate)
   return newVirtText
 end
 
--- diagnostic
+--- navigate through diagnostic
+---@param next boolean
+---@param severity string | nil
 function M.diagnostic_goto(next, severity)
   local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
   severity = severity and vim.diagnostic.severity[severity] or nil
