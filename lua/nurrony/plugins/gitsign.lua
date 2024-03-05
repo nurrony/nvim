@@ -1,4 +1,4 @@
-local defaults = require("nurrony.core.defaults")
+local defaults = require("nurrony.core.configs")
 return {
   -- git signs
   {
