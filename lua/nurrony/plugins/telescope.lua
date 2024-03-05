@@ -1,4 +1,5 @@
 local Util = require("nurrony.core.utils")
+local Config = require("nurrony.core.configs")
 
 --TODO: use immediately invoked function expression for vimgrep_arguments .ie
 --(fn()statement end)()
@@ -51,9 +52,6 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
-    dependencies = {
-      "debugloop/telescope-undo.nvim", -- undo tree of buffer
-    },
     keys = {
       {
         "<leader>,",
@@ -377,27 +375,53 @@ return {
     end,
   },
 
+  -- aerial
   {
-    "nvim-telescope/telescope.nvim",
-    optional = true,
-    keys = {
-      { "<leader>h", "<cmd>Telescope undo<cr>", desc = "Undo file history" },
-    },
-    opts = function(_, opts)
-      if not Util.has("telescope-undo.nvim") then
-        return
+    "stevearc/aerial.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    opts = function()
+      local icons = vim.deepcopy(Config.icons.kinds)
+
+      -- HACK: fix lua's weird choice for `Package` for control
+      -- structures like if/else/for/etc.
+      icons.lua = { Package = icons.Control }
+
+      ---@type table<string, string[]>|false
+      local filter_kind = false
+      if Config.kind_filter then
+        filter_kind = assert(vim.deepcopy(Config.kind_filter))
+        filter_kind._ = filter_kind.default
+        filter_kind.default = nil
       end
-      opts.defaults = vim.tbl_deep_extend("force", opts.defaults or {}, {
-        extensions = {
-          undo = {
-            side_by_side = true,
-            use_custom_command = nil,
-            layout_strategy = "vertical",
-            diff_context_lines = vim.o.scrolloff,
-            layout_config = { preview_height = 0.8 },
+
+      local opts = {
+        attach_mode = "global",
+        backends = { "lsp", "treesitter", "markdown", "man" },
+        default_direction = "prefer_right",
+        show_guides = true,
+        layout = {
+          max_width = { 40, 0.2 },
+          resize_to_content = false,
+          win_opts = {
+            winhl = "Normal:NormalFloat,FloatBorder:NormalFloat,SignColumn:SignColumnSB",
+            signcolumn = "yes",
+            statuscolumn = " ",
           },
         },
-      })
+        icons = icons,
+        filter_kind = filter_kind,
+        -- stylua: ignore
+        guides = {
+          mid_item   = "├╴",
+          last_item  = "└╴",
+          nested_top = "│ ",
+          whitespace = "  ",
+        },
+      }
+      return opts
     end,
+    keys = {
+      { "<leader>cs", "<cmd>AerialToggle<cr>", desc = "Aerial (Symbols)" },
+    },
   },
 }
