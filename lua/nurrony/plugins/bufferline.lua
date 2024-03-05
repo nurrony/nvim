@@ -1,6 +1,6 @@
 -- This is what powers LazyVim's fancy-looking
 -- tabs, which include filetype icons and close buttons.
-local Configs = require("nurrony.core.defaults")
+local Configs = require("nurrony.core.configs")
 
 return {
   "akinsho/bufferline.nvim",
@@ -46,7 +46,7 @@ return {
       diagnostics = false, -- "nvim_lsp",
       always_show_bufferline = false,
       diagnostics_indicator = function(_, _, diag)
-        local icons = require("nurrony.core.defaults").icons.diagnostics
+        local icons = require("nurrony.core.configs").icons.diagnostics
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
             .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
