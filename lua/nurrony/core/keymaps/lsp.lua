@@ -235,20 +235,15 @@ utils.on_attach(function(client, bufnr)
     map("n", "<leader>ws", vim.lsp.buf.workspace_symbol, opts, "list workspace symbols")
   end
 
-  map("n", "[d", function()
-    if utils.has("lspsaga.nvim") then
-      vim.cmd([[Lspsaga diagnostic_jump_prev]])
-    else
-      vim.diagnostic.goto_prev()
-    end
-  end, opts, "goto previous diagnostics")
-  map("n", "]d", function()
-    if utils.has("lspsaga.nvim") then
-      vim.cmd([[Lspsaga diagnostic_jump_next]])
-    else
-      vim.diagnostic.goto_next()
-    end
-  end, opts, "goto next diagnostics")
+  -- diagnostics
+  map("n", "]d", utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
+  map("n", "[d", utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
+  map("n", "]e", utils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+  map("n", "[e", utils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+  map("n", "]w", utils.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+  map("n", "[w", utils.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+
+
 
   map("n", "<leader>wf", function()
     vim.print(vim.lsp.buf.list_workspace_folders())
