@@ -6,7 +6,7 @@ local utils = require("nurrony.core.utils")
 -- Load editor syntax, autocmds and keymaps
 utils.lazy_load({ "nurrony.core.syntax", "nurrony.core.autocmds", "nurrony.core.keymaps" })
 
-local diagnostics_options = require("nurrony.core.defaults").diagnostics_options
+local diagnostics_options = require("nurrony.core.configs").diagnostics_options
 
 -- configure floating window
 vim.diagnostic.config(diagnostics_options)
@@ -22,13 +22,13 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.s
 })
 
 -- configure diagnostics signs
-for name, icon in pairs(require("nurrony.core.defaults").icons.diagnostics) do
+for name, icon in pairs(require("nurrony.core.configs").icons.diagnostics) do
   name = "DiagnosticSign" .. name
   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 end
 
 -- configure debugger diagnostics signs
-for name in pairs(require("nurrony.core.defaults").icons.debugger) do
+for name in pairs(require("nurrony.core.configs").icons.debugger) do
   sign = type(sign) == "table" and sign or { sign }
   vim.fn.sign_define(
     "Dap" .. name,
