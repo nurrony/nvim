@@ -1,11 +1,11 @@
-local defaults = require("nurrony.core.configs")
+local Configs = require("nurrony.core.configs")
 return {
   -- git signs
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      signs = defaults.icons.git,
+      signs = Configs.icons.git,
       signcolumn = true,         -- Toggle with `:Gitsigns toggle_signs`
       numhl = false,             -- Toggle with `:Gitsigns toggle_numhl`
       linehl = false,            -- Toggle with `:Gitsigns toggle_linehl`
@@ -13,7 +13,7 @@ return {
       current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
       -- Options passed to nvim_open_win
       preview_config = {
-        border = defaults.diagnostics_options.float.border,
+        border = Configs.diagnostics_options.float.border,
         style = "minimal",
         relative = "cursor",
         row = 0,
