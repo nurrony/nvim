@@ -1,4 +1,4 @@
-local float = require("nurrony.core.defaults").diagnostics_options.float
+local float = require("nurrony.core.configs").diagnostics_options.float
 local Util = require("nurrony.core.utils")
 
 return {
