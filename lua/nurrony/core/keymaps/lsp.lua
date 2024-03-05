@@ -1,12 +1,12 @@
 local autocmd = vim.api.nvim_create_autocmd -- create autocmd
-local utils = require("nurrony.core.utils")
-local map = utils.map
-local augroup = utils.augroup
+local Utils = require("nurrony.core.utils")
+local map = Utils.map
+local augroup = Utils.augroup
 
 -- map the following keys after the language server attaches to a buffer
 -- See `:help vim.lsp.*` for doc mentation on any of the below functions
 -- :lua =vim.lsp.get_active_clients()[1].server_capabilities to get capabilities of lsp attached to buffer
-utils.on_attach(function(client, bufnr)
+Utils.on_attach(function(client, bufnr)
   local opts = { buffer = bufnr }
 
   -- capabilitiies: hover
@@ -47,7 +47,7 @@ utils.on_attach(function(client, bufnr)
   if client.server_capabilities.definitionProvider then
     vim.bo[bufnr].tagfunc = "v:lua.vim.lsp.tagfunc"
     map("n", "gd", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_definition]])
       else
         -- vim.lsp.buf.definition()
@@ -55,7 +55,7 @@ utils.on_attach(function(client, bufnr)
       end
     end, opts, "goto definition")
 
-    if utils.has("lspsaga.nvim") then
+    if Utils.has("lspsaga.nvim") then
       map("n", "<leader>pd", function()
         vim.cmd([[Lspsaga peek_definition]])
       end, opts, "peek definition")
@@ -65,7 +65,7 @@ utils.on_attach(function(client, bufnr)
   -- capabilitiies: typeDefinitionProvider
   if client.server_capabilities.typeDefinitionProvider then
     map("n", "gy", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga goto_type_definition]])
       else
         -- vim.lsp.buf.type_definition()
@@ -73,7 +73,7 @@ utils.on_attach(function(client, bufnr)
       end
     end, opts, "goto type definition")
 
-    if utils.has("lspsaga.nvim") then
+    if Utils.has("lspsaga.nvim") then
       map("n", "<leader>pt", function()
         vim.cmd([[Lspsaga peek_type_definition]])
       end, opts, "peek type definition")
@@ -83,7 +83,7 @@ utils.on_attach(function(client, bufnr)
   -- capabilitiies: implementationProvider
   if client.server_capabilities.implementationProvider then
     map("n", "gI", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder imp+def]])
       else
         -- vim.lsp.buf.implementation()
@@ -95,7 +95,7 @@ utils.on_attach(function(client, bufnr)
   -- capabilitiies: referencesProvider
   if client.server_capabilities.referencesProvider then
     map("n", "gr", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga finder ref]])
       else
         vim.cmd([[Telescope lsp_references]])
@@ -136,7 +136,7 @@ utils.on_attach(function(client, bufnr)
       })
     end
     map("n", "<leader>uh", function()
-      utils.toggle("highlight", {}, { enable_highlight, disable_highlight })
+      Utils.toggle("highlight", {}, { enable_highlight, disable_highlight })
       vim.b[vim.fn.bufnr()]["highlight"]()
     end, opts, "toggle document highlight")
   end
@@ -157,7 +157,7 @@ utils.on_attach(function(client, bufnr)
 
   if client.server_capabilities.codeActionProvider then
     map({ "n", "v" }, "<leader>ca", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga code_action]])
       else
         vim.lsp.buf.code_action()
@@ -179,7 +179,7 @@ utils.on_attach(function(client, bufnr)
   if client.server_capabilities.documentFormattingProvider then
     -- toggle autoformat
     map("n", "<leader>uf", function()
-      utils.toggle("autoformat", { global = true })
+      Utils.toggle("autoformat", { global = true })
       autocmd("BufWritePre", {
         group = augroup("LspFormat"),
         callback = function()
@@ -208,7 +208,7 @@ utils.on_attach(function(client, bufnr)
       vim.lsp.buf.rename()
     end, opts, "rename symbol")
 
-    if utils.has("lspsaga.nvim") then
+    if Utils.has("lspsaga.nvim") then
       map("n", "<leader>rnw", function()
         vim.cmd([[Lspsaga project_replace]])
       end, opts, "rename across workspace")
@@ -217,14 +217,14 @@ utils.on_attach(function(client, bufnr)
 
   if client.server_capabilities.callHierarchyProvider then
     map("n", "<leader>ci", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga incoming_calls]])
       else
         vim.lsp.buf.incoming_calls()
       end
     end, opts, "incoming calls")
     map("n", "<leader>co", function()
-      if utils.has("lspsaga.nvim") then
+      if Utils.has("lspsaga.nvim") then
         vim.cmd([[Lspsaga outgoing_calls]])
       else
         vim.lsp.buf.outgoing_calls()
@@ -236,12 +236,12 @@ utils.on_attach(function(client, bufnr)
   end
 
   -- diagnostics
-  map("n", "]d", utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
-  map("n", "[d", utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
-  map("n", "]e", utils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
-  map("n", "[e", utils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
-  map("n", "]w", utils.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
-  map("n", "[w", utils.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
+  map("n", "]d", Utils.diagnostic_goto(true), { desc = "Next Diagnostic" })
+  map("n", "[d", Utils.diagnostic_goto(false), { desc = "Prev Diagnostic" })
+  map("n", "]e", Utils.diagnostic_goto(true, "ERROR"), { desc = "Next Error" })
+  map("n", "[e", Utils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
+  map("n", "]w", Utils.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
+  map("n", "[w", Utils.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
 
 
 
