@@ -225,6 +225,9 @@ return {
       attributes = {
         PATH = "prepend",
         ui = {
+          width = 0.8,
+          height = 0.8,
+          border = float.border,
           icons = {
             package_installed = "✓",
             package_pending = "➜",
