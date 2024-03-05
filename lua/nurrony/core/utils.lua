@@ -7,15 +7,15 @@ end
 function M.reload_all()
   for name, _ in pairs(package.loaded) do
     if
-      name:match("^lazy")
-      or name:match("^mapping")
-      or name:match("^plugrc")
-      or name:match("^ui")
-      or name:match("^editor")
-      or name:match("^plugins")
-      or name:match("^syntax")
-      or name:match("^terminal")
-      or name:match("^utils")
+        name:match("^lazy")
+        or name:match("^mapping")
+        or name:match("^plugrc")
+        or name:match("^ui")
+        or name:match("^editor")
+        or name:match("^plugins")
+        or name:match("^syntax")
+        or name:match("^terminal")
+        or name:match("^utils")
     then
       package.loaded[name] = nil
     end
@@ -279,6 +279,15 @@ function M.fold_text_formatter(virtText, lnum, endLnum, width, truncate)
   end
   table.insert(newVirtText, { suffix, hlgroup })
   return newVirtText
+end
+
+-- diagnostic
+function M.diagnostic_goto(next, severity)
+  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+  severity = severity and vim.diagnostic.severity[severity] or nil
+  return function()
+    go({ severity = severity })
+  end
 end
 
 return M
