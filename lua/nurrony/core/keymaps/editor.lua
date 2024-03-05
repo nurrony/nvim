@@ -1,5 +1,5 @@
-local utils = require("nurrony.core.utils")
-local map = utils.map
+local Util = require("nurrony.core.utils")
+local map = Util.map
 
 local opt = { noremap = true, silent = true }
 
@@ -107,16 +107,16 @@ map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
 -- === Spell checking === "
 --vim.cmd [[set spell!]] also works
 map("n", "<leader>us", function()
-  utils.toggle("spell")
+  Util.toggle("spell")
 end, { desc = "Toggle Spelling" })
 
 map("n", "<leader>uw", function()
-  utils.toggle("wrap")
+  Util.toggle("wrap")
 end, { desc = "Toggle Word Wrap" })
 
 map("n", "<leader>ul", function()
-  utils.toggle("relativenumber")
-  utils.toggle("number")
+  Util.toggle("relativenumber")
+  Util.toggle("number")
 end, { desc = "Toggle Line Numbers" })
 
 map("n", "<leader>uc", function()
@@ -126,16 +126,16 @@ map("n", "<leader>uc", function()
 
   local filetype = vim.filetype.match({ buf = 0 })
 
-  if filetype == "norg" and utils.has("neorg") then
-    utils.toggle("conceallevel", nil, { 0, conceallevel })
+  if filetype == "norg" and Util.has("neorg") then
+    Util.toggle("conceallevel", nil, { 0, conceallevel })
     vim.cmd([[Neorg toggle-concealer]])
   else
-    utils.toggle("conceallevel", nil, { 0, conceallevel })
+    Util.toggle("conceallevel", nil, { 0, conceallevel })
   end
 end, { desc = "Toggle Conceal" })
 
 map("n", "<leader>ue", function()
-  utils.toggle("listchars", nil, {
+  Util.toggle("listchars", nil, {
     { tab = [[→→]], trail = "•", extends = "»", precedes = "«" },
     { tab = [[→→]], trail = "•", extends = "»", precedes = "«", eol = "↴" },
   })
