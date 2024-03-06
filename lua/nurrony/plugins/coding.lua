@@ -404,6 +404,13 @@ return {
       close_fold_kinds = { "imports", "comment" },
       open_fold_hl_timeout = 150,
       fold_virt_text_handler = Util.fold_text_formatter,
+      preview = {
+        win_config = {
+          winblend = 0,
+          border = float.border,
+          winhighlight = "Normal:Folded",
+        },
+      },
     },
   },
 
