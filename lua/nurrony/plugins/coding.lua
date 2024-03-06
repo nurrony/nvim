@@ -141,6 +141,9 @@ return {
         -- tailwindcss = {},
       },
       -- you can do any additional lsp server setup here
+      -- you can do any additional lsp server setup here
+      -- return true if you don't want this server to be setup with lspconfig
+      ---@type table<string, fun(server:string, opts: table):boolean?>
       setup = {
         lua_ls = function(server, opts)
           require("lspconfig")[server].setup(opts)
