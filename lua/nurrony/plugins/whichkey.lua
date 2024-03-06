@@ -38,9 +38,6 @@ return {
     motions = { count = true },
   },
   config = function(_, opts)
-    local whichkey = require("which-key")
-
-    whichkey.setup(opts)
     local keymaps = {
       mode              = { "n", "v" },
       ["<leader>g"]     = { name = "+git" },
@@ -63,6 +60,8 @@ return {
       ["<leader>x"]     = { name = "+diagnostics/quickfix" },
     }
 
+    local whichkey = require("which-key")
+    whichkey.setup(opts)
     whichkey.register(keymaps)
   end,
 }
