@@ -3,6 +3,16 @@ return {
   "folke/which-key.nvim",
   event = "VeryLazy",
   opts = {
+    icons = {
+      breadcrumb = "",
+      separator = " ",
+      group = "",
+    },
+    layout = {
+      spacing = 5,
+      align = "left",
+    },
+    show_help = false,
     plugins = {
       marks = true,     -- shows a list of your marks on ' and `
       registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
@@ -40,7 +50,6 @@ return {
       ["<leader><tab>"] = { name = "+tabs" },
       ["<leader>c"]     = { name = "+code" },
       ["z"]             = { name = "+folds" },
-      ["<leader>gh"]    = { name = "+hunks" },
       ["<leader>sn"]    = { name = "+noice" },
       ["<leader>s"]     = { name = "+search" },
       ["<leader>w"]     = { name = "+windows" },
