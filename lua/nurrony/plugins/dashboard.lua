@@ -1,4 +1,4 @@
-local M = {
+return {
   "nvimdev/dashboard-nvim",
   event = "VimEnter",
   opts = function()
@@ -10,6 +10,7 @@ local M = {
       ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
       ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝
     ]]
+
     local logo = string.rep("\n", 7) .. banner .. "\n"
     local opts = {
       theme = "doom",
@@ -97,5 +98,3 @@ local M = {
     return opts
   end,
 }
-
-return M
