@@ -371,6 +371,9 @@ return {
   {
     "kevinhwang91/nvim-ufo",
     event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "zP", function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Preview fold" },
+    },
     dependencies = { "kevinhwang91/promise-async" },
     init = function()
       -- INFO fold commands usually change the foldlevel, which fixes folds, e.g.
