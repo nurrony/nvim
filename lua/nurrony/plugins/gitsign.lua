@@ -4,7 +4,9 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
+    enabled = vim.fn.executable "git" == 1,
     opts = {
+      worktrees = vim.g.git_worktrees,
       signs = Configs.icons.git,
       signcolumn = true,         -- Toggle with `:Gitsigns toggle_signs`
       numhl = false,             -- Toggle with `:Gitsigns toggle_numhl`
@@ -52,39 +54,51 @@ return {
         end, { expr = true, desc = "previous hunk" })
 
         -- Actions
-        map("n", "<leader>hs", gs.stage_hunk, { desc = "stage hunks" })
-        map("v", "<leader>hs", function()
+        map("n", "<leader>ghs", gs.stage_hunk, { desc = "stage hunks" })
+
+        map("v", "<leader>ghs", function()
           gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, { desc = "stage hunks" })
-        map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunks" })
-        map("v", "<leader>hr", function()
+
+        map("n", "<leader>ghr", gs.reset_hunk, { desc = "reset hunks" })
+
+        map("v", "<leader>ghr", function()
           gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
         end, { desc = "reset hunks" })
-        map("n", "<leader>hS", function()
+
+        map("n", "<leader>ghS", function()
           gs.stage_buffer()
         end, { desc = "stage buffer" })
-        map("n", "<leader>hu", function()
+
+        map("n", "<leader>ghu", function()
           gs.undo_stage_hunk()
         end, { desc = "unstage hunk" })
-        map("n", "<leader>hR", function()
+
+        map("n", "<leader>ghR", function()
           gs.reset_buffer()
         end, { desc = "reset buffer" })
-        map("n", "<leader>hp", function()
+
+        map("n", "<leader>ghp", function()
           gs.preview_hunk()
         end, { desc = "preview hunk" })
-        map("n", "<leader>hb", function()
+
+        map("n", "<leader>ghb", function()
           gs.blame_line({ full = true })
         end, { desc = "blame line" })
-        map("n", "<leader>tb", function()
+
+        map("n", "<leader>gtb", function()
           gs.toggle_current_line_blame()
         end, { desc = "toggle line blame" })
-        map("n", "<leader>hd", function()
+
+        map("n", "<leader>ghd", function()
           gs.diffthis()
         end, { desc = "diff this" })
-        map("n", "<leader>hD", function()
+
+        map("n", "<leader>ghD", function()
           gs.diffthis("~")
         end, { desc = "diff entire buffer" })
-        map("n", "<leader>td", function()
+
+        map("n", "<leader>gtd", function()
           gs.toggle_deleted()
         end, { desc = "toggle deleted" })
 

@@ -57,7 +57,7 @@ return {
       ["<leader>d"]     = { name = "+debugger" },
       ["<leader>f"]     = { name = "+file/find" },
       ["<leader>u"]     = { name = "+ui/toggle" },
-      ["<leader>h"]     = { name = "+gitsigns/hop" },
+      ["<leader>gh"]    = { name = "+gitsigns/hop" },
       ["<leader>q"]     = { name = "+quit/session" },
       ["<leader>b"]     = { name = "+buffer/BufferLine" },
       ["<leader>x"]     = { name = "+diagnostics/quickfix" },
