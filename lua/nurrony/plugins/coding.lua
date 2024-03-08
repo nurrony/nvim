@@ -355,6 +355,7 @@ return {
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
 
+  -- undo file history
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
@@ -366,6 +367,7 @@ return {
       { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
     }
   },
+
   -- manage folding using ufo
   {
     "kevinhwang91/nvim-ufo",
