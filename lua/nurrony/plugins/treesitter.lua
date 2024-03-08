@@ -27,6 +27,7 @@ return {
       autotag = { enable = true, },  -- enable autotagging (nvim-ts-autotag plugin)
       highlight = { enable = true }, -- enable highlight
       ensure_installed = {
+        "lua",
         "xml",
         "sql",
         "css",
