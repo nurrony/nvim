@@ -38,66 +38,8 @@ return {
       servers = {
         cssls = {},
         html = {},
-        pyright = {},
-        terraformls = {},
         emmet_ls = {},
         bashls = { filetypes = { "bash", "sh" } },
-        tsserver = {
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
-        yamlls = {
-          -- Have to add this for yamlls to understand that we support line folding
-          capabilities = {
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-              },
-            },
-          },
-          -- lazy-load schemastore when needed
-          on_new_config = function(new_config)
-            new_config.settings.yaml.schemas = vim.tbl_deep_extend(
-              "force",
-              new_config.settings.yaml.schemas or {},
-              require("schemastore").yaml.schemas()
-            )
-          end,
-          settings = {
-            redhat = { telemetry = { enabled = false } },
-            yaml = {
-              keyOrdering = false,
-              format = {
-                enable = true,
-              },
-              validate = true,
-              schemaStore = {
-                -- Must disable built-in schemaStore support to use
-                -- schemas from SchemaStore.nvim plugin
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "",
-              },
-            },
-          },
-        },
-        jsonls = {
-          -- lazy-load schemastore when needed
-          on_new_config = function(new_config)
-            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-          end,
-          settings = {
-            json = {
-              format = { enable = true },
-              validate = { enable = true },
-            },
-          },
-        },
         lua_ls = {
           -- cmd = {
           --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
@@ -136,16 +78,6 @@ return {
       setup = {
         lua_ls = function(server, opts)
           require("lspconfig")[server].setup(opts)
-        end,
-        yamlls = function()
-          -- Neovim < 0.10 does not have dynamic registration for formatting
-          if vim.fn.has("nvim-0.10") == 0 then
-            require("nurrony.core.utils").on_attach(function(client, _)
-              if client.name == "yamlls" then
-                client.server_capabilities.documentFormattingProvider = true
-              end
-            end)
-          end
         end,
         -- example to setup with typescript.nvim
         -- return true if you do not want to configure this
@@ -232,13 +164,8 @@ return {
           "html",
           "cssls",
           "bashls",
-          "jsonls",
-          "yamlls",
           "lua_ls",
-          "pyright",
-          "tsserver",
           "emmet_ls",
-          "terraformls",
           -- "tailwindcss",
           -- "svelte",
           -- "graphql",
@@ -249,14 +176,8 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
-          "eslint_d", -- js linter
-          "hadolint", -- docker linter
-          "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "stylua", -- lua formatter
+          "shfmt",  -- shell formatter
         },
       },
     },
