@@ -53,9 +53,10 @@ return {
       servers = {
         cssls = {},
         html = {},
+        jdtls = {},
         pyright = {},
-        terraformls = {},
         emmet_ls = {},
+        terraformls = {},
         bashls = { filetypes = { "bash", "sh" } },
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
@@ -107,9 +108,6 @@ return {
           },
         },
         lua_ls = {
-          -- cmd = {
-          --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
-          -- },
           settings = {
             Lua = {
               runtime = {
@@ -154,6 +152,9 @@ return {
               end
             end)
           end
+        end,
+        jdtls = function()
+          return true -- avoid duplicate servers
         end,
         -- example to setup with typescript.nvim
         -- return true if you do not want to configure this
@@ -247,6 +248,7 @@ return {
           "tsserver",
           "emmet_ls",
           "terraformls",
+          "jdtls",
           -- "tailwindcss",
           -- "svelte",
           -- "graphql",
@@ -257,15 +259,17 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",           -- lua formatter
-          "shfmt",            -- shell formatter
-          "eslint_d",         -- js linter
-          "hadolint",         -- docker linter
-          "prettier",         -- prettier formatter
-          "isort",            -- python formatter
-          "black",            -- python formatter
-          "pylint",           -- python linter
-          "js-debug-adapter", -- js debugger
+          "stylua",             -- lua formatter
+          "shfmt",              -- shell formatter
+          "eslint_d",           -- js linter
+          "hadolint",           -- docker linter
+          "prettier",           -- prettier formatter
+          "isort",              -- python formatter
+          "black",              -- python formatter
+          "pylint",             -- python linter
+          "js-debug-adapter",   -- js debugger
+          "java-test",          -- java test
+          "java-debug-adapter", -- java debugger
         },
       },
     },
