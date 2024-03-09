@@ -21,7 +21,7 @@ map("n", "<leader>p", [[m`0"_DP``]], opt, "keep pasting overwriting text")
 map("v", "<leader>p", [[m`"_dP``]], opt, "keep pasting over the same thing")
 
 -- delete content without clobbering registers
-map({ "n", "v" }, "<leader>d", [["_d]], { remap = false }, "delete content without clobbering registers")
+map({ "n", "v" }, "<leader>D", [["_d]], { remap = false }, "delete content without clobbering registers")
 
 -- Switch CWD to the directory of the open buffer
 map({ "n", "v", "o" }, "<leader>cd", "<cmd>cd %:p:h<cr>:pwd<cr>", opt, "switch to cwd")
@@ -37,10 +37,10 @@ local mode = { "n", "v", "o" }
 -- buffers
 map("n", "<leader>bb", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
 map("n", "<leader>`", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
-map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to the first buffer in the buffer list
-map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
-map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
+map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer")          -- move to the first buffer in the buffer list
+map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer")            -- move to the last buffer in the buffer list
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer")     -- Close the current buffer
+map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt)      -- Close all buffers except current
 map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
