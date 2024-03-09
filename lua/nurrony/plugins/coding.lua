@@ -2,6 +2,21 @@ local float = require("nurrony.core.configs").diagnostics_options.float
 local Util = require("nurrony.core.utils")
 
 return {
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth" },
+
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    init = function()
+      -- open right
+      vim.g.undotree_WindowLayout = 3
+    end,
+    keys = {
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
+    }
+  },
+
   -- configure neovim
   {
     "neovim/nvim-lspconfig",
@@ -38,8 +53,66 @@ return {
       servers = {
         cssls = {},
         html = {},
+        pyright = {},
+        terraformls = {},
         emmet_ls = {},
         bashls = { filetypes = { "bash", "sh" } },
+        tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+        yamlls = {
+          -- Have to add this for yamlls to understand that we support line folding
+          capabilities = {
+            textDocument = {
+              foldingRange = {
+                dynamicRegistration = false,
+                lineFoldingOnly = true,
+              },
+            },
+          },
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.yaml.schemas = vim.tbl_deep_extend(
+              "force",
+              new_config.settings.yaml.schemas or {},
+              require("schemastore").yaml.schemas()
+            )
+          end,
+          settings = {
+            redhat = { telemetry = { enabled = false } },
+            yaml = {
+              keyOrdering = false,
+              format = {
+                enable = true,
+              },
+              validate = true,
+              schemaStore = {
+                -- Must disable built-in schemaStore support to use
+                -- schemas from SchemaStore.nvim plugin
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+              },
+            },
+          },
+        },
+        jsonls = {
+          -- lazy-load schemastore when needed
+          on_new_config = function(new_config)
+            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
+            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
+          end,
+          settings = {
+            json = {
+              format = { enable = true },
+              validate = { enable = true },
+            },
+          },
+        },
         lua_ls = {
           -- cmd = {
           --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
@@ -78,6 +151,16 @@ return {
       setup = {
         lua_ls = function(server, opts)
           require("lspconfig")[server].setup(opts)
+        end,
+        yamlls = function()
+          -- Neovim < 0.10 does not have dynamic registration for formatting
+          if vim.fn.has("nvim-0.10") == 0 then
+            require("nurrony.core.utils").on_attach(function(client, _)
+              if client.name == "yamlls" then
+                client.server_capabilities.documentFormattingProvider = true
+              end
+            end)
+          end
         end,
         -- example to setup with typescript.nvim
         -- return true if you do not want to configure this
@@ -136,112 +219,73 @@ return {
   },
 
   -- to automate install lsp tools and servers
-  -- {
-  --   "williamboman/mason.nvim",
-  --   cmd = "Mason",
-  --   keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
-  --   build = ":MasonUpdate",
-  --   dependencies = {
-  --     "williamboman/mason-lspconfig.nvim",
-  --     "WhoIsSethDaniel/mason-tool-installer.nvim",
-  --   },
-  --   opts = {
-  --     attributes = {
-  --       PATH = "prepend",
-  --       ui = {
-  --         width = 0.8,
-  --         height = 0.8,
-  --         border = float.border,
-  --         icons = {
-  --           package_installed = "",
-  --           package_pending = "",
-  --           package_uninstalled = "",
-  --         },
-  --       },
-  --     },
-  --     servers = {
-  --       ensure_installed = {
-  --         "html",
-  --         "cssls",
-  --         "bashls",
-  --         "lua_ls",
-  --         "emmet_ls",
-  --         -- "tailwindcss",
-  --         -- "svelte",
-  --         -- "graphql",
-  --         -- "prismals",
-  --       },
-  --       -- auto-install configured servers (with lspconfig)
-  --       automatic_installation = true, -- not the same as ensure_installed
-  --     },
-  --     lsp_tools = {
-  --       ensure_installed = {
-  --         "stylua", -- lua formatter
-  --         "shfmt",  -- shell formatter
-  --       },
-  --     },
-  --   },
-  --   config = function(_, opts)
-  --     -- import mason
-  --     local mason = require("mason")
-  --     mason.setup(opts.attributes)
-
-  --     -- import mason-lspconfig
-  --     local mason_lspconfig = require("mason-lspconfig")
-  --     mason_lspconfig.setup(opts.servers)
-
-  --     local mason_tool_installer = require("mason-tool-installer")
-  --     mason_tool_installer.setup(opts.lsp_tools)
-  --   end,
-  -- },
-
-  -- cmdline tools and lsp servers
   {
-
     "williamboman/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
+    dependencies = {
+      "williamboman/mason-lspconfig.nvim",
+      "WhoIsSethDaniel/mason-tool-installer.nvim",
+    },
     opts = {
-      ensure_installed = {
-        "stylua",
-        "shfmt",
-        "html-lsp",
-        "css-lsp",
-        "bash-language-server",
-        "lua-language-server",
-        "emmet-ls",
-        "typescript-language-server",
-        "eslint_d",
-        "prettier",
-        -- "flake8",
+      attributes = {
+        PATH = "prepend",
+        ui = {
+          width = 0.8,
+          height = 0.8,
+          border = float.border,
+          icons = {
+            package_installed = "",
+            package_pending = "",
+            package_uninstalled = "",
+          },
+        },
+      },
+      servers = {
+        ensure_installed = {
+          "html",
+          "cssls",
+          "bashls",
+          "jsonls",
+          "yamlls",
+          "lua_ls",
+          "pyright",
+          "tsserver",
+          "emmet_ls",
+          "terraformls",
+          -- "tailwindcss",
+          -- "svelte",
+          -- "graphql",
+          -- "prismals",
+        },
+        -- auto-install configured servers (with lspconfig)
+        automatic_installation = true, -- not the same as ensure_installed
+      },
+      lsp_tools = {
+        ensure_installed = {
+          "stylua",   -- lua formatter
+          "shfmt",    -- shell formatter
+          "eslint_d", -- js linter
+          "hadolint", -- docker linter
+          "prettier", -- prettier formatter
+          "isort",    -- python formatter
+          "black",    -- python formatter
+          "pylint",   -- python linter
+        },
       },
     },
     config = function(_, opts)
-      require("mason").setup(opts)
-      local mr = require("mason-registry")
-      mr:on("package:install:success", function()
-        vim.defer_fn(function()
-          -- trigger FileType event to possibly load this newly installed LSP server
-          require("lazy.core.handler.event").trigger({
-            event = "FileType",
-            buf = vim.api.nvim_get_current_buf(),
-          })
-        end, 100)
-      end)
-      local function ensure_installed()
-        for _, tool in ipairs(opts.ensure_installed) do
-          local p = mr.get_package(tool)
-          if not p:is_installed() then
-            p:install()
-          end
-        end
-      end
-      if mr.refresh then
-        mr.refresh(ensure_installed)
-      else
-        ensure_installed()
-      end
+      -- import mason
+      local mason = require("mason")
+      mason.setup(opts.attributes)
+
+      -- import mason-lspconfig
+      local mason_lspconfig = require("mason-lspconfig")
+      mason_lspconfig.setup(opts.servers)
+
+      local mason_tool_installer = require("mason-tool-installer")
+      mason_tool_installer.setup(opts.lsp_tools)
     end,
   },
 
@@ -323,22 +367,6 @@ return {
     end,
   },
 
-  -- Detect tabstop and shiftwidth automatically
-  { "tpope/vim-sleuth" },
-
-  -- undo file history
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    init = function()
-      -- open right
-      vim.g.undotree_WindowLayout = 3
-    end,
-    keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
-    }
-  },
-
   -- manage folding using ufo
   {
     "kevinhwang91/nvim-ufo",
@@ -384,5 +412,12 @@ return {
         },
       },
     },
+  },
+
+  -- yaml and json schema configuration
+  {
+    "b0o/SchemaStore.nvim",
+    lazy = true,
+    version = false, -- last release is way too old
   },
 }
