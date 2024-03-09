@@ -7,15 +7,15 @@ end
 function M.reload_all()
   for name, _ in pairs(package.loaded) do
     if
-      name:match("^lazy")
-      or name:match("^mapping")
-      or name:match("^plugrc")
-      or name:match("^ui")
-      or name:match("^editor")
-      or name:match("^plugins")
-      or name:match("^syntax")
-      or name:match("^terminal")
-      or name:match("^utils")
+        name:match("^lazy")
+        or name:match("^mapping")
+        or name:match("^plugrc")
+        or name:match("^ui")
+        or name:match("^editor")
+        or name:match("^plugins")
+        or name:match("^syntax")
+        or name:match("^terminal")
+        or name:match("^utils")
     then
       package.loaded[name] = nil
     end
@@ -284,6 +284,16 @@ function M.diagnostic_goto(next, severity)
   return function()
     go({ severity = severity })
   end
+end
+
+---@param name string
+function M.opts(name)
+  local plugin = require("lazy.core.config").plugins[name]
+  if not plugin then
+    return {}
+  end
+  local Plugin = require("lazy.core.plugin")
+  return Plugin.values(plugin, "opts", false)
 end
 
 return M
