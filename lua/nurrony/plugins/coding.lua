@@ -57,13 +57,6 @@ return {
         terraformls = {},
         emmet_ls = {},
         bashls = { filetypes = { "bash", "sh" } },
-        tsserver = {
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
           capabilities = {
@@ -114,6 +107,9 @@ return {
           },
         },
         lua_ls = {
+          -- cmd = {
+          --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
+          -- },
           settings = {
             Lua = {
               runtime = {
@@ -167,11 +163,6 @@ return {
       },
     },
     config = function(_, opts)
-      if Util.has("neoconf.nvim") then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
-      end
-
       local on_attach = function(client, bufnr)
         _ = client
         _ = bufnr
@@ -266,14 +257,15 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
-          "eslint_d", -- js linter
-          "hadolint", -- docker linter
-          "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
+          "stylua",           -- lua formatter
+          "shfmt",            -- shell formatter
+          "eslint_d",         -- js linter
+          "hadolint",         -- docker linter
+          "prettier",         -- prettier formatter
+          "isort",            -- python formatter
+          "black",            -- python formatter
+          "pylint",           -- python linter
+          "js-debug-adapter", -- js debugger
         },
       },
     },

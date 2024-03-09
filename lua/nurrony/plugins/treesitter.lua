@@ -21,7 +21,6 @@ return {
       { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
 
-    ---@diagnostic disable-next-line: missing-fields
     opts = {
       indent = { enable = true },    -- enable indent
       autotag = { enable = true, },  -- enable autotagging (nvim-ts-autotag plugin)
