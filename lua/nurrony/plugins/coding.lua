@@ -167,6 +167,11 @@ return {
       },
     },
     config = function(_, opts)
+      if Util.has("neoconf.nvim") then
+        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
+      end
+
       local on_attach = function(client, bufnr)
         _ = client
         _ = bufnr
