@@ -13,12 +13,7 @@ end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
 require("lazy").setup({
-  spec = {
-    -- import any extras modules here
-    { import = "nurrony.plugins.langs.typescript" },
-    -- import/override with your plugins
-    { import = "nurrony.plugins" }
-  },
+  spec = { { import = "nurrony.plugins" } },
   defaults = { lazy = true },
   install = { colorscheme = { "catppuccin" } },
   ui = {

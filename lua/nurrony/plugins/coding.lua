@@ -114,9 +114,6 @@ return {
           },
         },
         lua_ls = {
-          -- cmd = {
-          --   os.getenv("HOME") .. "/.local/share/nvim/mason/bin/lua-language-server",
-          -- },
           settings = {
             Lua = {
               runtime = {
