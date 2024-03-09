@@ -136,62 +136,112 @@ return {
   },
 
   -- to automate install lsp tools and servers
+  -- {
+  --   "williamboman/mason.nvim",
+  --   cmd = "Mason",
+  --   keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
+  --   build = ":MasonUpdate",
+  --   dependencies = {
+  --     "williamboman/mason-lspconfig.nvim",
+  --     "WhoIsSethDaniel/mason-tool-installer.nvim",
+  --   },
+  --   opts = {
+  --     attributes = {
+  --       PATH = "prepend",
+  --       ui = {
+  --         width = 0.8,
+  --         height = 0.8,
+  --         border = float.border,
+  --         icons = {
+  --           package_installed = "",
+  --           package_pending = "",
+  --           package_uninstalled = "",
+  --         },
+  --       },
+  --     },
+  --     servers = {
+  --       ensure_installed = {
+  --         "html",
+  --         "cssls",
+  --         "bashls",
+  --         "lua_ls",
+  --         "emmet_ls",
+  --         -- "tailwindcss",
+  --         -- "svelte",
+  --         -- "graphql",
+  --         -- "prismals",
+  --       },
+  --       -- auto-install configured servers (with lspconfig)
+  --       automatic_installation = true, -- not the same as ensure_installed
+  --     },
+  --     lsp_tools = {
+  --       ensure_installed = {
+  --         "stylua", -- lua formatter
+  --         "shfmt",  -- shell formatter
+  --       },
+  --     },
+  --   },
+  --   config = function(_, opts)
+  --     -- import mason
+  --     local mason = require("mason")
+  --     mason.setup(opts.attributes)
+
+  --     -- import mason-lspconfig
+  --     local mason_lspconfig = require("mason-lspconfig")
+  --     mason_lspconfig.setup(opts.servers)
+
+  --     local mason_tool_installer = require("mason-tool-installer")
+  --     mason_tool_installer.setup(opts.lsp_tools)
+  --   end,
+  -- },
+
+  -- cmdline tools and lsp servers
   {
+
     "williamboman/mason.nvim",
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-    },
     opts = {
-      attributes = {
-        PATH = "prepend",
-        ui = {
-          width = 0.8,
-          height = 0.8,
-          border = float.border,
-          icons = {
-            package_installed = "",
-            package_pending = "",
-            package_uninstalled = "",
-          },
-        },
-      },
-      servers = {
-        ensure_installed = {
-          "html",
-          "cssls",
-          "bashls",
-          "lua_ls",
-          "emmet_ls",
-          -- "tailwindcss",
-          -- "svelte",
-          -- "graphql",
-          -- "prismals",
-        },
-        -- auto-install configured servers (with lspconfig)
-        automatic_installation = true, -- not the same as ensure_installed
-      },
-      lsp_tools = {
-        ensure_installed = {
-          "stylua", -- lua formatter
-          "shfmt",  -- shell formatter
-        },
+      ensure_installed = {
+        "stylua",
+        "shfmt",
+        "html-lsp",
+        "css-lsp",
+        "bash-language-server",
+        "lua-language-server",
+        "emmet-ls",
+        "typescript-language-server",
+        "eslint_d",
+        "prettier",
+        -- "flake8",
       },
     },
     config = function(_, opts)
-      -- import mason
-      local mason = require("mason")
-      mason.setup(opts.attributes)
-
-      -- import mason-lspconfig
-      local mason_lspconfig = require("mason-lspconfig")
-      mason_lspconfig.setup(opts.servers)
-
-      local mason_tool_installer = require("mason-tool-installer")
-      mason_tool_installer.setup(opts.lsp_tools)
+      require("mason").setup(opts)
+      local mr = require("mason-registry")
+      mr:on("package:install:success", function()
+        vim.defer_fn(function()
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require("lazy.core.handler.event").trigger({
+            event = "FileType",
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
+      local function ensure_installed()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end
+      if mr.refresh then
+        mr.refresh(ensure_installed)
+      else
+        ensure_installed()
+      end
     end,
   },
 
