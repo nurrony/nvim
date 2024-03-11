@@ -1,4 +1,51 @@
+local Util = require "nurrony.core.utils"
 return {
+  -- correctly setup lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- make sure mason installs the server
+      servers = {
+        tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+      },
+
+      setup = {
+        tsserver = function()
+          Util.on_attach(function(client, _)
+            if client.name == "tsserver" then
+              -- organize imports
+              Util.map({ "n", "v" }, "<leader>co", function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.organizeImports.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end, { noremap = true, silent = true }, "Organize Imports")
+
+              -- remove unused imports
+              Util.map({ "n", "v" }, "<leader>cR", function()
+                vim.lsp.buf.code_action({
+                  apply = true,
+                  context = {
+                    only = { "source.removeUnused.ts" },
+                    diagnostics = {},
+                  },
+                })
+              end, { noremap = true, silent = true }, "Remove Unused Imports")
+            end
+          end)
+        end
+      }
+    },
+  },
   {
     "mfussenegger/nvim-dap",
     optional = true,
