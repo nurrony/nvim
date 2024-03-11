@@ -41,11 +41,6 @@ return {
               size = 0.3,
               position = "right",
             },
-            {
-              elements = { "repl" },
-              size = 0.24,
-              position = "bottom",
-            },
           },
           floating = {
             border = require("nurrony.core.configs").diagnostics_options.float.border,
