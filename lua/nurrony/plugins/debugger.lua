@@ -43,7 +43,7 @@ return {
             },
             {
               elements = { "repl", "console" },
-              size = 0.20,
+              size = 0.25,
               position = "bottom",
             },
           },
