@@ -38,7 +38,7 @@ return {
                 "watches",
                 "breakpoints",
               },
-              size = 0.3,
+              size = 0.2,
               position = "right",
             },
           },
