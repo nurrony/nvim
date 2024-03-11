@@ -38,8 +38,13 @@ return {
                 "watches",
                 "breakpoints",
               },
-              size = 0.2,
+              size = 0.20,
               position = "right",
+            },
+            {
+              elements = { "repl", "console" },
+              size = 0.20,
+              position = "bottom",
             },
           },
           floating = {
