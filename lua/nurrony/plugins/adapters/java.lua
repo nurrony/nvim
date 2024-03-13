@@ -19,6 +19,22 @@ end
 
 return {
   -- Set up nvim-jdtls to attach to java files.
+  -- Configure nvim-lspconfig to install the server automatically via mason, but
+  -- defer actually starting it to our configuration of nvim-jtdls below.
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- make sure mason installs the server
+      servers = {
+        jdtls = {},
+      },
+      setup = {
+        jdtls = function()
+          return true -- avoid duplicate servers
+        end,
+      },
+    },
+  },
   {
     "mfussenegger/nvim-jdtls",
     dependencies = { "folke/which-key.nvim" },
