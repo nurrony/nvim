@@ -26,7 +26,32 @@ return {
     opts = {
       -- make sure mason installs the server
       servers = {
-        jdtls = {},
+        jdtls = {
+          -- If you are developing in projects with different Java versions, you need
+          -- to tell eclipse.jdt.ls to use the location of the JDK for your Java version
+          -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+          -- And search for `interface RuntimeOption`
+          -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
+          configuration = {
+            runtimes = {
+              {
+                default = true,
+                name = "JavaSE-21",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/graal-21",
+              },
+              {
+                default = false,
+                name = "JavaSE-17",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/17",
+              },
+              {
+                default = false,
+                name = "JavaSE-11",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/11"
+              },
+            }
+          }
+        },
       },
       setup = {
         jdtls = function()
