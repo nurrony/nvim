@@ -18,9 +18,7 @@ local function extend_or_override(config, custom, ...)
 end
 
 return {
-  -- Set up nvim-jdtls to attach to java files.
-  -- Configure nvim-lspconfig to install the server automatically via mason, but
-  -- defer actually starting it to our configuration of nvim-jtdls below.
+
   {
     "neovim/nvim-lspconfig",
     opts = {
@@ -60,6 +58,10 @@ return {
       },
     },
   },
+
+  -- Set up nvim-jdtls to attach to java files.
+  -- Configure nvim-lspconfig to install the server automatically via mason, but
+  -- defer actually starting it to our configuration of nvim-jtdls below.
   {
     "mfussenegger/nvim-jdtls",
     dependencies = { "folke/which-key.nvim" },
