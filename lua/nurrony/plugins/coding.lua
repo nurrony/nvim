@@ -55,7 +55,6 @@ return {
         html = {},
         pyright = {},
         emmet_ls = {},
-        terraformls = {},
         bashls = { filetypes = { "bash", "sh" } },
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
