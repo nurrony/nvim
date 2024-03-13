@@ -159,6 +159,11 @@ return {
       },
     },
     config = function(_, opts)
+      if Util.has("neoconf.nvim") then
+        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
+        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
+      end
+
       local on_attach = function(client, bufnr)
         _ = client
         _ = bufnr
@@ -240,10 +245,10 @@ return {
           "yamlls",
           "lua_ls",
           "pyright",
-          "tsserver",
           "emmet_ls",
-          "terraformls",
-          "jdtls",
+          -- "tsserver",
+          -- "terraformls",
+          -- "jdtls",
           -- "tailwindcss",
           -- "svelte",
           -- "graphql",
@@ -254,17 +259,17 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",             -- lua formatter
-          "shfmt",              -- shell formatter
-          "eslint_d",           -- js linter
-          "hadolint",           -- docker linter
-          "prettier",           -- prettier formatter
-          "isort",              -- python formatter
-          "black",              -- python formatter
-          "pylint",             -- python linter
-          "js-debug-adapter",   -- js debugger
-          "java-test",          -- java test
-          "java-debug-adapter", -- java debugger
+          "stylua",   -- lua formatter
+          "shfmt",    -- shell formatter
+          -- "eslint_d", -- js linter
+          "hadolint", -- docker linter
+          "prettier", -- prettier formatter
+          "isort",    -- python formatter
+          "black",    -- python formatter
+          "pylint",   -- python linter
+          -- "js-debug-adapter",   -- js debugger
+          -- "java-test",          -- java test
+          -- "java-debug-adapter", -- java debugger
         },
       },
     },
