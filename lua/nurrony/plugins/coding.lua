@@ -2,20 +2,6 @@ local float = require("nurrony.core.configs").diagnostics_options.float
 local Util = require("nurrony.core.utils")
 
 return {
-  -- Detect tabstop and shiftwidth automatically
-  { "tpope/vim-sleuth" },
-
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    init = function()
-      -- open right
-      vim.g.undotree_WindowLayout = 3
-    end,
-    keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
-    }
-  },
 
   -- configure neovim
   {
@@ -411,6 +397,22 @@ return {
       },
     },
   },
+
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth" },
+
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    init = function()
+      -- open right
+      vim.g.undotree_WindowLayout = 3
+    end,
+    keys = {
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
+    }
+  },
+
 
   -- yaml and json schema configuration
   {
