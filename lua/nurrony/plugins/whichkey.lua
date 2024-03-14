@@ -40,7 +40,7 @@ return {
   config = function(_, opts)
     local keymaps = {
       mode              = { "n", "v" },
-      ["<leader>g"]     = { name = "+git" },
+      ["<leader>g"]     = { name = "󰊢 git" },
       ["g"]             = { name = "+goto" },
       ["]"]             = { name = "+next" },
       ["["]             = { name = "+prev" },
@@ -48,10 +48,10 @@ return {
       ["<leader>c"]     = { name = "+code" },
       ["z"]             = { name = "+folds" },
       ["<leader>sn"]    = { name = "+noice" },
-      ["<leader>s"]     = { name = "+search" },
+      ["<leader>s"]     = { name = " search" },
       ["<leader>w"]     = { name = "+windows" },
       ["gz"]            = { name = "+surround" },
-      ["<leader>d"]     = { name = "+debugger" },
+      ["<leader>d"]     = { name = " debugger" },
       ["<leader>f"]     = { name = "+file/find" },
       ["<leader>u"]     = { name = "+ui/toggle" },
       ["<leader>gh"]    = { name = "+gitsigns/hop" },
