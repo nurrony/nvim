@@ -245,15 +245,15 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",   -- lua formatter
-          "shfmt",    -- shell formatter
-          -- "eslint_d", -- js linter
-          "hadolint", -- docker linter
-          "prettier", -- prettier formatter
-          "isort",    -- python formatter
-          "black",    -- python formatter
-          "pylint",   -- python linter
-          -- "js-debug-adapter",   -- js debugger
+          "stylua",           -- lua formatter
+          "shfmt",            -- shell formatter
+          "eslint_d",         -- js linter
+          "hadolint",         -- docker linter
+          "prettier",         -- prettier formatter
+          "isort",            -- python formatter
+          "black",            -- python formatter
+          "pylint",           -- python linter
+          "js-debug-adapter", -- js debugger
           -- "java-test",          -- java test
           -- "java-debug-adapter", -- java debugger
         },
