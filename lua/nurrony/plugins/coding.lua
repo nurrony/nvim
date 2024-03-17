@@ -277,7 +277,7 @@ return {
   {
     "stevearc/conform.nvim",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile", "BufNewFile" }, -- to disable, comment this out
+    event = { "BufReadPost", "BufNewFile" }, -- to disable, comment this out
     opts = {
       formatters = {
         javascript = { "prettier" },
