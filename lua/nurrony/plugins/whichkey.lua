@@ -9,7 +9,7 @@ return {
       group = "",
     },
     layout = {
-      spacing = 10,
+      spacing = 5,
       align = "left",
     },
     show_help = false,
