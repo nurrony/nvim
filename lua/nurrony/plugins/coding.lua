@@ -29,7 +29,7 @@ return {
       },
       {
         "antosha417/nvim-lsp-file-operations",
-        config = true
+        config = true,
       },
     },
     opts = {
@@ -245,14 +245,14 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",           -- lua formatter
-          "shfmt",            -- shell formatter
-          "eslint_d",         -- js linter
-          "hadolint",         -- docker linter
-          "prettier",         -- prettier formatter
-          "isort",            -- python formatter
-          "black",            -- python formatter
-          "pylint",           -- python linter
+          "stylua", -- lua formatter
+          "shfmt", -- shell formatter
+          "eslint_d", -- js linter
+          "hadolint", -- docker linter
+          "prettier", -- prettier formatter
+          "isort", -- python formatter
+          "black", -- python formatter
+          "pylint", -- python linter
           "js-debug-adapter", -- js debugger
           -- "java-test",          -- java test
           -- "java-debug-adapter", -- java debugger
@@ -356,7 +356,13 @@ return {
     "kevinhwang91/nvim-ufo",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
-      { "zP", function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Preview fold" },
+      {
+        "zP",
+        function()
+          require("ufo").peekFoldedLinesUnderCursor()
+        end,
+        desc = "Preview fold",
+      },
     },
     dependencies = { "kevinhwang91/promise-async" },
     init = function()
@@ -385,7 +391,7 @@ return {
       end,
       -- when opening the buffer, close these fold kinds
       -- use `:UfoInspect` to get available fold kinds from the LSP
-      close_fold_kinds = { "imports", "comment" },
+      close_fold_kinds_for_ft = { default = { "imports", "comment" } },
       open_fold_hl_timeout = 150,
       fold_virt_text_handler = Util.fold_text_formatter,
       preview = {
@@ -409,10 +415,9 @@ return {
       vim.g.undotree_WindowLayout = 3
     end,
     keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
-    }
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" },
+    },
   },
-
 
   -- yaml and json schema configuration
   {
