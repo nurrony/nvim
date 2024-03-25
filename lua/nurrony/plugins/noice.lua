@@ -71,13 +71,6 @@ return {
       lsp_doc_border = true, -- add a border to hover docs and signature help
       long_message_to_split = true,
     },
-    cmdline = {
-      view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
-      format = {
-        search_down = { kind = "search", pattern = "^/", icon = " ", lang = "regex" },
-        search_up = { kind = "search", pattern = "^%?", icon = " ", lang = "regex" },
-      }
-    },
   },
   -- stylua: ignore
   keys = {

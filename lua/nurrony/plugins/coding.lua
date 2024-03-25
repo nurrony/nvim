@@ -2,11 +2,25 @@ local float = require("nurrony.core.configs").diagnostics_options.float
 local Util = require("nurrony.core.utils")
 
 return {
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth" },
+
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    init = function()
+      -- open right
+      vim.g.undotree_WindowLayout = 3
+    end,
+    keys = {
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
+    }
+  },
 
   -- configure neovim
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
     keys = {
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
     },
@@ -29,7 +43,7 @@ return {
       },
       {
         "antosha417/nvim-lsp-file-operations",
-        config = true,
+        config = true
       },
     },
     opts = {
@@ -39,8 +53,35 @@ return {
       servers = {
         cssls = {},
         html = {},
+        jdtls = {
+          -- If you are developing in projects with different Java versions, you need
+          -- to tell eclipse.jdt.ls to use the location of the JDK for your Java version
+          -- See https://github.com/eclipse/eclipse.jdt.ls/wiki/Running-the-JAVA-LS-server-from-the-command-line#initialize-request
+          -- And search for `interface RuntimeOption`
+          -- The `name` is NOT arbitrary, but must match one of the elements from `enum ExecutionEnvironment` in the link above
+          configuration = {
+            runtimes = {
+              {
+                default = true,
+                name = "JavaSE-21",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/graal-21",
+              },
+              {
+                default = false,
+                name = "JavaSE-17",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/17",
+              },
+              {
+                default = false,
+                name = "JavaSE-11",
+                path = os.getenv('HOME') .. "/.asdf/installs/java/11"
+              },
+            }
+          }
+        },
         pyright = {},
         emmet_ls = {},
+        terraformls = {},
         bashls = { filetypes = { "bash", "sh" } },
         yamlls = {
           -- Have to add this for yamlls to understand that we support line folding
@@ -137,6 +178,9 @@ return {
             end)
           end
         end,
+        jdtls = function()
+          return true -- avoid duplicate servers
+        end,
         -- example to setup with typescript.nvim
         -- return true if you do not want to configure this
         -- tsserver = function(_, opts)
@@ -145,11 +189,6 @@ return {
       },
     },
     config = function(_, opts)
-      if Util.has("neoconf.nvim") then
-        local plugin = require("lazy.core.config").spec.plugins["neoconf.nvim"]
-        require("neoconf").setup(require("lazy.core.plugin").values(plugin, "opts", false))
-      end
-
       local on_attach = function(client, bufnr)
         _ = client
         _ = bufnr
@@ -231,10 +270,10 @@ return {
           "yamlls",
           "lua_ls",
           "pyright",
+          "tsserver",
           "emmet_ls",
-          -- "tsserver",
-          -- "terraformls",
-          -- "jdtls",
+          "terraformls",
+          "jdtls",
           -- "tailwindcss",
           -- "svelte",
           -- "graphql",
@@ -245,17 +284,17 @@ return {
       },
       lsp_tools = {
         ensure_installed = {
-          "stylua",           -- lua formatter
-          "shfmt",            -- shell formatter
-          "eslint_d",         -- js linter
-          "hadolint",         -- docker linter
-          "prettier",         -- prettier formatter
-          "isort",            -- python formatter
-          "black",            -- python formatter
-          "pylint",           -- python linter
-          "js-debug-adapter", -- js debugger
-          -- "java-test",          -- java test
-          -- "java-debug-adapter", -- java debugger
+          "stylua",             -- lua formatter
+          "shfmt",              -- shell formatter
+          "eslint_d",           -- js linter
+          "hadolint",           -- docker linter
+          "prettier",           -- prettier formatter
+          "isort",              -- python formatter
+          "black",              -- python formatter
+          "pylint",             -- python linter
+          "js-debug-adapter",   -- js debugger
+          "java-test",          -- java test
+          "java-debug-adapter", -- java debugger
         },
       },
     },
@@ -277,7 +316,7 @@ return {
   {
     "stevearc/conform.nvim",
     lazy = true,
-    event = { "BufReadPost", "BufNewFile" }, -- to disable, comment this out
+    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     opts = {
       formatters = {
         javascript = { "prettier" },
@@ -356,13 +395,7 @@ return {
     "kevinhwang91/nvim-ufo",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
-      {
-        "zP",
-        function()
-          require("ufo").peekFoldedLinesUnderCursor()
-        end,
-        desc = "Preview fold",
-      },
+      { "zP", function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Preview fold" },
     },
     dependencies = { "kevinhwang91/promise-async" },
     init = function()
@@ -391,7 +424,7 @@ return {
       end,
       -- when opening the buffer, close these fold kinds
       -- use `:UfoInspect` to get available fold kinds from the LSP
-      close_fold_kinds_for_ft = { default = { "imports", "comment" } },
+      close_fold_kinds = { "imports", "comment" },
       open_fold_hl_timeout = 150,
       fold_virt_text_handler = Util.fold_text_formatter,
       preview = {
@@ -401,21 +434,6 @@ return {
           winhighlight = "Normal:Folded",
         },
       },
-    },
-  },
-
-  -- Detect tabstop and shiftwidth automatically
-  { "tpope/vim-sleuth" },
-
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    init = function()
-      -- open right
-      vim.g.undotree_WindowLayout = 3
-    end,
-    keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" },
     },
   },
 
