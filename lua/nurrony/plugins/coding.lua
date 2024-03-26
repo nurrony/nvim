@@ -370,7 +370,13 @@ return {
     "kevinhwang91/nvim-ufo",
     event = { "BufReadPost", "BufNewFile" },
     keys = {
-      { "zP", function() require("ufo").peekFoldedLinesUnderCursor() end, desc = "Preview fold" },
+      {
+        "zP",
+        function()
+          require("ufo").peekFoldedLinesUnderCursor()
+        end,
+        desc = "Preview fold",
+      },
     },
     dependencies = { "kevinhwang91/promise-async" },
     init = function()
@@ -399,7 +405,7 @@ return {
       end,
       -- when opening the buffer, close these fold kinds
       -- use `:UfoInspect` to get available fold kinds from the LSP
-      close_fold_kinds = { "imports", "comment" },
+      close_fold_kinds_for_ft = { default = { "imports", "comment" } },
       open_fold_hl_timeout = 150,
       fold_virt_text_handler = Util.fold_text_formatter,
       preview = {
