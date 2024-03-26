@@ -33,6 +33,7 @@ return {
       },
     },
   },
+
   -- Set up nvim-jdtls to attach to java files.
   {
     "mfussenegger/nvim-jdtls",
