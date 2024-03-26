@@ -53,7 +53,6 @@ return {
       servers = {
         cssls = {},
         html = {},
-        jdtls = {},
         pyright = {},
         emmet_ls = {},
         terraformls = {},
@@ -152,9 +151,6 @@ return {
               end
             end)
           end
-        end,
-        jdtls = function()
-          return true -- avoid duplicate servers
         end,
         -- example to setup with typescript.nvim
         -- return true if you do not want to configure this
