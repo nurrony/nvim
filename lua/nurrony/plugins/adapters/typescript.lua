@@ -47,6 +47,8 @@ return {
       }
     },
   },
+
+  -- add debugger for javascript, node, chrome and typescript
   {
     "mfussenegger/nvim-dap",
     optional = true,
