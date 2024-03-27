@@ -300,4 +300,20 @@ return {
       },
     },
   },
+
+  -- visualizes the undo history and makes it easy to browse and switch between different undo branches
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    init = function()
+      -- open right
+      vim.g.undotree_WindowLayout = 3
+    end,
+    keys = {
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
+    }
+  },
+
+  -- Detect tabstop and shiftwidth automatically
+  { "tpope/vim-sleuth" },
 }
