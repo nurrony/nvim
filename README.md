@@ -111,18 +111,13 @@ These are the followings that comes out of the box
 - UFO (Folding)
 - Which Key
 
-### 🔖 Languages Servers
+### 🔖 Default Languages Servers
 
 - BASH
 - HTML
 - CSS
 - Lua
-- JSON
-- Yaml
-- Python
-- Javascript
-- Typescript
-- HashiCorp Language
+
 
 ### 🔧 Linters and Formatters
 

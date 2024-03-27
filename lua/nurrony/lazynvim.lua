@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     { import = "nurrony.plugins" },
-    { import = "nurrony.plugins.adapters.typescript" },
+    -- { import = "nurrony.plugins.languages.typescript" },
     -- { import = "nurrony.plugins.adapters.java" },
   },
   defaults = { lazy = true },
