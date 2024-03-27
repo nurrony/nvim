@@ -190,8 +190,10 @@ return {
       ensure_installed = {
         "shfmt",
         "stylua",
-        "html-lsp",
+        "css-lsp",
         "prettier",
+        "html-lsp",
+        "emmet-lsp",
         "lua-language-server",
         "bash-language-server",
       },
