@@ -5,6 +5,7 @@ return {
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
 
+  -- history and recover
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
