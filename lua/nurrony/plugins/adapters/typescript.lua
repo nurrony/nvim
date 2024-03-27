@@ -1,9 +1,29 @@
 local Util = require "nurrony.core.utils"
 
 return {
+
+  -- add typescript to treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      end
+    end,
+  },
+
   -- correctly setup lspconfig
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "typescript-language-server")
+        end,
+      },
+    },
     opts = {
       -- make sure mason installs the server
       servers = {
@@ -48,10 +68,70 @@ return {
     },
   },
 
+  -- configure linter
+  {
+    "mfussenegger/nvim-lint",
+    optional = true,
+    dependencies = {
+      -- make sure mason installs the linter
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "eslint_d")
+        end,
+      },
+    },
+    opts = {
+      linters_by_ft = {
+        -- svelte = { "eslint_d" },
+        javascript = { "eslint_d" },
+        typescript = { "eslint_d" },
+        javascriptreact = { "eslint_d" },
+        typescriptreact = { "eslint_d" },
+      },
+    },
+  },
+
+  -- configure formatters
+  {
+    "stevearc/conform.nvim",
+    dependencies = {
+      -- make sure mason installs the formatters
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "prettier")
+        end,
+      },
+    },
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        -- svelte = { "prettier" },
+        javascript = { "prettier" },
+        typescript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescriptreact = { "prettier" },
+      },
+    },
+  },
+
   -- add debugger for javascript, node, chrome and typescript
   {
     "mfussenegger/nvim-dap",
     optional = true,
+    dependencies = {
+      -- make sure mason installs the debugger
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          table.insert(opts.ensure_installed, "js-debug-adapter")
+        end,
+      },
+    },
     opts = function()
       local dap = require("dap")
       if not dap.adapters["pwa-node"] then
