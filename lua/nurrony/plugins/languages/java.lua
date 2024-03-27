@@ -43,10 +43,21 @@ return {
     },
   },
 
-  -- correctly setup lspconfig
+  -- Configure nvim-lspconfig to install the server automatically via mason, but
+  -- defer actually starting it to our configuration of nvim-jtdls below.
   {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      {
+        "williamboman/mason.nvim",
+        opts = function(_, opts)
+          opts.ensure_installed = opts.ensure_installed or {}
+          vim.list_extend(opts.ensure_installed, { "jdtls" })
+        end,
+      },
+    },
     opts = {
+      -- make sure mason installs the server
       servers = {
         jdtls = {},
       },
