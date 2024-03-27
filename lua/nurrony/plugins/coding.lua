@@ -5,7 +5,7 @@ return {
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
 
-  -- history and recover
+  -- visualizes the undo history and makes it easy to browse and switch between different undo branches
   {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
@@ -26,6 +26,8 @@ return {
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
     },
     dependencies = {
+      "mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
       {
         --TODO: enable inline hint with 0.10 release
         "ray-x/lsp_signature.nvim",
@@ -48,63 +50,22 @@ return {
       },
     },
     opts = {
+      format = {
+        formatting_options = nil,
+        timeout_ms = nil,
+      },
       -- for any global capabilities
       capabilities = {},
       -- LSP Server Settings
       servers = {
         cssls = {},
         html = {},
-        pyright = {},
         emmet_ls = {},
-        terraformls = {},
-        bashls = { filetypes = { "bash", "sh" } },
-        yamlls = {
-          -- Have to add this for yamlls to understand that we support line folding
-          capabilities = {
-            textDocument = {
-              foldingRange = {
-                dynamicRegistration = false,
-                lineFoldingOnly = true,
-              },
-            },
-          },
-          -- lazy-load schemastore when needed
-          on_new_config = function(new_config)
-            new_config.settings.yaml.schemas = vim.tbl_deep_extend(
-              "force",
-              new_config.settings.yaml.schemas or {},
-              require("schemastore").yaml.schemas()
-            )
-          end,
-          settings = {
-            redhat = { telemetry = { enabled = false } },
-            yaml = {
-              keyOrdering = false,
-              format = {
-                enable = true,
-              },
-              validate = true,
-              schemaStore = {
-                -- Must disable built-in schemaStore support to use
-                -- schemas from SchemaStore.nvim plugin
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "",
-              },
-            },
-          },
-        },
-        jsonls = {
-          -- lazy-load schemastore when needed
-          on_new_config = function(new_config)
-            new_config.settings.json.schemas = new_config.settings.json.schemas or {}
-            vim.list_extend(new_config.settings.json.schemas, require("schemastore").json.schemas())
-          end,
-          settings = {
-            json = {
-              format = { enable = true },
-              validate = { enable = true },
-            },
+        bashls = {
+          filetypes = {
+            "sh",
+            "zsh",
+            "bash",
           },
         },
         lua_ls = {
@@ -132,8 +93,6 @@ return {
             },
           },
         },
-        -- volar = {},
-        -- tailwindcss = {},
       },
       -- you can do any additional lsp server setup here
       -- you can do any additional lsp server setup here
@@ -143,21 +102,6 @@ return {
         lua_ls = function(server, opts)
           require("lspconfig")[server].setup(opts)
         end,
-        yamlls = function()
-          -- Neovim < 0.10 does not have dynamic registration for formatting
-          if vim.fn.has("nvim-0.10") == 0 then
-            require("nurrony.core.utils").on_attach(function(client, _)
-              if client.name == "yamlls" then
-                client.server_capabilities.documentFormattingProvider = true
-              end
-            end)
-          end
-        end,
-        -- example to setup with typescript.nvim
-        -- return true if you do not want to configure this
-        -- tsserver = function(_, opts)
-        --   require("typescript").setup({ server = opts })
-        -- end,
       },
     },
     config = function(_, opts)
@@ -171,15 +115,6 @@ return {
         }
       end
 
-      local function setup(server, server_config)
-        if opts.setup[server] then
-          if opts.setup[server](server, server_config) then
-            return
-          end
-        end
-        require("lspconfig")[server].setup(server_config)
-      end
-
       local servers = opts.servers
       local has_cmp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")
       local capabilities = vim.tbl_deep_extend(
@@ -190,22 +125,47 @@ return {
         opts.capabilities or {}
       )
 
-      for server, _ in pairs(servers) do
-        local server_config = vim.tbl_deep_extend("force", {
+      local function setup(server)
+        local server_opts = vim.tbl_deep_extend("force", {
           capabilities = vim.deepcopy(capabilities),
           on_attach = on_attach,
         }, servers[server] or {})
 
-        setup(server, server_config)
+        if opts.setup[server] then
+          if opts.setup[server](server, server_opts) then
+            return
+          end
+        elseif opts.setup["*"] then
+          if opts.setup["*"](server, server_opts) then
+            return
+          end
+        end
+        require("lspconfig")[server].setup(server_opts)
       end
 
-      -- if Util.lsp.get_config("denols") and Util.lsp.get_config("tsserver") then
-      --   local is_deno = require("lspconfig.util").root_pattern("deno.json", "deno.jsonc")
-      --   Util.lsp.disable("tsserver", is_deno)
-      --   Util.lsp.disable("denols", function(root_dir)
-      --     return not is_deno(root_dir)
-      --   end)
-      -- end
+      -- get all the servers that are available through mason-lspconfig
+      local have_mason, mlsp = pcall(require, "mason-lspconfig")
+      local all_mslp_servers = {}
+      if have_mason then
+        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
+      end
+
+      local ensure_installed = {}
+      for server, server_opts in pairs(servers) do
+        if server_opts then
+          server_opts = server_opts == true and {} or server_opts
+          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+          if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
+            setup(server)
+          else
+            ensure_installed[#ensure_installed + 1] = server
+          end
+        end
+      end
+
+      if have_mason then
+        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+      end
     end,
   },
 
@@ -215,72 +175,53 @@ return {
     cmd = "Mason",
     keys = { { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" } },
     build = ":MasonUpdate",
-    dependencies = {
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
-    },
     opts = {
-      attributes = {
-        PATH = "prepend",
-        ui = {
-          width = 0.8,
-          height = 0.8,
-          border = float.border,
-          icons = {
-            package_installed = "",
-            package_pending = "",
-            package_uninstalled = "",
-          },
+      PATH = "prepend",
+      ui = {
+        width = 0.8,
+        height = 0.8,
+        border = float.border,
+        icons = {
+          package_installed = "",
+          package_pending = "",
+          package_uninstalled = "",
         },
       },
-      servers = {
-        ensure_installed = {
-          "html",
-          "cssls",
-          "bashls",
-          "jsonls",
-          "yamlls",
-          "lua_ls",
-          "pyright",
-          "tsserver",
-          "emmet_ls",
-          "terraformls",
-          "jdtls",
-          -- "tailwindcss",
-          -- "svelte",
-          -- "graphql",
-          -- "prismals",
-        },
-        -- auto-install configured servers (with lspconfig)
-        automatic_installation = true, -- not the same as ensure_installed
+      ensure_installed = {
+        "shfmt",
+        "stylua",
+        "html-lsp",
+        "prettier",
+        "lua-language-server",
+        "bash-language-server",
       },
-      lsp_tools = {
-        ensure_installed = {
-          "stylua",             -- lua formatter
-          "shfmt",              -- shell formatter
-          "eslint_d",           -- js linter
-          "hadolint",           -- docker linter
-          "prettier",           -- prettier formatter
-          "isort",              -- python formatter
-          "black",              -- python formatter
-          "pylint",             -- python linter
-          "js-debug-adapter",   -- js debugger
-          "java-test",          -- java test
-          "java-debug-adapter", -- java debugger
-        },
-      },
+
     },
     config = function(_, opts)
-      -- import mason
-      local mason = require("mason")
-      mason.setup(opts.attributes)
-
-      -- import mason-lspconfig
-      local mason_lspconfig = require("mason-lspconfig")
-      mason_lspconfig.setup(opts.servers)
-
-      local mason_tool_installer = require("mason-tool-installer")
-      mason_tool_installer.setup(opts.lsp_tools)
+      require("mason").setup(opts)
+      local mr = require("mason-registry")
+      mr:on("package:install:success", function()
+        vim.defer_fn(function()
+          -- trigger FileType event to possibly load this newly installed LSP server
+          require("lazy.core.handler.event").trigger({
+            event = "FileType",
+            buf = vim.api.nvim_get_current_buf(),
+          })
+        end, 100)
+      end)
+      local function ensure_installed()
+        for _, tool in ipairs(opts.ensure_installed) do
+          local p = mr.get_package(tool)
+          if not p:is_installed() then
+            p:install()
+          end
+        end
+      end
+      if mr.refresh then
+        mr.refresh(ensure_installed)
+      else
+        ensure_installed()
+      end
     end,
   },
 
@@ -291,22 +232,12 @@ return {
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     opts = {
       formatters = {
-        javascript = { "prettier" },
-        typescript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescriptreact = { "prettier" },
-        svelte = { "prettier" },
+        lua = { "stylua" },
         css = { "prettier" },
         html = { "prettier" },
         json = { "prettier" },
         yaml = { "prettier" },
         markdown = { "prettier" },
-        graphql = { "prettier" },
-        lua = { "stylua" },
-        python = { "isort", "black" },
-        terraform = { "terraform_fmt" },
-        tf = { "terraform_fmt" },
-        ["terraform-vars"] = { "terraform_fmt" },
       },
       format_on_save = {
         lsp_fallback = true,
@@ -329,22 +260,16 @@ return {
     lazy = true,
     event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
     opts = {
-      linters = {
-        python = { "pylint" },
-        svelte = { "eslint_d" },
-        dockerfile = { "hadolint" },
-        javascript = { "eslint_d" },
-        typescript = { "eslint_d" },
-        tf = { "terraform_validate" },
-        javascriptreact = { "eslint_d" },
-        typescriptreact = { "eslint_d" },
-        terraform = { "terraform_validate" },
+      linters_by_ft = {
+        html = { "prettier" },
+        css = { "prettier" },
+        markdown = { "prettier" }
       },
     },
     config = function(_, opts)
       local lint = require("lint")
 
-      lint.linters_by_ft = opts.linters
+      lint.linters_by_ft = opts.linters_by_ft
 
       local lint_augroup = vim.api.nvim_create_augroup("LspLint", { clear = true })
 
@@ -413,12 +338,5 @@ return {
         },
       },
     },
-  },
-
-  -- yaml and json schema configuration
-  {
-    "b0o/SchemaStore.nvim",
-    lazy = true,
-    version = false, -- last release is way too old
   },
 }
