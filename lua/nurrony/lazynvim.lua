@@ -16,7 +16,7 @@ require("lazy").setup({
   spec = {
     { import = "nurrony.plugins" },
     -- { import = "nurrony.plugins.languages.typescript" },
-    -- { import = "nurrony.plugins.adapters.java" },
+    -- { import = "nurrony.plugins.languages.java" },
   },
   defaults = { lazy = true },
   install = { colorscheme = { "catppuccin" } },
