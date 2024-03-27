@@ -2,23 +2,8 @@ local float = require("nurrony.core.configs").diagnostics_options.float
 local Util = require("nurrony.core.utils")
 
 return {
-  -- Detect tabstop and shiftwidth automatically
-  { "tpope/vim-sleuth" },
 
-  -- visualizes the undo history and makes it easy to browse and switch between different undo branches
-  {
-    "mbbill/undotree",
-    cmd = "UndotreeToggle",
-    init = function()
-      -- open right
-      vim.g.undotree_WindowLayout = 3
-    end,
-    keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
-    }
-  },
-
-  -- configure neovim
+  -- configure language servers
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
@@ -27,7 +12,7 @@ return {
     },
     dependencies = {
       "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      -- "williamboman/mason-lspconfig.nvim",
       {
         --TODO: enable inline hint with 0.10 release
         "ray-x/lsp_signature.nvim",
@@ -61,13 +46,7 @@ return {
         cssls = {},
         html = {},
         emmet_ls = {},
-        bashls = {
-          filetypes = {
-            "sh",
-            "zsh",
-            "bash",
-          },
-        },
+        bashls = { filetypes = { "sh", "zsh", "bash" } },
         lua_ls = {
           settings = {
             Lua = {
@@ -143,28 +122,8 @@ return {
         require("lspconfig")[server].setup(server_opts)
       end
 
-      -- get all the servers that are available through mason-lspconfig
-      local have_mason, mlsp = pcall(require, "mason-lspconfig")
-      local all_mslp_servers = {}
-      if have_mason then
-        all_mslp_servers = vim.tbl_keys(require("mason-lspconfig.mappings.server").lspconfig_to_package)
-      end
-
-      local ensure_installed = {}
-      for server, server_opts in pairs(servers) do
-        if server_opts then
-          server_opts = server_opts == true and {} or server_opts
-          -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
-          if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
-            setup(server)
-          else
-            ensure_installed[#ensure_installed + 1] = server
-          end
-        end
-      end
-
-      if have_mason then
-        mlsp.setup({ ensure_installed = ensure_installed, handlers = { setup } })
+      for server in pairs(servers) do
+        setup(server)
       end
     end,
   },
