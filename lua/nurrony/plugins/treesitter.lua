@@ -182,15 +182,15 @@ return {
   -- Show context of the current function
   {
     "nvim-treesitter/nvim-treesitter-context",
-    event = { "BufReadPost", "BufNewFile" },
     enabled = true,
+    event = { "BufReadPost", "BufNewFile" },
     opts = { mode = "cursor", max_lines = 3 },
   },
 
   -- Automatically add closing tags for HTML and JSX
   {
     "windwp/nvim-ts-autotag",
-    event = { "BufReadPost", "BufNewFile" },
     opts = {},
+    event = { "BufReadPost", "BufNewFile" },
   },
 }
