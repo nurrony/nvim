@@ -9,8 +9,10 @@ return {
       group = "",
     },
     layout = {
-      spacing = 5,
-      align = "left",
+      height = { min = 4, max = 20 }, -- min and max height of the columns
+      width = { min = 20, max = 45 }, -- min and max width of the columns
+      spacing = 3,                    -- spacing between columns
+      align = "left",                 -- align columns left, center or right
     },
     show_help = false,
     plugins = {
