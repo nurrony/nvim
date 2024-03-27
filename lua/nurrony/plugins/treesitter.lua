@@ -34,11 +34,11 @@ return {
         "diff",
         "html",
         "make",
-        "vimdoc",
         "query",
         "regex",
-        "gitignore",
+        "vimdoc",
         "markdown",
+        "gitignore",
         "markdown_inline",
       },
       incremental_selection = {
