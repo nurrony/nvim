@@ -194,10 +194,9 @@ return {
     opts = {
       formatters = {
         lua = { "stylua" },
+        bash = { "shfmt" },
         css = { "prettier" },
         html = { "prettier" },
-        json = { "prettier" },
-        yaml = { "prettier" },
         markdown = { "prettier" },
       },
       format_on_save = {
