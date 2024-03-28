@@ -113,14 +113,12 @@ These are the followings that comes out of the box
 
 > ✅ **Each langauge configuration comes with its corresponding Formatters, Linters and Debugger**
 
-### </> Default Languages
+### </> Available Pre-configured Languages
 
 - Lua
 - CSS
 - BASH
 - HTML
-
-### </> Available Pre-configured Optional Languages
 - YAML
 - JSON
 - Java
