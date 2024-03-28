@@ -141,9 +141,9 @@ return {
         height = 0.8,
         border = float.border,
         icons = {
-          package_installed = "",
-          package_pending = "",
-          package_uninstalled = "",
+          package_installed = "✓",
+          package_uninstalled = "✗",
+          package_pending = "⟳",
         },
       },
       ensure_installed = {
