@@ -136,10 +136,3 @@ autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\s\+$//e]] })
 if vim.fn.has("win64") == 1 or vim.fn.has("wsl") == 1 then
   autocmd({ "BufWritePre" }, { pattern = { "*" }, command = [[%s/\r$//e]] })
 end
-
--- register terraform and hcl language
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = { "hcl", "terraform" },
-  desc = "terraform/hcl commentstring configuration",
-  command = "setlocal commentstring=#\\ %s",
-})
