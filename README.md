@@ -123,11 +123,14 @@ These are the followings that comes out of the box
 - JSON
 - Java
 - Docker
+- NodeJS
 - Markdown
 - Terraform
 - Javascript
 - Typescript
 - Kubernetes
+
+> 📝 To disable any language please comment the language in [lazyvim.lua](lua/nurrony/lazynvim.lua) file.
 
 ## 🙏 Special Thanks to
 
