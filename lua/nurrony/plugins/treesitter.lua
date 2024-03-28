@@ -37,9 +37,7 @@ return {
         "query",
         "regex",
         "vimdoc",
-        "markdown",
         "gitignore",
-        "markdown_inline",
       },
       incremental_selection = {
         enable = true,
