@@ -15,12 +15,13 @@ vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup({
   spec = {
     { import = "nurrony.plugins" },
+    { import = "nurrony.plugins.languages.yaml" },
+    { import = "nurrony.plugins.languages.java" },
+    { import = "nurrony.plugins.languages.json" },
+    { import = "nurrony.plugins.languages.docker" },
+    { import = "nurrony.plugins.languages.markdown" },
     { import = "nurrony.plugins.languages.terraform" },
-    -- { import = "nurrony.plugins.languages.json" },
-    -- { import = "nurrony.plugins.languages.yaml" },
-    -- { import = "nurrony.plugins.languages.java" },
-    -- { import = "nurrony.plugins.languages.docker" },
-    -- { import = "nurrony.plugins.languages.typescript" },
+    { import = "nurrony.plugins.languages.typescript" },
   },
   defaults = { lazy = true },
   install = { colorscheme = { "catppuccin" } },
