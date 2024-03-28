@@ -122,14 +122,11 @@ These are the followings that comes out of the box
 - YAML
 - JSON
 - Java
+- Docker
 - Markdown
+- Terraform
 - Javascript
 - Typescript
-
-### 🚧 DevOps
-
-- Docker
-- Terraform
 - Kubernetes
 
 ## 🙏 Special Thanks to
