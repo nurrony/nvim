@@ -6,7 +6,7 @@ return {
   -- configure language servers
   {
     "neovim/nvim-lspconfig",
-    event = { "BufReadPre", "BufNewFile" },
+    event = { "BufReadPost", "BufNewFile" },
     keys = {
       { "<leader>cl", "<cmd>LspInfo<cr>", desc = "Lsp Info" },
     },
@@ -31,7 +31,7 @@ return {
       },
       {
         "antosha417/nvim-lsp-file-operations",
-        config = true
+        config = true,
       },
     },
     opts = {
@@ -156,7 +156,6 @@ return {
         "lua-language-server",
         "bash-language-server",
       },
-
     },
     config = function(_, opts)
       require("mason").setup(opts)
@@ -190,7 +189,7 @@ return {
   {
     "stevearc/conform.nvim",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    event = { "BufReadPost", "BufNewFile" }, -- to disable, comment this out
     opts = {
       formatters = {
         lua = { "stylua" },
@@ -218,12 +217,12 @@ return {
   {
     "mfussenegger/nvim-lint",
     lazy = true,
-    event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+    event = { "BufReadPost", "BufNewFile" }, -- to disable, comment this out
     opts = {
       linters_by_ft = {
         html = { "prettier" },
         css = { "prettier" },
-        markdown = { "prettier" }
+        markdown = { "prettier" },
       },
     },
     config = function(_, opts)
@@ -309,8 +308,8 @@ return {
       vim.g.undotree_WindowLayout = 3
     end,
     keys = {
-      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" }
-    }
+      { "<leader>cu", "<cmd>UndotreeToggle<cr>", desc = "toggle undotree" },
+    },
   },
 
   -- Detect tabstop and shiftwidth automatically
