@@ -120,6 +120,7 @@ These are the followings that comes out of the box
 
 ### Available Pre configured optional Langauges
 - YAML
+- JSON
 - Java
 - Typescript
 
