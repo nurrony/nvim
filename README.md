@@ -111,20 +111,21 @@ These are the followings that comes out of the box
 - UFO (Folding)
 - Which Key
 
-### 🔖 Default Languages
+> ✅ **Each langauge configuration comes with its corresponding Formatters, Linters and Debugger**
+
+### </> Default Languages
 
 - Lua
 - CSS
 - BASH
 - HTML
 
-### Available Pre configured optional Langauges
+### </> Available Pre-configured Optional Languages
 - YAML
 - JSON
 - Java
+- Markdown
 - Typescript
-
-> ✅ **Each langauge configuration comes with its corresponding Formatters, Linters and Debugger**
 
 ### 🚧 DevOps
 
