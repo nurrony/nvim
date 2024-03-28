@@ -16,6 +16,7 @@ require("lazy").setup({
   spec = {
     { import = "nurrony.plugins" },
     { import = "nurrony.plugins.languages.java" },
+    { import = "nurrony.plugins.languages.docker" },
     { import = "nurrony.plugins.languages.typescript" },
   },
   defaults = { lazy = true },
