@@ -123,6 +123,7 @@ These are the followings that comes out of the box
 - JSON
 - Java
 - Markdown
+- Javascript
 - Typescript
 
 ### 🚧 DevOps
