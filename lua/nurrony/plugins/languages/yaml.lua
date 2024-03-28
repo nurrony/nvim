@@ -83,28 +83,4 @@ return {
       },
     },
   },
-
-  -- formatter
-  {
-    "stevearc/conform.nvim",
-    optional = true,
-    opts = {
-      formatters_by_ft = {
-        yml = { "prettier" },
-        yaml = { "prettier" },
-      },
-    },
-    dependencies = {
-      -- make sure mason installs the formatters
-      {
-        "williamboman/mason.nvim",
-        opts = function(_, opts)
-          opts.ensure_installed = opts.ensure_installed or {}
-          table.insert(opts.ensure_installed, "prettier")
-        end,
-      },
-    },
-  },
-
-
 }
