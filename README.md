@@ -111,23 +111,19 @@ These are the followings that comes out of the box
 - UFO (Folding)
 - Which Key
 
-### 🔖 Default Languages Servers
+### 🔖 Default Languages
 
+- Lua
+- CSS
 - BASH
 - HTML
-- CSS
-- Lua
 
+### Available Pre configured optional Langauges
+- YAML
+- Java
+- Typescript
 
-### 🔧 Linters and Formatters
-
-- Prettier
-- ESlint
-- Shell Format
-- Shell Checker
-- Python Linter
-- Terraform Linter
-- CloudFormation Linter
+> ✅ **Each langauge configuration comes with its corresponding Formatters, Linters and Debugger**
 
 ### 🚧 DevOps
 
