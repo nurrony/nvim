@@ -4,7 +4,7 @@ local map = utils.map
 local augroup = utils.augroup
 
 -- disable ufo for certain file type
-vim.api.nvim_create_autocmd("FileType", {
+autocmd("FileType", {
   group = augroup("detach_ufo"),
   pattern = { "help", "alpha", "dashboard", "neo-tree", "Trouble", "lazy", "mason" },
   callback = function()
@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- resize splits if window got resized
-vim.api.nvim_create_autocmd({ "VimResized" }, {
+autocmd({ "VimResized" }, {
   group = augroup("resize_splits"),
   callback = function()
     local current_tab = vim.fn.tabpagenr()
@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd({ "VimResized" }, {
 })
 
 -- Fix conceallevel for json files
-vim.api.nvim_create_autocmd({ "FileType" }, {
+autocmd({ "FileType" }, {
   group = augroup("json_conceal"),
   pattern = { "json", "jsonc", "json5" },
   callback = function()
@@ -118,7 +118,7 @@ autocmd("FileType", {
 -- })
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+autocmd({ "BufWritePre" }, {
   group = augroup("auto_create_dir"),
   callback = function(event)
     if event.match:match("^%w%w+://") then
