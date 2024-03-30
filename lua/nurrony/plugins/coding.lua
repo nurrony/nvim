@@ -219,10 +219,7 @@ return {
     lazy = true,
     event = { "BufReadPost", "BufNewFile" }, -- to disable, comment this out
     opts = {
-      linters_by_ft = {
-        html = { "prettier" },
-        css = { "prettier" },
-      },
+      linters_by_ft = {},
     },
     config = function(_, opts)
       local lint = require("lint")
