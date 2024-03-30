@@ -312,6 +312,12 @@ return {
     },
   },
 
+  -- multi cursor like vscode
+  {
+    "mg979/vim-visual-multi",
+    event = { "BufReadPost", "BufNewFile" },
+  },
+
   -- Detect tabstop and shiftwidth automatically
   { "tpope/vim-sleuth" },
 }
