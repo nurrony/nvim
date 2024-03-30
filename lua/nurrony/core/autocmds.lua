@@ -1,7 +1,7 @@
 local autocmd = vim.api.nvim_create_autocmd -- create autocmd
-local utils = require("nurrony.core.utils")
-local map = utils.map
-local augroup = utils.augroup
+local Util = require("nurrony.core.utils")
+local map = Util.map
+local augroup = Util.augroup
 
 -- disable ufo for certain file type
 autocmd("FileType", {
