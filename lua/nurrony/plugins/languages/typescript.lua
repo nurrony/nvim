@@ -63,6 +63,9 @@ return {
         tsserver = function()
           Util.on_attach(function(client, _)
             if client.name == "tsserver" then
+              -- update capabilities
+              client.server_capabilities.documentFormattingProvider = false
+
               -- organize imports
               Util.map({ "n", "v" }, "<leader>co", function()
                 vim.lsp.buf.code_action({
