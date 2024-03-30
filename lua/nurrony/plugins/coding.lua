@@ -46,7 +46,10 @@ return {
         cssls = {},
         html = {},
         emmet_ls = {},
-        bashls = { filetypes = { "sh", "zsh", "bash" } },
+        bashls = {
+          filetypes = { "sh", "zsh", "bash" },
+          completions = { completeFunctionCalls = true },
+        },
         lua_ls = {
           settings = {
             Lua = {
