@@ -222,7 +222,6 @@ return {
       linters_by_ft = {
         html = { "prettier" },
         css = { "prettier" },
-        markdown = { "prettier" },
       },
     },
     config = function(_, opts)
