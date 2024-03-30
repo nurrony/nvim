@@ -101,7 +101,7 @@ map("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear hlsearch" })
 
 -- lazy
-map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>l", "<cmd>:Lazy<cr>", { desc = "󰒲 Lazy" })
 
 -- toggle options
 -- === Spell checking === "
