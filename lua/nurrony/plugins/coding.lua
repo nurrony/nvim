@@ -43,8 +43,8 @@ return {
       capabilities = {},
       -- LSP Server Settings
       servers = {
-        cssls = {},
         html = {},
+        cssls = {},
         emmet_ls = {},
         bashls = {
           filetypes = { "sh", "zsh", "bash" },
