@@ -5,15 +5,18 @@ return {
   -- npm package
   {
     "vuki656/package-info.nvim",
+    opts = {},
     lazy = true,
-    event = { "BufReadPost", "BufNewFile" },
+    ft = "json",
+    config = function(_, opts)
+      require('package-info').setup(opts)
+    end,
     keys = {
       { "<leader>cnd", "<cmd>lua require('package-info').delete()<cr>",         desc = "Remove NPM Package" },
       { "<leader>cni", "<cmd>lua require('package-info').install()<cr>",        desc = "Install npm package" },
       { "<leader>cnc", "<cmd>lua require('package-info').change_version()<cr>", desc = "Change NPM Package" },
       { "<leader>cnt", "<cmd>lua require('package-info').toggle()<cr>",         desc = "Toggle NPM package versions" },
     },
-    config = true
   },
 
   -- add typescript to treesitter
