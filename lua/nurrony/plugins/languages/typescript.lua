@@ -13,9 +13,7 @@ return {
       { "<leader>cnc", "<cmd>lua require('package-info').change_version()<cr>", desc = "Change NPM Package" },
       { "<leader>cnt", "<cmd>lua require('package-info').toggle()<cr>",         desc = "Toggle NPM package versions" },
     },
-    config = function()
-      require("package-info").setup()
-    end,
+    config = true
   },
 
   -- add typescript to treesitter
