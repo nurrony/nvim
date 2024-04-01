@@ -2,9 +2,9 @@
 -- at the end of each match, letting you quickly jump to a specific location.
 return {
   "folke/flash.nvim",
-  event = "VeryLazy",
+  event = { "BufReadPost", "BufNewFile" },
   opts = {
-    jump = { pos = "end", },
+    jump = { pos = "end" },
     modes = {
       char = {
         -- highlight = {
