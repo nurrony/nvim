@@ -1,4 +1,4 @@
-local Util = require "nurrony.core.utils"
+local Util = require("nurrony.core.utils")
 
 return {
 
@@ -89,8 +89,8 @@ return {
               end, { noremap = true, silent = true }, "Remove Unused Imports")
             end
           end)
-        end
-      }
+        end,
+      },
     },
   },
 
@@ -170,7 +170,7 @@ return {
             -- 💀 Make sure to update this path to point to your installation
             args = {
               require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-              .. "/js-debug/src/dapDebugServer.js",
+                .. "/js-debug/src/dapDebugServer.js",
               "${port}",
             },
           },
