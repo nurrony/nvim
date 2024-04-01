@@ -2,6 +2,22 @@ local Util = require("nurrony.core.utils")
 
 return {
 
+  -- npm package
+  {
+    "vuki656/package-info.nvim",
+    lazy = true,
+    event = { "BufReadPost", "BufNewFile" },
+    keys = {
+      { "<leader>cnd", "<cmd>lua require('package-info').delete()<cr>",         desc = "Remove NPM Package" },
+      { "<leader>cni", "<cmd>lua require('package-info').install()<cr>",        desc = "Install npm package" },
+      { "<leader>cnc", "<cmd>lua require('package-info').change_version()<cr>", desc = "Change NPM Package" },
+      { "<leader>cnt", "<cmd>lua require('package-info').toggle()<cr>",         desc = "Toggle NPM package versions" },
+    },
+    config = function()
+      require("package-info").setup()
+    end,
+  },
+
   -- add typescript to treesitter
   {
     "nvim-treesitter/nvim-treesitter",
@@ -170,7 +186,7 @@ return {
             -- 💀 Make sure to update this path to point to your installation
             args = {
               require("mason-registry").get_package("js-debug-adapter"):get_install_path()
-                .. "/js-debug/src/dapDebugServer.js",
+              .. "/js-debug/src/dapDebugServer.js",
               "${port}",
             },
           },
