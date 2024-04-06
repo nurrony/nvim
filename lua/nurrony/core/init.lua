@@ -27,12 +27,3 @@ for name, icon in pairs(Configs.icons.diagnostics) do
   name = "DiagnosticSign" .. name
   vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
 end
-
--- configure debugger diagnostics signs
--- for name in pairs(Configs.icons.debugger) do
---   sign = type(sign) == "table" and sign or { sign }
---   vim.fn.sign_define(
---     "Dap" .. name,
---     { text = sign[1], texthl = sign[2] or "DiagnosticInfo", linehl = sign[3], numhl = sign[3] }
---   )
--- end
