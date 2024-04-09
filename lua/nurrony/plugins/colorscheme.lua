@@ -1,3 +1,5 @@
+local Config = require("nurrony.core.configs")
+
 return {
   -- catppuccin colorscheme
   {
@@ -11,7 +13,7 @@ return {
         light = "latte",
         dark = "mocha",
       },
-      transparent_background = false,
+      transparent_background = Config.transparent,
       show_end_of_buffer = false, -- show the '~' characters after the end of buffers
       term_colors = true,
       dim_inactive = {
