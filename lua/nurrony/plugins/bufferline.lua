@@ -6,17 +6,17 @@ return {
   "akinsho/bufferline.nvim",
   event = { "BufReadPost", "BufNewFile" },
   dependencies = {
-    { 'nvim-lua/plenary.nvim' },       -- common functions library for other plugins
+    { "nvim-lua/plenary.nvim" }, -- common functions library for other plugins
     { "nvim-tree/nvim-web-devicons" }, -- add nerdfont devicons support
   },
   keys = {
-    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>",            desc = "Toggle pin" },
-    { "]b",         "<cmd>BufferLineCycleNext<cr>",            desc = "Next buffer" },
-    { "[b",         "<cmd>BufferLineCyclePrev<cr>",            desc = "Prev buffer" },
-    { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>",          desc = "Delete other buffers" },
+    { "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+    { "]b", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
+    { "[b", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
+    { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
     { "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",            desc = "Delete buffers to the left" },
-    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>",           desc = "Delete buffers to the right" },
+    { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+    { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
   },
   opts = {
     options = {
@@ -41,14 +41,14 @@ return {
       enforce_regular_tabs = false,
       view = "multiwindow",
       show_buffer_close_icons = true,
-      separator_style = "slant",
+      separator_style = "thin",
       themable = true,
       diagnostics = false, -- "nvim_lsp",
       always_show_bufferline = false,
       diagnostics_indicator = function(_, _, diag)
         local icons = Configs.icons.diagnostics
         local ret = (diag.error and icons.Error .. diag.error .. " " or "")
-            .. (diag.warning and icons.Warn .. diag.warning or "")
+          .. (diag.warning and icons.Warn .. diag.warning or "")
         return vim.trim(ret)
       end,
       offsets = {
