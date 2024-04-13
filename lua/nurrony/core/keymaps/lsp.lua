@@ -16,18 +16,6 @@ Utils.on_attach(function(client, bufnr)
     end, opts, "Hover Info")
   end
 
-  -- capabilitiies: tokenProvider
-  -- if client.server_capabilities.semanticTokensProvider then
-  --   map("n", "<leader>us", function()
-  --     utils.toggle("enable_semantic_tokens", { global = true }, nil)
-  --     if vim.g["enable_semantic_tokens"] then
-  --       vim.lsp.semantic_tokens.start(bufnr, client.id)
-  --     else
-  --       vim.lsp.semantic_tokens.stop(bufnr, client.id)
-  --     end
-  --   end, opts, "toggle semantic token highlighting")
-  -- end
-
   -- capabilitiies: signatureHelpProvider
   if client.server_capabilities.signatureHelpProvider then
     map("n", "gK", vim.lsp.buf.signature_help, opts, "signature help")
@@ -242,8 +230,6 @@ Utils.on_attach(function(client, bufnr)
   map("n", "[e", Utils.diagnostic_goto(false, "ERROR"), { desc = "Prev Error" })
   map("n", "]w", Utils.diagnostic_goto(true, "WARN"), { desc = "Next Warning" })
   map("n", "[w", Utils.diagnostic_goto(false, "WARN"), { desc = "Prev Warning" })
-
-
 
   map("n", "<leader>wf", function()
     vim.print(vim.lsp.buf.list_workspace_folders())
