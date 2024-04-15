@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd -- create autocmd
 local Util = require("nurrony.core.utils")
+local Config = require("nurrony.core.configs")
 local map = Util.map
 local augroup = Util.augroup
 
@@ -111,11 +112,11 @@ autocmd("FileType", {
 
 -- local diagnostics_options = require("nurrony.core.configs").diagnostics_options
 -- automatically show diagnostics on current line
--- autocmd({ "CursorHold" }, {
---   callback = function()
---     -- vim.diagnostic.open_float(nil, diagnostics_options.float) -- uncomment this to enable floation report
---   end,
--- })
+autocmd({ "CursorHold" }, {
+  callback = function()
+    vim.diagnostic.open_float(nil, Config.diagnostics_options.float) -- uncomment this to enable floation report
+  end,
+})
 
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 autocmd({ "BufWritePre" }, {
