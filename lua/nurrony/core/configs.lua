@@ -107,12 +107,12 @@ return {
   diagnostics_options = {
     -- virtual_text = true,
     -- open_float = false,
-    virtual_text = {
-      severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
-      source = "if_many",
-      spacing = 4,
-      prefix = "●",
-    },
+    -- virtual_text = {
+    --   severity = { min = vim.diagnostic.severity.WARN, max = vim.diagnostic.severity.ERROR },
+    --   source = "if_many",
+    --   spacing = 4,
+    --   prefix = "●",
+    -- },
     float = {
       --nvim_open_win() options
       relative = "cursor",
