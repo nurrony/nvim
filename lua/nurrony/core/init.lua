@@ -3,11 +3,10 @@ require("nurrony.core.options")
 
 local Configs = require("nurrony.core.configs")
 local utils = require("nurrony.core.utils")
+local diagnostics_options = Configs.diagnostics_options
 
 -- Load editor syntax, autocmds and keymaps
 utils.lazy_load({ "nurrony.core.syntax", "nurrony.core.autocmds", "nurrony.core.keymaps" })
-
-local diagnostics_options = Configs.diagnostics_options
 
 -- configure floating window
 vim.diagnostic.config(diagnostics_options)
