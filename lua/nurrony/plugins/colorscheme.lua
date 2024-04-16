@@ -1,6 +1,12 @@
 local Config = require("nurrony.core.configs")
 
 return {
+  {
+    "xiyaowong/transparent.nvim",
+    opts = {},
+    lazy = false,
+    config = true,
+  },
   -- catppuccin colorscheme
   {
     "catppuccin/nvim",
@@ -22,7 +28,7 @@ return {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false,   -- Force no bold
+      no_bold = false, -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
