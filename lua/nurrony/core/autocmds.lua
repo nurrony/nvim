@@ -110,7 +110,6 @@ autocmd("FileType", {
   end,
 })
 
--- local diagnostics_options = require("nurrony.core.configs").diagnostics_options
 -- automatically show diagnostics on current line
 autocmd({ "CursorHold" }, {
   callback = function()
