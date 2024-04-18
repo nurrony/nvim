@@ -109,5 +109,3 @@ vim.g.markdown_recommended_style = 0
 
 -- make diff mode always open in vertical split
 -- vim.g.diffopt:append({ "vertical" })
---
-opt.pumblend = 0
