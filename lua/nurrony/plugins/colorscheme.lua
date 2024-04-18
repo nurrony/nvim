@@ -3,17 +3,19 @@ local Config = require("nurrony.core.configs")
 return {
   {
     "xiyaowong/transparent.nvim",
-    enabled = true,
-    opts = {
-      extra_groups = {
-        "Pmenu",
-        "Float",
-        "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
-        "NvimTreeNormal", -- NvimTree
-      },
-    },
     lazy = false,
     config = true,
+    enabled = true,
+    opts = function()
+      return {
+        extra_groups = {
+          "Pmenu",
+          "Float",
+          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+          "NvimTreeNormal", -- NvimTree
+        },
+      }
+    end,
   },
   -- catppuccin colorscheme
   {
