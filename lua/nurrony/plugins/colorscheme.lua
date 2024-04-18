@@ -3,11 +3,12 @@ local Config = require("nurrony.core.configs")
 return {
   {
     "xiyaowong/transparent.nvim",
+    enabled = true,
     opts = {
       extra_groups = {
         "Pmenu",
         "Float",
-        "NormalFloat",    -- plugins which have float panel such as Lazy, Mason, LspInfo
+        "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
         "NvimTreeNormal", -- NvimTree
       },
     },
@@ -35,7 +36,7 @@ return {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false,   -- Force no bold
+      no_bold = false, -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
