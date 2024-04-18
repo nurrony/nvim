@@ -7,6 +7,8 @@ return {
     config = true,
     enabled = true,
     opts = function()
+      --- set transparent completion menu
+      vim.opt.pumblend = 0
       return {
         extra_groups = {
           "Pmenu",
