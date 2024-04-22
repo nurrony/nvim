@@ -7,15 +7,15 @@ end
 function M.reload_all()
   for name, _ in pairs(package.loaded) do
     if
-        name:match("^lazy")
-        or name:match("^mapping")
-        or name:match("^plugrc")
-        or name:match("^ui")
-        or name:match("^editor")
-        or name:match("^plugins")
-        or name:match("^syntax")
-        or name:match("^terminal")
-        or name:match("^utils")
+      name:match("^lazy")
+      or name:match("^mapping")
+      or name:match("^plugrc")
+      or name:match("^ui")
+      or name:match("^editor")
+      or name:match("^plugins")
+      or name:match("^syntax")
+      or name:match("^terminal")
+      or name:match("^utils")
     then
       package.loaded[name] = nil
     end
@@ -182,11 +182,6 @@ end
 -- Wrapper around vim.keymap.set that will
 -- not create a keymap if a lazy key handler exists.
 -- It will also set `silent` to true by default.
----@param mode string|table
----@param lhs string
----@param rhs string|function
----@param opts? table
----@param desc? string
 function M.map(mode, lhs, rhs, opts, desc)
   local keys = require("lazy.core.handler").handlers.keys
   local modes = type(mode) == "string" and { mode } or mode
