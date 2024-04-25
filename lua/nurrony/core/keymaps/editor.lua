@@ -86,8 +86,8 @@ map("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- save file
--- map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
-map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
+-- map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
 
 -- quit
 map("n", "<leader>qq", function()
