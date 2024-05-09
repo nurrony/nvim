@@ -182,23 +182,14 @@ end
 -- Wrapper around vim.keymap.set that will
 -- not create a keymap if a lazy key handler exists.
 -- It will also set `silent` to true by default.
-function M.map(modes, lhs, rhs, opts, desc)
-  -- local keys = require("lazy.core.handler").handlers.keys
-  -- local modes = type(mode) == "string" and { mode } or mode
-
-  -- modes = vim.tbl_filter(function(m)
-  --   return not (keys.have and keys:have(lhs, m))
-  -- end, modes)
-
-  -- do not create the keymap if a lazy keys handler exists
-
+function M.map(modes, keyset, cmd, opts, desc)
   opts = opts or {}
   opts = mdesc(opts, desc)
   opts.silent = opts.silent ~= false
   if opts.remap and not vim.g.vscode then
     opts.remap = nil
   end
-  vim.keymap.set(modes, lhs, rhs, opts)
+  vim.keymap.set(modes, keyset, cmd, opts)
 end
 
 M.augroup = function(name)
