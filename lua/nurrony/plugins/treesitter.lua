@@ -188,6 +188,7 @@ return {
   {
     "windwp/nvim-ts-autotag",
     opts = {},
-    event = { "BufReadPost", "BufNewFile" },
+    event = { "BufReadPre", "BufNewFile" },
+    config = true
   },
 }
