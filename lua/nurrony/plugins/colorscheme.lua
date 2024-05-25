@@ -5,7 +5,6 @@ return {
     "xiyaowong/transparent.nvim",
     lazy = false,
     config = true,
-    enabled = true,
     opts = function()
       --- set transparent completion menu
       vim.opt.pumblend = 0
@@ -13,7 +12,7 @@ return {
         extra_groups = {
           "Pmenu",
           "Float",
-          "NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo
+          "NormalFloat",    -- plugins which have float panel such as Lazy, Mason, LspInfo
           "NvimTreeNormal", -- NvimTree
         },
       }
@@ -40,7 +39,7 @@ return {
         percentage = 0.15,
       },
       no_italic = false, -- Force no italic
-      no_bold = false, -- Force no bold
+      no_bold = false,   -- Force no bold
       styles = {
         comments = { "italic" },
         conditionals = { "italic" },
