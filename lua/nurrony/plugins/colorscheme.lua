@@ -7,6 +7,7 @@ return {
     config = true,
     opts = function()
       --- set transparent completion menu
+      -- run :EnableTransparent for transparency
       vim.opt.pumblend = 0
       return {
         extra_groups = {
