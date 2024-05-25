@@ -12,18 +12,16 @@ return {
       require("nvim-treesitter.query_predicates")
     end,
     dependencies = {
-      "windwp/nvim-ts-autotag",
       "nvim-treesitter/nvim-treesitter-textobjects",
     },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     keys = {
       { "<c-space>", desc = "Increment selection" },
-      { "<bs>", desc = "Decrement selection", mode = "x" },
+      { "<bs>",      desc = "Decrement selection", mode = "x" },
     },
 
     opts = {
-      indent = { enable = true }, -- enable indent
-      autotag = { enable = true }, -- enable autotagging (nvim-ts-autotag plugin)
+      indent = { enable = true },    -- enable indent
       highlight = { enable = true }, -- enable highlight
       ensure_installed = {
         "xml",
@@ -113,13 +111,13 @@ return {
           enable = true,
           swap_next = {
             ["<leader>na"] = "@parameter.inner", -- swap parameters/argument with next
-            ["<leader>n:"] = "@property.outer", -- swap object property with next
-            ["<leader>nm"] = "@function.outer", -- swap function with next
+            ["<leader>n:"] = "@property.outer",  -- swap object property with next
+            ["<leader>nm"] = "@function.outer",  -- swap function with next
           },
           swap_previous = {
             ["<leader>pa"] = "@parameter.inner", -- swap parameters/argument with prev
-            ["<leader>p:"] = "@property.outer", -- swap object property with prev
-            ["<leader>pm"] = "@function.outer", -- swap function with previous
+            ["<leader>p:"] = "@property.outer",  -- swap object property with prev
+            ["<leader>pm"] = "@function.outer",  -- swap function with previous
           },
         },
         move = {
