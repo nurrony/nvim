@@ -37,10 +37,10 @@ local mode = { "n", "v", "o" }
 -- buffers
 map("n", "<leader>bb", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
 map("n", "<leader>`", "<cmd>b#<cr>", { desc = "Switch to Previous Buffer" })
-map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer")          -- move to the first buffer in the buffer list
-map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer")            -- move to the last buffer in the buffer list
-map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer")     -- Close the current buffer
-map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt)      -- Close all buffers except current
+map("n", "<leader>b1", "<cmd>bfirst<cr>", opt, "goto first buffer") -- move to the first buffer in the buffer list
+map("n", "<leader>b9", "<cmd>blast<cr>", opt, "goto last buffer") -- move to the last buffer in the buffer list
+map("n", "<leader>bd", "<cmd>bdelete<cr>", opt, "delete current buffer") -- Close the current buffer
+map("n", "<leader>bo", "<cmd>%bdelete<bar>edit#<bar>bdelete#<cr>", opt) -- Close all buffers except current
 map("n", "<leader>bn", "<cmd>enew | startinsert<cr>", { desc = "New File" }) -- new file
 
 -- Useful mappings for managing tabs
@@ -86,8 +86,8 @@ map("v", "<A-Down>", ":m '>+1<cr>gv=gv", { desc = "Move down" })
 map("v", "<A-Up>", ":m '<-2<cr>gv=gv", { desc = "Move up" })
 
 -- save file
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
--- map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
+-- map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
+map({ "i", "x", "n", "s" }, "<D-s>", "<cmd>w<cr><esc>", { noremap = true, silent = true }, "Save file")
 
 -- quit
 map("n", "<leader>qq", function()
